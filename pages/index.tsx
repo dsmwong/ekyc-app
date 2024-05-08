@@ -4,10 +4,42 @@ import { Heading } from "@twilio-paste/core/heading";
 import { ListItem, UnorderedList } from "@twilio-paste/core/list";
 import { Paragraph } from "@twilio-paste/core/paragraph";
 import { Separator } from "@twilio-paste/core/separator";
+// import { Stack } from "@twilio-paste/core/stack";
+import { Button } from "@twilio-paste/button";
+// import { PlusIcon } from "@twilio-paste/icons/cjs/PlusIcon";
+import {
+  Sidebar,
+  SidebarHeader,
+  SidebarHeaderLabel,
+  SidebarHeaderIconButton,
+  SidebarCollapseButton,
+  SidebarBody,
+  SidebarFooter,
+  SidebarPushContentWrapper,
+  SidebarNavigation,
+  SidebarNavigationItem
+} from '@twilio-paste/core/sidebar';
+import { useUID } from "@twilio-paste/core/uid-library";
+
+import { LogoTwilioIcon } from "@twilio-paste/icons/cjs/LogoTwilioIcon";
+import { ProductHomeIcon } from "@twilio-paste/icons/cjs/ProductHomeIcon";
+
+import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
+
 const Home: NextPage = () => {
+
+  const sidebarNavigationSkipLinkID = useUID();
+  const topbarSkipLinkID = useUID();
+  const mainContentSkipLinkID = useUID();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const toggleSidebarCollapsed = () => {
+    return setSidebarCollapsed(!sidebarCollapsed);
+  }
+  
   return (
     <Box as="main" padding="space70">
       <Head>
@@ -15,48 +47,47 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Heading as="h1" variant="heading10">
-        Welcome to the the Paste Next.JS App!
-      </Heading>
+      <Sidebar
+        sidebarNavigationSkipLinkID={sidebarNavigationSkipLinkID}
+        topbarSkipLinkID={topbarSkipLinkID}
+        mainContentSkipLinkID={mainContentSkipLinkID}
+        collapsed={sidebarCollapsed}
+        variant="compact"
+      >
+        <SidebarHeader>
+          <SidebarHeaderIconButton as="a" href="#">
+            <LogoTwilioIcon size="sizeIcon20" decorative={false} title="Go to Console homepage" />
+          </SidebarHeaderIconButton>
+          <SidebarHeaderLabel>Twilio Demo</SidebarHeaderLabel>
+        </SidebarHeader>
+        <SidebarBody>
+        <SidebarNavigation aria-label="main" hierarchical hideItemsOnCollapse>
+          <SidebarNavigationItem href="https://console.twilio.com" icon={<ProductHomeIcon decorative />}>
+            Twilio Console
+          </SidebarNavigationItem>
+        </SidebarNavigation>
+        </SidebarBody>
+        <SidebarFooter>
+          <SidebarCollapseButton
+            i18nCollapseLabel="Close sidebar"
+            i18nExpandLabel="Open sidebar"
+            onClick={toggleSidebarCollapsed}
+          />
+        </SidebarFooter>
+      </Sidebar>
+      <SidebarPushContentWrapper collapsed={sidebarCollapsed} variant="compact">
 
-      <Paragraph>
-        Everything you need to get started using Paste in a Production app. Start by editing{" "}
-        <code>pages/index.tsx</code>
-      </Paragraph>
-      <Separator orientation="horizontal" verticalSpacing="space120" />
+        <Heading as="h1" variant="heading10">
+          Welcome to Demo Template
+        </Heading>
 
-      <Heading as="h2" variant="heading20">
-        Useful links
-      </Heading>
+        <Button variant="primary" onClick={toggleSidebarCollapsed}>
+          Toggle Push Sidebar
+        </Button>
 
-      <UnorderedList>
-        <ListItem>
-          <Heading as="h3" variant="heading30">
-            <Anchor href="https://paste.twilio.design" showExternal>
-              Paste Documentation
-            </Anchor>
-          </Heading>
-          <Paragraph>
-            Start here. Find in-depth information about using the Paste Design System to build your Next app.
-          </Paragraph>
-        </ListItem>
-        <ListItem>
-          <Heading as="h3" variant="heading30">
-            <Anchor href="https://nextjs.org/docs" showExternal>
-              NextJS Documentation
-            </Anchor>
-          </Heading>
-          <Paragraph>Find in-depth information about Next.js features and API.</Paragraph>
-        </ListItem>
-        <ListItem>
-          <Heading as="h3" variant="heading30">
-            <Anchor href="https://vercel.com/import?filter=next.js" showExternal>
-              Deploy
-            </Anchor>
-          </Heading>
-          <Paragraph>Instantly deploy your Next.js site to a public URL with Vercel.</Paragraph>
-        </ListItem>
-      </UnorderedList>
+      </SidebarPushContentWrapper>
+
+
     </Box>
   );
 };
