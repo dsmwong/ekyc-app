@@ -27,7 +27,10 @@ import { ProductHomeIcon } from "@twilio-paste/icons/cjs/ProductHomeIcon";
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import ComplianceEmbeddedWrapper from "../app/components/ComplianceEmbeddedWrapper";
+// This is dynamically loaded on the Client side - SSR disable
+// import ComplianceEmbeddedWrapper from "../app/components/ComplianceEmbeddedWrapper";
+import dynamic from 'next/dynamic';
+const DynamicComplianceEmbeddedWrapper = dynamic(() => import('../app/components/ComplianceEmbeddedWrapper'), { ssr: false });
 
 const Home: NextPage = () => {
 
@@ -35,11 +38,16 @@ const Home: NextPage = () => {
   const topbarSkipLinkID = useUID();
   const mainContentSkipLinkID = useUID();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [showComplianceFrame, setShowComplianceFrame] = useState(false);
 
   const toggleSidebarCollapsed = () => {
     return setSidebarCollapsed(!sidebarCollapsed);
   }
   
+  const toggleComplianceFrame = () => {
+    return setShowComplianceFrame(!showComplianceFrame);
+  }
+
   return (
     <Box as="main" padding="space70">
       <Head>
@@ -85,6 +93,10 @@ const Home: NextPage = () => {
           Toggle Push Sidebar
         </Button>
 
+        <Button variant="primary" mainContentSkipLinkID={mainContentSkipLinkID} onClick={toggleComplianceFrame}>
+          Show Compliance
+        </Button>
+
         <Label htmlFor="inquiry_id" required>Inquiry ID</Label>
         <Input type="text" aria-describedby="inquiry_id_help_text" id="inquiry_id" name="inquiry_id" placeholder="xxxx" onChange={()=>{}} required/>
         <HelpText id="inquiry_id_help_text">Inquiry ID from Server Sid Request</HelpText>
@@ -93,20 +105,10 @@ const Home: NextPage = () => {
         <Input type="text" aria-describedby="session_token_help_text" id="session_token" name="session_token" placeholder="xxxx" onChange={()=>{}} required/>
         <HelpText id="session_token_help_text">Session Token from Server Sid Request</HelpText>
 
-        <ComplianceEmbeddedWrapper/>
-
-        {/* <MyComplianceInquiry/> */}
-
-        {/* <TwilioComplianceEmbed
-          inquiryId="inq_8sEafLYwq2Yq6e9Yao2anY94T4Ec"
-          inquirySessionToken="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpcXNlX0t6MWQzVlJXMnl6dER2WkYzM3V3VVk5OFJDSGsiLCJhdWQiOiJwZXJzb25hLXZlcmlmeSIsImlzcyI6IndpdGhwZXJzb25hLmNvbSIsImlhdCI6MTcxNjQ0MzQ3MSwibmJmIjoxNzE2NDQzNDcxLCJleHAiOjE3MTY1Mjk4NzAsImp0aSI6ImVkNDVlYzJjLTc2Y2YtNDg4Zi1hOGMwLTk3OTQzNGNjYTA0NyIsImlucXVpcnlfaWQiOiJpbnFfOHNFYWZMWXdxMllxNmU5WWFvMmFuWTk0VDRFYyIsImVudmlyb25tZW50X2lkIjoiZW52X0xucEd4Zk1BV3Z3NnoxNGJMMXN3WGdhdCJ9.4LzYJOuy3Uj7zY8Z1CbDfxa2-Us-vXiv6ZFaK1NMns8"
-          onReady={() => {
-            console.log("Ready!");
-          }}
-          onComplete={() => {
-            console.log("Registration complete");
-          }}
-        /> */}
+        {/* This is dynamically loaded on the Client side - SSR disable */}
+        {
+          showComplianceFrame ? <DynamicComplianceEmbeddedWrapper/> : <div/>
+        }
 
       </SidebarPushContentWrapper>
 

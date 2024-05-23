@@ -11,9 +11,9 @@ const ComplianceEmbeddedWrapper = () => {
 
   React.useEffect(() => {
 
-    const CustomerId = window.sessionStorage.getItem("CustomerId");
+    const CustomerId = window.localStorage.getItem("CustomerId");
     let appendCustomerId = "";
-    if (CustomerId !== "undefined") {
+    if (CustomerId && CustomerId !== "undefined") {
       appendCustomerId = `?CustomerProfileId=${CustomerId}`;
       console.log(appendCustomerId);
     }
@@ -25,13 +25,13 @@ const ComplianceEmbeddedWrapper = () => {
     .then((data) => {
       console.log("Customer Data");
       console.log(data);
-      window.sessionStorage.setItem("CustomerId" , data.customer_id)
+      window.localStorage.setItem("CustomerId" , data.customer_id)
       setData(data);
       setLoading(false);
     });
   }, []);
 
-  return !isLoading ? (
+  return !isLoading && (data?.inquiry_id) ? (
     
     <TwilioComplianceEmbed
       inquiryId={data.inquiry_id}
