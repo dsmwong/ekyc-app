@@ -1,12 +1,12 @@
-import { Anchor } from "@twilio-paste/core/anchor";
+import { useState } from "react";
 import { Box } from "@twilio-paste/core/box";
 import { Heading } from "@twilio-paste/core/heading";
-import { ListItem, UnorderedList } from "@twilio-paste/core/list";
-import { Paragraph } from "@twilio-paste/core/paragraph";
-import { Separator } from "@twilio-paste/core/separator";
-// import { Stack } from "@twilio-paste/core/stack";
 import { Button } from "@twilio-paste/button";
-// import { PlusIcon } from "@twilio-paste/icons/cjs/PlusIcon";
+import { Label } from "@twilio-paste/label";
+import { Input } from "@twilio-paste/input";
+import { HelpText } from "@twilio-paste/help-text";
+
+
 import {
   Sidebar,
   SidebarHeader,
@@ -24,10 +24,10 @@ import { useUID } from "@twilio-paste/core/uid-library";
 import { LogoTwilioIcon } from "@twilio-paste/icons/cjs/LogoTwilioIcon";
 import { ProductHomeIcon } from "@twilio-paste/icons/cjs/ProductHomeIcon";
 
-import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
+import ComplianceEmbeddedWrapper from "../app/components/ComplianceEmbeddedWrapper";
 
 const Home: NextPage = () => {
 
@@ -81,9 +81,32 @@ const Home: NextPage = () => {
           Welcome to Demo Template
         </Heading>
 
-        <Button variant="primary" onClick={toggleSidebarCollapsed}>
+        <Button variant="primary" mainContentSkipLinkID={mainContentSkipLinkID} onClick={toggleSidebarCollapsed}>
           Toggle Push Sidebar
         </Button>
+
+        <Label htmlFor="inquiry_id" required>Inquiry ID</Label>
+        <Input type="text" aria-describedby="inquiry_id_help_text" id="inquiry_id" name="inquiry_id" placeholder="xxxx" onChange={()=>{}} required/>
+        <HelpText id="inquiry_id_help_text">Inquiry ID from Server Sid Request</HelpText>
+
+        <Label htmlFor="session_token" required>Inquiry Session Token</Label>
+        <Input type="text" aria-describedby="session_token_help_text" id="session_token" name="session_token" placeholder="xxxx" onChange={()=>{}} required/>
+        <HelpText id="session_token_help_text">Session Token from Server Sid Request</HelpText>
+
+        <ComplianceEmbeddedWrapper/>
+
+        {/* <MyComplianceInquiry/> */}
+
+        {/* <TwilioComplianceEmbed
+          inquiryId="inq_8sEafLYwq2Yq6e9Yao2anY94T4Ec"
+          inquirySessionToken="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpcXNlX0t6MWQzVlJXMnl6dER2WkYzM3V3VVk5OFJDSGsiLCJhdWQiOiJwZXJzb25hLXZlcmlmeSIsImlzcyI6IndpdGhwZXJzb25hLmNvbSIsImlhdCI6MTcxNjQ0MzQ3MSwibmJmIjoxNzE2NDQzNDcxLCJleHAiOjE3MTY1Mjk4NzAsImp0aSI6ImVkNDVlYzJjLTc2Y2YtNDg4Zi1hOGMwLTk3OTQzNGNjYTA0NyIsImlucXVpcnlfaWQiOiJpbnFfOHNFYWZMWXdxMllxNmU5WWFvMmFuWTk0VDRFYyIsImVudmlyb25tZW50X2lkIjoiZW52X0xucEd4Zk1BV3Z3NnoxNGJMMXN3WGdhdCJ9.4LzYJOuy3Uj7zY8Z1CbDfxa2-Us-vXiv6ZFaK1NMns8"
+          onReady={() => {
+            console.log("Ready!");
+          }}
+          onComplete={() => {
+            console.log("Registration complete");
+          }}
+        /> */}
 
       </SidebarPushContentWrapper>
 
