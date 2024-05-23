@@ -18,6 +18,7 @@ const ComplianceEmbeddedWrapper = () => {
       console.log(appendCustomerId);
     }
 
+    // need to make this configurable and passed into the component. 
     fetch(`https://serverless-functions-1228-dev.twil.io/initCustomerProfile${appendCustomerId}`, {
       method: "get",
     })
