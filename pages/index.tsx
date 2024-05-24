@@ -90,24 +90,24 @@ const Home: NextPage = () => {
           Welcome to Demo Template
         </Heading>
 
-        <Button variant="primary" onClick={toggleSidebarCollapsed}>
+        {/* <Button variant="primary" onClick={toggleSidebarCollapsed}>
           Toggle Push Sidebar
-        </Button>
+        </Button> */}
 
         <Button variant="primary" onClick={toggleComplianceFrame}>
           Show Compliance
         </Button>
 
         <Label htmlFor="inquiry_ep_url" required>Inquiry Host URL</Label>
-        <Input type="text" id="inquiry_ep_url" name="inquiry_ep_url" placeholder="https://serverless-functions-xxxx-dev.twil.io/" onChange={(e)=>{setInquiryEndPointURL(e.target.value)}} required/>
+        <Input type="text" id="inquiry_ep_url" name="inquiry_ep_url" placeholder={inquiryEndPointURL} onChange={(e)=>{setInquiryEndPointURL(e.target.value)}} required/>
         
-        <Label htmlFor="inquiry_id" required>Inquiry ID</Label>
+        {/* <Label htmlFor="inquiry_id" required>Inquiry ID</Label>
         <Input type="text" aria-describedby="inquiry_id_help_text" id="inquiry_id" name="inquiry_id" placeholder="xxxx" onChange={()=>{}} required/>
         <HelpText id="inquiry_id_help_text">Inquiry ID from Server Sid Request</HelpText>
 
         <Label htmlFor="session_token" required>Inquiry Session Token</Label>
         <Input type="text" aria-describedby="session_token_help_text" id="session_token" name="session_token" placeholder="xxxx" onChange={()=>{}} required/>
-        <HelpText id="session_token_help_text">Session Token from Server Sid Request</HelpText>
+        <HelpText id="session_token_help_text">Session Token from Server Sid Request</HelpText> */}
 
         {/* This is dynamically loaded on the Client side - SSR disable */}
         {
