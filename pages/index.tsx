@@ -115,7 +115,7 @@ const Home: NextPage = () => {
 
           <FormControl>
             <Label htmlFor="inquiry_ep_url" required>
-              Inquiry Host URL
+              Inquiry Host Backend URL
             </Label>
             <Input
               type="text"
@@ -131,7 +131,7 @@ const Home: NextPage = () => {
           </FormControl>
 
           <FormControl>
-            <Label htmlFor="inquiry_id" required>
+            <Label htmlFor="inquiry_id">
               Inquiry ID
             </Label>
             <Text as="span">{inquiryId}</Text>
@@ -144,19 +144,11 @@ const Home: NextPage = () => {
         </Form>
         </Box>
 
-        {/* <Label htmlFor="inquiry_id" required>Inquiry ID</Label>
-        <Input type="text" aria-describedby="inquiry_id_help_text" id="inquiry_id" name="inquiry_id" placeholder="xxxx" onChange={()=>{}} required/>
-        <HelpText id="inquiry_id_help_text">Inquiry ID from Server Sid Request</HelpText>
-
-        <Label htmlFor="session_token" required>Inquiry Session Token</Label>
-        <Input type="text" aria-describedby="session_token_help_text" id="session_token" name="session_token" placeholder="xxxx" onChange={()=>{}} required/>
-        <HelpText id="session_token_help_text">Session Token from Server Sid Request</HelpText> */}
-
         {/* This is dynamically loaded on the Client side - SSR disable */}
         {showComplianceFrame && inquiryEndPointURL ? (
           <DynamicComplianceEmbeddedWrapper
             inquiryEndPointURL={inquiryEndPointURL}
-            setReturnedInquiryId={(id: string) => {
+            onSetInquiryId={(id: string) => {
               setInquiryId(id);
             }}
           />

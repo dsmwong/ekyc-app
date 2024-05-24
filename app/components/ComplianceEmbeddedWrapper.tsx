@@ -7,7 +7,7 @@ import { TwilioComplianceEmbed } from "twilio-compliance-embed";
 
 export interface ComplianceEmbeddedWrapperProps {
   inquiryEndPointURL: string;
-  setReturnedInquiryId: (id: string) => void;
+  onSetInquiryId: (id: string) => void;
 }
 
 const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
@@ -43,7 +43,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
         ) {
           setInquiryId(data.inquiry_id);          
           setInquirySessionToken(data.inquiry_session_token);
-          props.setReturnedInquiryId(data.inquiry_id);
+          props.onSetInquiryId(data.inquiry_id);
         } else {
           setErrorMessage("Backend not so nice, missing required data");
         }
