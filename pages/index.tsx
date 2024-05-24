@@ -39,6 +39,7 @@ const Home: NextPage = () => {
   const mainContentSkipLinkID = useUID();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showComplianceFrame, setShowComplianceFrame] = useState(false);
+  const [inquiryEndPointURL, setInquiryEndPointURL] = useState("https://serverless-functions-xxxx-dev.twil.io/");
 
   const toggleSidebarCollapsed = () => {
     return setSidebarCollapsed(!sidebarCollapsed);
@@ -97,6 +98,9 @@ const Home: NextPage = () => {
           Show Compliance
         </Button>
 
+        <Label htmlFor="inquiry_ep_url" required>Inquiry Host URL</Label>
+        <Input type="text" id="inquiry_ep_url" name="inquiry_ep_url" placeholder="https://serverless-functions-xxxx-dev.twil.io/" onChange={(e)=>{setInquiryEndPointURL(e.target.value)}} required/>
+        
         <Label htmlFor="inquiry_id" required>Inquiry ID</Label>
         <Input type="text" aria-describedby="inquiry_id_help_text" id="inquiry_id" name="inquiry_id" placeholder="xxxx" onChange={()=>{}} required/>
         <HelpText id="inquiry_id_help_text">Inquiry ID from Server Sid Request</HelpText>
@@ -107,7 +111,7 @@ const Home: NextPage = () => {
 
         {/* This is dynamically loaded on the Client side - SSR disable */}
         {
-          showComplianceFrame ? <DynamicComplianceEmbeddedWrapper/> : <div/>
+          showComplianceFrame ? <DynamicComplianceEmbeddedWrapper inquiryEndPointURL={inquiryEndPointURL}/> : <div/>
         }
 
       </SidebarPushContentWrapper>

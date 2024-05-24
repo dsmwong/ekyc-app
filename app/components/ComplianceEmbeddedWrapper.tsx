@@ -9,7 +9,7 @@ interface IComplianceInquiryData {
   inquiry_session_token: string;
 }
 
-const ComplianceEmbeddedWrapper = () => {
+const ComplianceEmbeddedWrapper = ({inquiryEndPointURL} : {inquiryEndPointURL: string}) => {
 
   const [data, setData] = React.useState<IComplianceInquiryData | null>(null);
   const [isLoading, setLoading] = React.useState(true);
@@ -24,7 +24,7 @@ const ComplianceEmbeddedWrapper = () => {
     }
 
     // need to make this configurable and passed into the component. 
-    fetch(`https://serverless-functions-1228-dev.twil.io/initCustomerProfile${appendCustomerId}`, {
+    fetch(`${inquiryEndPointURL}initCustomerProfile${appendCustomerId}`, {
       method: "get",
     })
     .then((res) => res.json())
@@ -34,7 +34,10 @@ const ComplianceEmbeddedWrapper = () => {
       window.localStorage.setItem("CustomerId" , data.customer_id)
       setData(data);
       setLoading(false);
-    });
+    })
+    .catch((error) => {
+      console.error("Error fetching customer data", error);
+    })
   }, []);
 
   return !isLoading && (data?.inquiry_id) ? (
