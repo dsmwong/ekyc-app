@@ -1,63 +1,78 @@
-'use client'
+"use client";
 
-import * as React from 'react';
-import { Spinner } from '@twilio-paste/core/spinner';
-import { TwilioComplianceEmbed } from 'twilio-compliance-embed';
+import * as React from "react";
+import { Spinner } from "@twilio-paste/core/spinner";
+import { Alert } from "@twilio-paste/core/alert";
+import { TwilioComplianceEmbed } from "twilio-compliance-embed";
 
-interface IComplianceInquiryData {
-  inquiry_id: string;
-  inquiry_session_token: string;
+export interface ComplianceEmbeddedWrapperProps {
+  inquiryEndPointURL: string;
+  setReturnedInquiryId: (id: string) => void;
 }
 
-const ComplianceEmbeddedWrapper = ({inquiryEndPointURL} : {inquiryEndPointURL: string}) => {
-
-  const [data, setData] = React.useState<IComplianceInquiryData | null>(null);
+const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
+  // const [data, setData] = React.useState<IComplianceInquiryData>();
   const [isLoading, setLoading] = React.useState(true);
+  const [errorMessage, setErrorMessage] = React.useState<string>("");
+  const [inquiryId, setInquiryId] = React.useState<string>("");
+  const [inquirySessionToken, setInquirySessionToken] =
+    React.useState<string>("");
+
+  const CustomerId = window.localStorage.getItem("CustomerId");
 
   React.useEffect(() => {
-
-    const CustomerId = window.localStorage.getItem("CustomerId");
     let appendCustomerId = "";
     if (CustomerId && CustomerId !== "undefined") {
       appendCustomerId = `?CustomerProfileId=${CustomerId}`;
       console.log(appendCustomerId);
     }
 
-    // need to make this configurable and passed into the component. 
-    fetch(`${inquiryEndPointURL}initCustomerProfile${appendCustomerId}`, {
+    // need to make this configurable and passed into the component.
+    fetch(`${props.inquiryEndPointURL}initCustomerProfile${appendCustomerId}`, {
       method: "get",
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Customer Data");
-      console.log(data);
-      window.localStorage.setItem("CustomerId" , data.customer_id)
-      setData(data);
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error("Error fetching customer data", error);
-    })
-  }, []);
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Customer Data");
+        console.log(data);
+        window.localStorage.setItem("CustomerId", data.customer_id);
 
-  return !isLoading && (data?.inquiry_id) ? (
-    
-    <TwilioComplianceEmbed
-      inquiryId={data.inquiry_id}
-      inquirySessionToken={data.inquiry_session_token}
-      onReady={() => {
-        console.log("Ready!");
-      }}
-      onComplete={() => {
-        console.log("Registration complete");
-      }}
-    />
+        if (
+          (data && data.hasOwnProperty("inquery_id")) ||
+          data.hasOwnProperty("inquiry_session_token")
+        ) {
+          setInquiryId(data.inquiry_id);          
+          setInquirySessionToken(data.inquiry_session_token);
+          props.setReturnedInquiryId(data.inquiry_id);
+        } else {
+          setErrorMessage("Backend not so nice, missing required data");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching customer data", error);
+        setErrorMessage(`Error fetching customer data - ${error.message}`);
+      })
+      .finally(() => setLoading(false));
+  }, [CustomerId]);
 
-  ) : (
+  if (isLoading) return <Spinner decorative={false} title="Loading" />;
+  if (errorMessage) return <Alert variant="warning">{errorMessage}</Alert>;
+  if (!inquiryId) return <Alert variant="warning">Missing Inquiry ID </Alert>;
+  if (!inquirySessionToken)
+    return <Alert variant="warning">Missing Session Token</Alert>;
 
-    <Spinner decorative={false} title="Loading" />
-
+  return (
+      <TwilioComplianceEmbed
+        inquiryId={inquiryId}
+        inquirySessionToken={inquirySessionToken}
+        onReady={() => {
+          console.log("Ready!");
+        }}
+        onComplete={() => {
+          console.log("Registration complete");
+        }}
+      />
   );
-}
+};
 
 export default ComplianceEmbeddedWrapper;
