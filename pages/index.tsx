@@ -89,11 +89,11 @@ const Home: NextPage = () => {
           Welcome to Demo Template
         </Heading>
 
-        <Button variant="primary" mainContentSkipLinkID={mainContentSkipLinkID} onClick={toggleSidebarCollapsed}>
+        <Button variant="primary" onClick={toggleSidebarCollapsed}>
           Toggle Push Sidebar
         </Button>
 
-        <Button variant="primary" mainContentSkipLinkID={mainContentSkipLinkID} onClick={toggleComplianceFrame}>
+        <Button variant="primary" onClick={toggleComplianceFrame}>
           Show Compliance
         </Button>
 

@@ -4,9 +4,14 @@ import * as React from 'react';
 import { Spinner } from '@twilio-paste/core/spinner';
 import { TwilioComplianceEmbed } from 'twilio-compliance-embed';
 
+interface IComplianceInquiryData {
+  inquiry_id: string;
+  inquiry_session_token: string;
+}
+
 const ComplianceEmbeddedWrapper = () => {
 
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState<IComplianceInquiryData | null>(null);
   const [isLoading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
