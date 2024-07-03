@@ -7,8 +7,12 @@ import { TwilioComplianceEmbed } from "twilio-compliance-embed";
 
 export interface ComplianceEmbeddedWrapperProps {
   inquiryEndPointURL: string;
+  embeddableProduct: string;
+  tollFreeNumber: string;
   onSetInquiryId: (id: string) => void;
 }
+
+const LOCALSTORAGE_CUSTOMER_ID = "CustomerId";
 
 const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
   // const [data, setData] = React.useState<IComplianceInquiryData>();
@@ -18,41 +22,75 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
   const [inquirySessionToken, setInquirySessionToken] =
     React.useState<string>("");
 
-  const CustomerId = window.localStorage.getItem("CustomerId");
+  const CustomerId = window.localStorage.getItem(LOCALSTORAGE_CUSTOMER_ID);
 
   React.useEffect(() => {
-    let appendCustomerId = "";
-    if (CustomerId && CustomerId !== "undefined") {
-      appendCustomerId = `?CustomerProfileId=${CustomerId}`;
-      console.log(appendCustomerId);
-    }
+
+    console.log("Embeddable Product: ", props.embeddableProduct);
 
     // need to make this configurable and passed into the component.
-    fetch(`${props.inquiryEndPointURL}initCustomerProfile${appendCustomerId}`, {
-      method: "get",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Customer Data");
-        console.log(data);
-        window.localStorage.setItem("CustomerId", data.customer_id);
+    if( props.embeddableProduct == "customerProfile") {
+  
+      let appendCustomerId = "";
+      if (CustomerId && CustomerId !== "undefined") {
+        appendCustomerId = `?CustomerProfileId=${CustomerId}`;
+        console.log(appendCustomerId);
+      }
+      
+      fetch(`${props.inquiryEndPointURL}initCustomerProfile${appendCustomerId}`, {
+        method: "get",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Customer Data");
+          console.log(data);
+          window.localStorage.setItem(LOCALSTORAGE_CUSTOMER_ID, data.customer_id);
 
-        if (
-          (data && data.hasOwnProperty("inquery_id")) ||
-          data.hasOwnProperty("inquiry_session_token")
-        ) {
-          setInquiryId(data.inquiry_id);          
-          setInquirySessionToken(data.inquiry_session_token);
-          props.onSetInquiryId(data.inquiry_id);
-        } else {
-          setErrorMessage("Backend not so nice, missing required data");
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching customer data", error);
-        setErrorMessage(`Error fetching customer data - ${error.message}`);
-      })
-      .finally(() => setLoading(false));
+          if (
+            (data && data.hasOwnProperty("inquery_id")) ||
+            data.hasOwnProperty("inquiry_session_token")
+          ) {
+            setInquiryId(data.inquiry_id);          
+            setInquirySessionToken(data.inquiry_session_token);
+            props.onSetInquiryId(data.inquiry_id);
+          } else {
+            setErrorMessage("Backend not so nice, missing required data");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching customer data", error);
+          setErrorMessage(`Error fetching customer data - ${error.message}`);
+        })
+        .finally(() => setLoading(false));
+      } else if( props.embeddableProduct == "tollFreeVerification") {
+
+        fetch(`${props.inquiryEndPointURL}initTollFreeVerification?TollfreePhoneNumber=${props.tollFreeNumber}`, {
+          method: "get",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Toll Free Verification Data");
+            console.log(data);
+            if (
+              (data && data.hasOwnProperty("inquery_id")) ||
+              data.hasOwnProperty("inquiry_session_token")
+            ) {
+              setInquiryId(data.inquiry_id);
+              setInquirySessionToken(data.inquiry_session_token);
+              console.log(`Registration ID: ${data.registration_id}`)
+              props.onSetInquiryId(data.inquiry_id);
+            } else {
+              setErrorMessage("Backend not so nice, missing required data");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching toll free verification data", error);
+            setErrorMessage(`Error fetching toll free verification data - ${error.message}`);
+          })
+          .finally(() => setLoading(false));
+      }
+
+
   }, [CustomerId]);
 
   if (isLoading) return <Spinner decorative={false} title="Loading" />;

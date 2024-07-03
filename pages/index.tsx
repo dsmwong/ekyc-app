@@ -30,7 +30,13 @@ import Head from "next/head";
 // This is dynamically loaded on the Client side - SSR disable
 // import ComplianceEmbeddedWrapper from "../app/components/ComplianceEmbeddedWrapper";
 import dynamic from "next/dynamic";
-import { Form, FormActions, FormControl } from "@twilio-paste/core";
+import { 
+  Form, 
+  FormActions, 
+  FormControl, 
+  RadioGroup,
+  Radio
+} from "@twilio-paste/core";
 const DynamicComplianceEmbeddedWrapper = dynamic(
   () => import("../app/components/ComplianceEmbeddedWrapper"),
   { ssr: false }
@@ -43,6 +49,11 @@ const Home: NextPage = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showComplianceFrame, setShowComplianceFrame] = useState(false);
   const [inquiryId, setInquiryId] = useState("");
+  const [embeddableProduct, setEmbeddableProduct] = useState("");
+
+  const [showTollFreeForm, setShowTollFreeForm] = useState(false);
+  const [tollFreeNumber, setTollFreeNumber] = useState("+18777957145");
+  
   const [inquiryEndPointURL, setInquiryEndPointURL] = useState(
     process.env.NEXT_PUBLIC_DEFAULT_URI
   );
@@ -128,7 +139,55 @@ const Home: NextPage = () => {
               }}
               required
             />
+
+            <RadioGroup 
+              name="embeddable_product" 
+              value={embeddableProduct}
+              legend="Select Embeddable Type" 
+              orientation="horizontal"
+              onChange={(value) => {
+                console.log(value); 
+                setEmbeddableProduct(value); 
+                setShowComplianceFrame(false)
+                setShowTollFreeForm(value === "tollFreeVerification" ? true : false)
+              }}
+              >
+              <Radio id="customer_profile" value="customerProfile">
+                Customer Profile
+              </Radio>
+              <Radio id="toll_free_verification" value="tollFreeVerification">
+                Toll Free Verification
+              </Radio>
+              <Radio id="regulatory_bundle" value="regulatoryBundle" disabled>
+                Regulatory Bundle (UK)
+              </Radio>
+              <Radio id="branded_calling" value="brandedCalling" name="Branded Calling" disabled>
+                Branded Calling
+              </Radio>
+
+            </RadioGroup>
           </FormControl>
+
+          { showTollFreeForm ? (
+          <FormControl>
+            <Label htmlFor="customer_id">
+              Toll Free Number
+            </Label>
+            <Input
+              type="text"
+              id="toll_free_number"
+              name="toll_free_number"
+              placeholder="Toll Free Number"
+              value={tollFreeNumber}
+              onChange={(e) => {
+                setTollFreeNumber(e.target.value);
+              }}
+              required
+            />
+          </FormControl>
+          ) : (
+            <div/>
+          )}
 
           <FormControl>
             <Label htmlFor="inquiry_id">
@@ -148,6 +207,8 @@ const Home: NextPage = () => {
         {showComplianceFrame && inquiryEndPointURL ? (
           <DynamicComplianceEmbeddedWrapper
             inquiryEndPointURL={inquiryEndPointURL}
+            embeddableProduct={embeddableProduct}
+            tollFreeNumber={tollFreeNumber}
             onSetInquiryId={(id: string) => {
               setInquiryId(id);
             }}

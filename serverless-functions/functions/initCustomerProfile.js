@@ -1,3 +1,5 @@
+const { log } = require('console');
+
 const twilio_version = require('twilio/package.json').version;
 
 exports.handler = async function(context, event, callback) {
@@ -7,9 +9,12 @@ exports.handler = async function(context, event, callback) {
   console.log(`Entered ${context.PATH} node version ${process.version} twilio version ${twilio_version}`);
 
   const client = context.getTwilioClient();
+  const embeddableProduct = "Customers";
 
-  const existingCustomerProfileId = event.CustomerProfileId ? event.CustomerProfileId + '/' : '';
-  const complianceInquiriesUrl = `https://trusthub.twilio.com/v1/ComplianceInquiries/Customers/${existingCustomerProfileId}Initialize`;
+  const existingSCPId = event.CustomerProfileId ? event.CustomerProfileId + '/' : '';
+  const complianceInquiriesUrl = `https://trusthub.twilio.com/v1/ComplianceInquiries/${embeddableProduct}/${existingSCPId}Initialize`;
+
+  log(`complianceInquiriesUrl: ${complianceInquiriesUrl}`);
 
   // Start Code Here
   const params = {
