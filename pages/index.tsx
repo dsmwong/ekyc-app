@@ -53,7 +53,7 @@ const Home: NextPage = () => {
 
   const [showTollFreeForm, setShowTollFreeForm] = useState(false);
   const [tollFreeNumber, setTollFreeNumber] = useState("+18777957145");
-  
+
   const [inquiryEndPointURL, setInquiryEndPointURL] = useState(
     process.env.NEXT_PUBLIC_DEFAULT_URI
   );
@@ -72,7 +72,7 @@ const Home: NextPage = () => {
   return (
     <Box as="main" padding="space70">
       <Head>
-        <title>Paste NextJS App</title>
+        <title>Embedded Compliance for ISV Demo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
