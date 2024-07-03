@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box } from "@twilio-paste/core/box";
 import { Heading } from "@twilio-paste/core/heading";
 import { Button } from "@twilio-paste/button";
 import { Label } from "@twilio-paste/label";
 import { Input } from "@twilio-paste/input";
 import { Text } from "@twilio-paste/text";
+import { Combobox } from "@twilio-paste/combobox";
 // import { HelpText } from "@twilio-paste/help-text";
 
 import {
@@ -52,7 +53,7 @@ const Home: NextPage = () => {
   const [embeddableProduct, setEmbeddableProduct] = useState("");
 
   const [showTollFreeForm, setShowTollFreeForm] = useState(false);
-  const [tollFreeNumber, setTollFreeNumber] = useState("+18777957145");
+  const [tollFreeNumber, setTollFreeNumber] = useState("");
 
   const [inquiryEndPointURL, setInquiryEndPointURL] = useState(
     process.env.NEXT_PUBLIC_DEFAULT_URI
@@ -60,6 +61,24 @@ const Home: NextPage = () => {
   const [inquiryEndpointURLExample] = useState(
     "https://serverless-functions-xxxx-dev.twil.io/"
   );
+
+  const [unverifiedTollFreeNumber, setUnverifiedTollFreeNumber] = useState([]);
+
+  useEffect(() => {
+    console.log(`Unverified TFN ${JSON.stringify(unverifiedTollFreeNumber, null, 2)}`);
+    fetch(`${inquiryEndPointURL}fetchUnverifiedTFNumbers`, {
+      method: "get",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Unverified Toll Free Numbers");
+        console.log(data);
+        setUnverifiedTollFreeNumber(data.map((item: any) => item.phoneNumber));
+      })
+      .catch((error) => {
+        console.error("Error fetching unverified toll free numbers", error);
+      });
+  }, []);
 
   const toggleSidebarCollapsed = () => {
     return setSidebarCollapsed(!sidebarCollapsed);
@@ -148,8 +167,9 @@ const Home: NextPage = () => {
               onChange={(value) => {
                 console.log(value); 
                 setEmbeddableProduct(value); 
-                setShowComplianceFrame(false)
-                setShowTollFreeForm(value === "tollFreeVerification" ? true : false)
+                setShowComplianceFrame(false);
+                setShowTollFreeForm(value === "tollFreeVerification" ? true : false);
+                setTollFreeNumber("");
               }}
               >
               <Radio id="customer_profile" value="customerProfile">
@@ -170,20 +190,13 @@ const Home: NextPage = () => {
 
           { showTollFreeForm ? (
           <FormControl>
-            <Label htmlFor="customer_id">
-              Toll Free Number
-            </Label>
-            <Input
-              type="text"
-              id="toll_free_number"
-              name="toll_free_number"
-              placeholder="Toll Free Number"
-              value={tollFreeNumber}
-              onChange={(e) => {
-                setTollFreeNumber(e.target.value);
-              }}
-              required
-            />
+            <Combobox 
+                items={unverifiedTollFreeNumber} 
+                labelText="Select an Unverified Toll Free Number" 
+                onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setTollFreeNumber(e.target.value);
+                }}
+                required />
           </FormControl>
           ) : (
             <div/>
