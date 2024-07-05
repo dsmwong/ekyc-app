@@ -34,5 +34,3 @@ yarn-error.log*
 .vercel
 .env
 .vscode/settings.json
-serverless-functions/package-lock.json
-yarn.lock
