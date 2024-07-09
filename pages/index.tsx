@@ -60,7 +60,7 @@ const Home: NextPage = () => {
   const [rcEndUserType, setRCEndUserType] = useState("");
 
   const RC_PHONE_NUMBER_TYPE = ["mobile", "local", "national", "toll-free"];
-  const RC_END_USER_TYPE = ["personal", "business"];
+  const RC_END_USER_TYPE = ["business", "personal"];
 
   const [inquiryEndPointURL, setInquiryEndPointURL] = useState(
     process.env.NEXT_PUBLIC_DEFAULT_URI
@@ -200,6 +200,7 @@ const Home: NextPage = () => {
           <FormControl>
             <Combobox 
                 items={unverifiedTollFreeNumber} 
+                initialSelectedItem={unverifiedTollFreeNumber[0]}
                 labelText="Select an Unverified Toll Free Number" 
                 onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setTollFreeNumber(e.target.value);
@@ -214,6 +215,7 @@ const Home: NextPage = () => {
           <FormControl>
             <Combobox 
                 items={RC_PHONE_NUMBER_TYPE}
+                initialSelectedItem={RC_PHONE_NUMBER_TYPE[0]}
                 labelText="Select Phone Number Type for Bundle" 
                 onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setRCPhoneNumberType(e.target.value);
@@ -221,6 +223,7 @@ const Home: NextPage = () => {
                 required />
             <Combobox 
                 items={RC_END_USER_TYPE}
+                initialSelectedItem={RC_END_USER_TYPE[0]}
                 labelText="Select End User Type for Bundle" 
                 onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setRCEndUserType(e.target.value);
