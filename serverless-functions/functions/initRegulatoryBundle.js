@@ -1,5 +1,3 @@
-const { convertToObject } = require('typescript');
-
 const twilio_version = require('twilio/package.json').version;
 
 exports.handler = async function(context, event, callback) {
@@ -117,6 +115,6 @@ exports.handler = async function(context, event, callback) {
     headers: {"Content-Type":"application/x-www-form-urlencoded"},
   })
 
-  callback(null, cors.response(response.body));
+  return callback(null, cors.response(response.body));
   // callback(null, cors.response(params));
 };

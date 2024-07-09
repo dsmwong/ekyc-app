@@ -9,10 +9,13 @@ export interface ComplianceEmbeddedWrapperProps {
   inquiryEndPointURL: string;
   embeddableProduct: string;
   tollFreeNumber: string;
+  rcPhoneNumberType: string;
+  rcEndUserType: string;
   onSetInquiryId: (id: string) => void;
 }
 
 const LOCALSTORAGE_CUSTOMER_ID = "CustomerId";
+const LOCALSTORAGE_REGISTRATION_ID = "RegistrationId";
 
 const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
   // const [data, setData] = React.useState<IComplianceInquiryData>();
@@ -23,6 +26,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
     React.useState<string>("");
 
   const CustomerId = window.localStorage.getItem(LOCALSTORAGE_CUSTOMER_ID);
+  const RegistrationId = window.localStorage.getItem(LOCALSTORAGE_REGISTRATION_ID);
 
   React.useEffect(() => {
 
@@ -62,7 +66,45 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
           setErrorMessage(`Error fetching customer data - ${error.message}`);
         })
         .finally(() => setLoading(false));
-      } else if( props.embeddableProduct == "tollFreeVerification") {
+      } else if ( props.embeddableProduct == "regulatoryBundle") {
+  
+        let appendRegistrationId = "?";
+        if (RegistrationId && RegistrationId !== "undefined") {
+          appendRegistrationId += `RegistrationId=${RegistrationId}`;
+          console.log(appendRegistrationId);
+        }
+        appendRegistrationId += `&PhoneNumberType=${props.rcPhoneNumberType}`;
+        appendRegistrationId += `&EndUserType=${props.rcEndUserType}`;
+        appendRegistrationId += `&FriendlyName=GB%20Bundle%20-%20${props.rcPhoneNumberType}%20${props.rcEndUserType}`;
+        
+        console.log(appendRegistrationId);
+        
+        fetch(`${props.inquiryEndPointURL}initRegulatoryBundle${appendRegistrationId}`, {
+          method: "get",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Registration Data");
+            console.log(data);
+            window.localStorage.setItem(LOCALSTORAGE_REGISTRATION_ID, data.registration_id);
+  
+            if (
+              (data && data.hasOwnProperty("inquery_id")) ||
+              data.hasOwnProperty("inquiry_session_token")
+            ) {
+              setInquiryId(data.inquiry_id);          
+              setInquirySessionToken(data.inquiry_session_token);
+              props.onSetInquiryId(data.inquiry_id);
+            } else {
+              setErrorMessage("Backend not so nice, missing required data");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching customer data", error);
+            setErrorMessage(`Error fetching customer data - ${error.message}`);
+          })
+          .finally(() => setLoading(false));
+        } else if( props.embeddableProduct == "tollFreeVerification") {
 
         fetch(`${props.inquiryEndPointURL}initTollFreeVerification?TollfreePhoneNumber=${props.tollFreeNumber}`, {
           method: "get",

@@ -55,6 +55,13 @@ const Home: NextPage = () => {
   const [showTollFreeForm, setShowTollFreeForm] = useState(false);
   const [tollFreeNumber, setTollFreeNumber] = useState("");
 
+  const [showRCForm, setShowRCForm] = useState(false);
+  const [rcPhoneNumberType, setRCPhoneNumberType] = useState("");
+  const [rcEndUserType, setRCEndUserType] = useState("");
+
+  const RC_PHONE_NUMBER_TYPE = ["mobile", "local", "national", "toll-free"];
+  const RC_END_USER_TYPE = ["personal", "business"];
+
   const [inquiryEndPointURL, setInquiryEndPointURL] = useState(
     process.env.NEXT_PUBLIC_DEFAULT_URI
   );
@@ -169,6 +176,7 @@ const Home: NextPage = () => {
                 setEmbeddableProduct(value); 
                 setShowComplianceFrame(false);
                 setShowTollFreeForm(value === "tollFreeVerification" ? true : false);
+                setShowRCForm(value === "regulatoryBundle" ? true : false);
                 setTollFreeNumber("");
               }}
               >
@@ -178,7 +186,7 @@ const Home: NextPage = () => {
               <Radio id="toll_free_verification" value="tollFreeVerification">
                 Toll Free Verification
               </Radio>
-              <Radio id="regulatory_bundle" value="regulatoryBundle" disabled>
+              <Radio id="regulatory_bundle" value="regulatoryBundle">
                 Regulatory Bundle (UK)
               </Radio>
               <Radio id="branded_calling" value="brandedCalling" name="Branded Calling" disabled>
@@ -195,6 +203,27 @@ const Home: NextPage = () => {
                 labelText="Select an Unverified Toll Free Number" 
                 onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setTollFreeNumber(e.target.value);
+                }}
+                required />
+          </FormControl>
+          ) : (
+            <div/>
+          )}
+
+          { showRCForm ? (
+          <FormControl>
+            <Combobox 
+                items={RC_PHONE_NUMBER_TYPE}
+                labelText="Select Phone Number Type for Bundle" 
+                onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setRCPhoneNumberType(e.target.value);
+                }}
+                required />
+            <Combobox 
+                items={RC_END_USER_TYPE}
+                labelText="Select End User Type for Bundle" 
+                onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setRCEndUserType(e.target.value);
                 }}
                 required />
           </FormControl>
@@ -222,6 +251,8 @@ const Home: NextPage = () => {
             inquiryEndPointURL={inquiryEndPointURL}
             embeddableProduct={embeddableProduct}
             tollFreeNumber={tollFreeNumber}
+            rcPhoneNumberType={rcPhoneNumberType}
+            rcEndUserType={rcEndUserType}
             onSetInquiryId={(id: string) => {
               setInquiryId(id);
             }}
