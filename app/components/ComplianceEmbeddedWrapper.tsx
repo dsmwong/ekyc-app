@@ -8,9 +8,10 @@ import { TwilioComplianceEmbed } from "twilio-compliance-embed";
 export interface ComplianceEmbeddedWrapperProps {
   inquiryEndPointURL: string;
   embeddableProduct: string;
-  tollFreeNumber: string;
-  rcPhoneNumberType: string;
-  rcEndUserType: string;
+  tollFreeNumber?: string;
+  rcPhoneNumberType?: string;
+  rcEndUserType?: string;
+  rcCountryCode?: string;
   onSetInquiryId: (id: string) => void;
 }
 
@@ -26,7 +27,6 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
     React.useState<string>("");
 
   const CustomerId = window.localStorage.getItem(LOCALSTORAGE_CUSTOMER_ID);
-  const RegistrationId = window.localStorage.getItem(LOCALSTORAGE_REGISTRATION_ID);
 
   React.useEffect(() => {
 
@@ -68,14 +68,20 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
         .finally(() => setLoading(false));
       } else if ( props.embeddableProduct == "regulatoryBundle") {
   
-        let appendRegistrationId = "?";
+
+        const countryCode = props.rcCountryCode ? props.rcCountryCode : "GB";
+        let appendRegistrationId = `?CountryCode=${countryCode}`;
+
+        const STORAGE_KEY = `${LOCALSTORAGE_REGISTRATION_ID}.${countryCode}.${props.rcPhoneNumberType}.${props.rcEndUserType}`;
+        const RegistrationId = window.localStorage.getItem(STORAGE_KEY);
+
         if (RegistrationId && RegistrationId !== "undefined") {
-          appendRegistrationId += `RegistrationId=${RegistrationId}`;
+          appendRegistrationId += `&RegistrationId=${RegistrationId}`;
           console.log(appendRegistrationId);
         }
-        appendRegistrationId += `&PhoneNumberType=${props.rcPhoneNumberType}`;
-        appendRegistrationId += `&EndUserType=${props.rcEndUserType}`;
-        appendRegistrationId += `&FriendlyName=GB%20Bundle%20-%20${props.rcPhoneNumberType}%20${props.rcEndUserType}`;
+        if( props.rcPhoneNumberType) { appendRegistrationId += `&PhoneNumberType=${props.rcPhoneNumberType}`; }
+        if( props.rcEndUserType) { appendRegistrationId += `&EndUserType=${props.rcEndUserType}`; }
+        if( props.rcEndUserType && props.rcPhoneNumberType ) { appendRegistrationId += `&FriendlyName=${countryCode}%20Bundle%20-%20${props.rcPhoneNumberType}%20${props.rcEndUserType}`; }
         
         console.log(appendRegistrationId);
         
@@ -86,7 +92,10 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
           .then((data) => {
             console.log("Registration Data");
             console.log(data);
-            window.localStorage.setItem(LOCALSTORAGE_REGISTRATION_ID, data.registration_id);
+            if( data.registration_id ) {
+              window.localStorage.setItem(STORAGE_KEY, data.registration_id);
+              // console.log(`Registration ID: ${data.registration_id}`)
+            }
   
             if (
               (data && data.hasOwnProperty("inquery_id")) ||
