@@ -41,6 +41,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
         console.log(appendCustomerId);
       }
       
+      // Call the backend to get the inquiry_id and inquiry_session_token
       fetch(`${props.inquiryEndPointURL}initCustomerProfile${appendCustomerId}`, {
         method: "get",
       })

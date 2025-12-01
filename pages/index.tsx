@@ -489,15 +489,15 @@ const Home: NextPage = () => {
           borderColor="colorBorderPrimaryWeak" width="75%" height="60vh">
             <Box>
               <DynamicComplianceEmbeddedWrapper
-            inquiryEndPointURL={inquiryEndPointURL}
-            embeddableProduct={embeddableProduct}
-            tollFreeNumber={tollFreeNumber}
-            rcPhoneNumberType={rcPhoneNumberType}
-            rcEndUserType={rcEndUserType}
-            rcCountryCode={rcCountryCode}
-            onSetInquiryId={(id: string) => {
-              setInquiryId(id);
-            }}
+                  inquiryEndPointURL={inquiryEndPointURL}
+                  embeddableProduct={embeddableProduct}
+                  tollFreeNumber={tollFreeNumber}
+                  rcPhoneNumberType={rcPhoneNumberType}
+                  rcEndUserType={rcEndUserType}
+                  rcCountryCode={rcCountryCode}
+                  onSetInquiryId={(id: string) => {
+                    setInquiryId(id);
+                  }}
           />
           </Box>
           </Box>
