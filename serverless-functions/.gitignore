@@ -142,3 +142,7 @@ assets/cache/
 assets/server/
 assets/static/
 assets/types/
+assets/_next/
+assets/index.html
+assets/favicon.ico
+assets/404.html
