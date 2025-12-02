@@ -149,7 +149,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
         } else if( props.embeddableProduct == "tollFreeVerification") {
         console.log("Toll Free Number: ", props.tollFreeNumber);
         // Call the backend to get the inquiry_id and inquiry_session_token
-        fetch(`${props.inquiryEndPointURL}initTollFreeVerification?TollfreePhoneNumber=${encodeURIComponent(props.tollFreeNumber)}`, {
+        fetch(`${props.inquiryEndPointURL}initTollFreeVerification?TollfreePhoneNumber=${encodeURIComponent(props.tollFreeNumber || '')}`, {
           method: "get",
         })
           .then((res) => res.json())
