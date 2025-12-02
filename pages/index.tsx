@@ -6,6 +6,8 @@ import { Label } from "@twilio-paste/label";
 import { Input } from "@twilio-paste/input";
 import { Text } from "@twilio-paste/text";
 import { Combobox } from "@twilio-paste/combobox";
+import { Alert } from "@twilio-paste/alert";
+import { Spinner } from "@twilio-paste/spinner";
 // import { HelpText } from "@twilio-paste/help-text";
 
 import {
@@ -270,6 +272,9 @@ const Home: NextPage = () => {
   const [rcCountryItems, setRCCountryItems] = useState(Object.keys(SUPPORTED_COUNTRY_CODES));
   const [rcPhoneNumberTypeItems, setRCPhoneNumberTypeItems] = useState(Object.keys(SUPPORTED_PHONE_NUMBER_TYPES));
   const [rcEndUserTypeItems, setRCEndUserTypeItems] = useState(Object.keys(SUPPORTED_END_USER_TYPES));
+  const [regulationSid, setRegulationSid] = useState("");
+  const [regulationError, setRegulationError] = useState("");
+  const [regulationChecking, setRegulationChecking] = useState(false);
   
   // const RC_PHONE_NUMBER_TYPE = ["mobile", "local", "national", "toll-free"];
   // const RC_PHONE_NUMBER_TYPE = ["MOBILE_PHONE_NUMBER", "LOCAL_PHONE_NUMBER", "NATIONAL_PHONE_NUMBER", "TOLFREE_PHONE_NUMBER"];
@@ -283,6 +288,25 @@ const Home: NextPage = () => {
   );
 
   const [unverifiedTollFreeNumber, setUnverifiedTollFreeNumber] = useState([]);
+
+  // Helper function to map internal format back to API format
+  const mapPhoneNumberTypeToAPI = (internalType: string): string => {
+    const mapping: {[key: string]: string} = {
+      "MOBILE_PHONE_NUMBER": "Mobile",
+      "LOCAL_PHONE_NUMBER": "Local",
+      "NATIONAL_PHONE_NUMBER": "National",
+      "TOLLFREE_PHONE_NUMBER": "Toll Free"
+    };
+    return mapping[internalType] || internalType;
+  };
+
+  const mapEndUserTypeToAPI = (internalType: string): string => {
+    const mapping: {[key: string]: string} = {
+      "BUSINESS": "Business",
+      "INDIVIDUAL": "Individual"
+    };
+    return mapping[internalType] || internalType;
+  };
 
   useEffect(() => {
     console.log(
@@ -301,6 +325,50 @@ const Home: NextPage = () => {
         console.error("Error fetching unverified toll free numbers", error);
       });
   }, []);
+
+  // Check regulation whenever country, phone number type, or end user type changes
+  useEffect(() => {
+    if (rcCountryCode && rcPhoneNumberType && rcEndUserType) {
+      setRegulationChecking(true);
+      setRegulationSid("");
+      setRegulationError("");
+
+      const phoneNumberType = mapPhoneNumberTypeToAPI(rcPhoneNumberType);
+      const endUserType = mapEndUserTypeToAPI(rcEndUserType);
+
+      console.log(`Checking regulation for: ${rcCountryCode}, ${phoneNumberType}, ${endUserType}`);
+
+      fetch(`${inquiryEndPointURL}checkRegulation?countryCode=${rcCountryCode}&endUserType=${endUserType}&numberType=${encodeURIComponent(phoneNumberType)}`, {
+        method: "get",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Regulation check response:", data);
+          if (data.status === "ok") {
+            setRegulationSid(data.sid);
+            setRegulationError("");
+          } else if (data.status === "not found") {
+            setRegulationSid("");
+            setRegulationError("No regulation found for this combination");
+          } else {
+            setRegulationSid("");
+            setRegulationError(data.message || "Error checking regulation");
+          }
+        })
+        .catch((error) => {
+          console.error("Error checking regulation", error);
+          setRegulationSid("");
+          setRegulationError("Failed to check regulation");
+        })
+        .finally(() => {
+          setRegulationChecking(false);
+        });
+    } else {
+      // Reset when not all values are selected
+      setRegulationSid("");
+      setRegulationError("");
+    }
+  }, [rcCountryCode, rcPhoneNumberType, rcEndUserType, inquiryEndPointURL]);
 
   const toggleSidebarCollapsed = () => {
     return setSidebarCollapsed(!sidebarCollapsed);
@@ -395,6 +463,13 @@ const Home: NextPage = () => {
                   setShowRCForm(value === "regulatoryBundle" ? true : false);
                   setTollFreeNumber("");
                   setInquiryId("");
+                  // Reset regulation check states
+                  setRCCountryCode("");
+                  setRCPhoneNumberType("");
+                  setRCEndUserType("");
+                  setRegulationSid("");
+                  setRegulationError("");
+                  setRegulationChecking(false);
                 }}
               >
                 <Radio id="customer_profile" value="customerProfile">
@@ -543,6 +618,29 @@ const Home: NextPage = () => {
               </FormControl>
             ) : (
               <></>
+            )}
+
+            {showRCForm && (
+              <Box marginTop="space60" marginBottom="space60">
+                {regulationChecking && (
+                  <Box display="flex" alignItems="center">
+                    <Spinner size="sizeIcon20" decorative={false} title="Checking regulation" />
+                    <Text as="span" marginLeft="space30">Checking regulation...</Text>
+                  </Box>
+                )}
+                {!regulationChecking && regulationSid && (
+                  <Alert variant="neutral">
+                    <strong>Regulation Found</strong><br />
+                    Regulation SID: <Text as="span" fontFamily="fontFamilyCode">{regulationSid}</Text>
+                  </Alert>
+                )}
+                {!regulationChecking && regulationError && (
+                  <Alert variant="error">
+                    <strong>Invalid Combination</strong><br />
+                    {regulationError}
+                  </Alert>
+                )}
+              </Box>
             )}
 
             <FormControl>
