@@ -12,10 +12,10 @@
   "dependencies": {
     "@twilio-paste/core": "^20.4.0",
     "@twilio-paste/icons": "^12.2.0",
+    "@twilio/twilio-compliance-embed": "^2.1.0",
     "next": "^14.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "twilio-compliance-embed": "file:twilio-compliance-embed-v0.2.1.tgz",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
