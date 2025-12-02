@@ -37,7 +37,6 @@ import {
   FormControl,
   RadioGroup,
   Radio,
-  Select,
 } from "@twilio-paste/core";
 const DynamicComplianceEmbeddedWrapper = dynamic(
   () => import("../app/components/ComplianceEmbeddedWrapper"),
@@ -273,8 +272,8 @@ const Home: NextPage = () => {
   const [rcEndUserTypeItems, setRCEndUserTypeItems] = useState(Object.keys(SUPPORTED_END_USER_TYPES));
   
   // const RC_PHONE_NUMBER_TYPE = ["mobile", "local", "national", "toll-free"];
-  const RC_PHONE_NUMBER_TYPE = ["MOBILE_PHONE_NUMBER", "LOCAL_PHONE_NUMBER", "NATIONAL_PHONE_NUMBER", "TOLFREE_PHONE_NUMBER"];
-  const RC_END_USER_TYPE = ["BUSINESS", "INDIVUIDUAL"];
+  // const RC_PHONE_NUMBER_TYPE = ["MOBILE_PHONE_NUMBER", "LOCAL_PHONE_NUMBER", "NATIONAL_PHONE_NUMBER", "TOLFREE_PHONE_NUMBER"];
+  // const RC_END_USER_TYPE = ["BUSINESS", "INDIVUIDUAL"];
 
   const [inquiryEndPointURL, setInquiryEndPointURL] = useState(
     process.env.NEXT_PUBLIC_DEFAULT_URI

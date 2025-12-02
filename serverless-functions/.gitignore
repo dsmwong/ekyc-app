@@ -131,3 +131,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Next.js build artifacts in assets folder
+assets/app-build-manifest.json
+assets/build-manifest.json
+assets/react-loadable-manifest.json
+assets/package.json
+assets/trace
+assets/cache/
+assets/server/
+assets/static/
+assets/types/
