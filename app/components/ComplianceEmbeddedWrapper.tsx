@@ -3,7 +3,8 @@
 import * as React from "react";
 import { Spinner } from "@twilio-paste/core/spinner";
 import { Alert } from "@twilio-paste/core/alert";
-import { TwilioComplianceEmbed } from "twilio-compliance-embed";
+// import { TwilioComplianceEmbed } from "twilio-compliance-embed";
+import { TwilioComplianceEmbed } from "@twilio/twilio-compliance-embed";
 
 export interface ComplianceEmbeddedWrapperProps {
   inquiryEndPointURL: string;
@@ -71,7 +72,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
   
 
         const countryCode = props.rcCountryCode ? props.rcCountryCode : "GB";
-        let appendRegistrationId = `?CountryCode=${countryCode}`;
+        let appendRegistrationId = `?ComplianceRegulationCountry=${countryCode}`;
 
         const STORAGE_KEY = `${LOCALSTORAGE_REGISTRATION_ID}.${countryCode}.${props.rcPhoneNumberType}.${props.rcEndUserType}`;
         const RegistrationId = window.localStorage.getItem(STORAGE_KEY);
@@ -80,9 +81,9 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
           appendRegistrationId += `&RegistrationId=${RegistrationId}`;
           console.log(appendRegistrationId);
         }
-        if( props.rcPhoneNumberType) { appendRegistrationId += `&PhoneNumberType=${props.rcPhoneNumberType}`; }
-        if( props.rcEndUserType) { appendRegistrationId += `&EndUserType=${props.rcEndUserType}`; }
-        if( props.rcEndUserType && props.rcPhoneNumberType ) { appendRegistrationId += `&FriendlyName=${countryCode}%20Bundle%20-%20${props.rcPhoneNumberType}%20${props.rcEndUserType}`; }
+        if( props.rcPhoneNumberType) { appendRegistrationId += `&ComplianceRegulationSubType=${props.rcPhoneNumberType}`; }
+        if( props.rcEndUserType) { appendRegistrationId += `&ComplianceRegulationEndUserType=${props.rcEndUserType}`; }
+        if( props.rcEndUserType && props.rcPhoneNumberType ) { appendRegistrationId += `&friendly_name=${countryCode}%20Bundle%20-%20${props.rcPhoneNumberType}%20${props.rcEndUserType}`; }
         
         console.log(appendRegistrationId);
         
@@ -93,20 +94,20 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
           .then((data) => {
             console.log("Registration Data");
             console.log(data);
-            if( data.registration_id ) {
-              window.localStorage.setItem(STORAGE_KEY, data.registration_id);
-              // console.log(`Registration ID: ${data.registration_id}`)
+            if( data.data?.compliance_registration_id ) {
+              window.localStorage.setItem(STORAGE_KEY, data.data?.compliance_registration_id);
+              console.log(`Registration ID: ${data.data?.compliance_registration_id}`)
             }
   
             if (
-              (data && data.hasOwnProperty("inquery_id")) ||
-              data.hasOwnProperty("inquiry_session_token")
+              (data && data.data?.hasOwnProperty("inquiry_id")) ||
+              data.data?.hasOwnProperty("inquiry_session_token")
             ) {
-              setInquiryId(data.inquiry_id);          
-              setInquirySessionToken(data.inquiry_session_token);
-              props.onSetInquiryId(data.inquiry_id);
+              setInquiryId(data.data?.inquiry_id);          
+              setInquirySessionToken(data.data?.inquiry_session_token);
+              props.onSetInquiryId(data.data?.inquiry_id);
             } else {
-              setErrorMessage("Backend not so nice, missing required data");
+              setErrorMessage("Backend not so nice, missing required data, no inquiry_id or inquiry_session_token");
             }
           })
           .catch((error) => {

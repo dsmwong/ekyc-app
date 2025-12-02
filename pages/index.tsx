@@ -45,199 +45,211 @@ const DynamicComplianceEmbeddedWrapper = dynamic(
 );
 
 const SUPPORTED_COUNTRY_CODES: { [countryName: string]: string } = {
-  // "Afghanistan": "AF",
-  // "Albania": "AL",
-  // "Algeria": "DZ",
-  // "Andorra": "AD",
-  // "Angola": "AO",
-  // "Anguilla": "AI",
-  // "Antigua and Barbuda": "AG",
-  // "Argentina": "AR",
-  // "Armenia": "AM",
-  // "Aruba": "AW",
-  // "Australia": "AU",
-  // "Austria": "AT",
-  // "Azerbaijan": "AZ",
-  // "Bahamas": "BS",
-  // "Bahrain": "BH",
-  // "Bangladesh": "BD",
-  // "Barbados": "BB",
-  // "Belarus": "BY",
-  // "Belgium": "BE",
-  // "Belize": "BZ",
-  // "Benin": "BJ",
-  // "Bermuda": "BM",
-  // "Bhutan": "BT",
-  // "Bolivia": "BO",
-  // "Bosnia and Herzegovina": "BA",
-  // "Botswana": "BW",
-  // "Brazil": "BR",
-  // "Brunei": "BN",
-  // "Bulgaria": "BG",
-  // "Burkina Faso": "BF",
-  // "Burundi": "BI",
-  // "Cambodia": "KH",
-  // "Cameroon": "CM",
+  "Afghanistan": "AF",
+  "Albania": "AL",
+  "Algeria": "DZ",
+  "Andorra": "AD",
+  "Angola": "AO",
+  "Anguilla": "AI",
+  "Antigua and Barbuda": "AG",
+  "Argentina": "AR",
+  "Armenia": "AM",
+  "Aruba": "AW",
+  "Australia": "AU",
+  "Austria": "AT",
+  "Azerbaijan": "AZ",
+  "Bahamas": "BS",
+  "Bahrain": "BH",
+  "Bangladesh": "BD",
+  "Barbados": "BB",
+  "Belarus": "BY",
+  "Belgium": "BE",
+  "Belize": "BZ",
+  "Benin": "BJ",
+  "Bermuda": "BM",
+  "Bhutan": "BT",
+  "Bolivia": "BO",
+  "Bosnia and Herzegovina": "BA",
+  "Botswana": "BW",
+  "Brazil": "BR",
+  "Brunei": "BN",
+  "Bulgaria": "BG",
+  "Burkina Faso": "BF",
+  "Burundi": "BI",
+  "Cambodia": "KH",
+  "Cameroon": "CM",
   // "Canada": "CA",
-  // "Cape Verde": "CV",
-  // "Cayman Islands": "KY",
-  // "Central African Republic": "CF",
-  // "Chad": "TD",
-  // "Chile": "CL",
-  // "China": "CN",
-  // "Colombia": "CO",
-  // "Comoros": "KM",
-  // "Congo": "CG",
-  // "Costa Rica": "CR",
-  // "Croatia": "HR",
-  // "Cyprus": "CY",
-  // "Czech Republic": "CZ",
-  // "Denmark": "DK",
-  // "Djibouti": "DJ",
-  // "Dominica": "DM",
-  // "Dominican Republic": "DO",
-  // "Ecuador": "EC",
-  // "Egypt": "EG",
-  // "El Salvador": "SV",
-  // "Equatorial Guinea": "GQ",
-  // "Estonia": "EE",
-  // "Ethiopia": "ET",
-  // "Fiji": "FJ",
-  // "Finland": "FI",
-  // "France": "FR",
-  // "Gabon": "GA",
-  // "Gambia": "GM",
-  // "Georgia": "GE",
-  // "Germany": "DE",
-  // "Ghana": "GH",
-  // "Gibraltar": "GI",
-  // "Greece": "GR",
-  // "Grenada": "GD",
-  // "Guatemala": "GT",
-  // "Guinea": "GN",
-  // "Guinea-Bissau": "GW",
-  // "Guyana": "GY",
-  // "Haiti": "HT",
-  // "Honduras": "HN",
-  // "Hong Kong": "HK",
-  // "Hungary": "HU",
-  // "Iceland": "IS",
-  // "India": "IN",
-  // "Indonesia": "ID",
-  // "Iraq": "IQ",
-  // "Ireland": "IE",
-  // "Israel": "IL",
-  // "Italy": "IT",
-  // "Jamaica": "JM",
-  // "Japan": "JP",
-  // "Jordan": "JO",
-  // "Kazakhstan": "KZ",
-  // "Kenya": "KE",
-  // "Kiribati": "KI",
-  // "Kuwait": "KW",
-  // "Kyrgyzstan": "KG",
-  // "Laos": "LA",
-  // "Latvia": "LV",
-  // "Lebanon": "LB",
-  // "Lesotho": "LS",
-  // "Liberia": "LR",
-  // "Libya": "LY",
-  // "Liechtenstein": "LI",
-  // "Lithuania": "LT",
-  // "Luxembourg": "LU",
-  // "Macao": "MO",
-  // "Madagascar": "MG",
-  // "Malawi": "MW",
-  // "Malaysia": "MY",
-  // "Maldives": "MV",
-  // "Mali": "ML",
-  // "Malta": "MT",
-  // "Marshall Islands": "MH",
-  // "Martinique": "MQ",
-  // "Mauritania": "MR",
-  // "Mauritius": "MU",
-  // "Mexico": "MX",
-  // "Micronesia": "FM",
-  // "Moldova": "MD",
-  // "Monaco": "MC",
-  // "Mongolia": "MN",
-  // "Montenegro": "ME",
-  // "Montserrat": "MS",
-  // "Morocco": "MA",
-  // "Mozambique": "MZ",
-  // "Myanmar": "MM",
-  // "Namibia": "NA",
-  // "Nauru": "NR",
-  // "Nepal": "NP",
-  // "Netherlands": "NL",
-  // "New Caledonia": "NC",
-  // "New Zealand": "NZ",
-  // "Nicaragua": "NI",
-  // "Niger": "NE",
-  // "Nigeria": "NG",
-  // "Niue": "NU",
-  // "North Macedonia": "MK",
-  // "Norway": "NO",
-  // "Oman": "OM",
-  // "Pakistan": "PK",
-  // "Palau": "PW",
-  // "Panama": "PA",
-  // "Papua New Guinea": "PG",
-  // "Paraguay": "PY",
-  // "Peru": "PE",
-  // "Philippines": "PH",
-  // "Poland": "PL",
-  // "Portugal": "PT",
-  // "Qatar": "QA",
-  // "Romania": "RO",
-  // "Russia": "RU",
-  // "Rwanda": "RW",
-  // "Saint Lucia": "LC",
-  // "Samoa": "WS",
-  // "San Marino": "SM",
-  // "Sao Tome and Principe": "ST",
-  // "Saudi Arabia": "SA",
-  // "Senegal": "SN",
-  // "Serbia": "RS",
-  // "Seychelles": "SC",
-  // "Sierra Leone": "SL",
-  // "Singapore": "SG",
-  // "Slovakia": "SK",
-  // "Slovenia": "SI",
-  // "Solomon Islands": "SB",
-  // "South Africa": "ZA",
-  // "Spain": "ES",
-  // "Sri Lanka": "LK",
-  // "Sudan": "SD",
-  // "Suriname": "SR",
-  // "Sweden": "SE",
-  // "Switzerland": "CH",
-  // "Syria": "SY",
-  // "Taiwan": "TW",
-  // "Tajikistan": "TJ",
-  // "Tanzania": "TZ",
-  // "Thailand": "TH",
-  // "Timor-Leste": "TL",
-  // "Togo": "TG",
-  // "Tonga": "TO",
-  // "Trinidad and Tobago": "TT",
-  // "Tunisia": "TN",
-  // "Turkey": "TR",
-  // "Turkmenistan": "TM",
-  // "Tuvalu": "TV",
-  // "Uganda": "UG",
-  // "Ukraine": "UA",
-  // "United Arab Emirates": "AE",
+  "Cape Verde": "CV",
+  "Cayman Islands": "KY",
+  "Central African Republic": "CF",
+  "Chad": "TD",
+  "Chile": "CL",
+  "China": "CN",
+  "Colombia": "CO",
+  "Comoros": "KM",
+  "Congo": "CG",
+  "Costa Rica": "CR",
+  "Croatia": "HR",
+  "Cyprus": "CY",
+  "Czech Republic": "CZ",
+  "Denmark": "DK",
+  "Djibouti": "DJ",
+  "Dominica": "DM",
+  "Dominican Republic": "DO",
+  "Ecuador": "EC",
+  "Egypt": "EG",
+  "El Salvador": "SV",
+  "Equatorial Guinea": "GQ",
+  "Estonia": "EE",
+  "Ethiopia": "ET",
+  "Fiji": "FJ",
+  "Finland": "FI",
+  "France": "FR",
+  "Gabon": "GA",
+  "Gambia": "GM",
+  "Georgia": "GE",
+  "Germany": "DE",
+  "Ghana": "GH",
+  "Gibraltar": "GI",
+  "Greece": "GR",
+  "Grenada": "GD",
+  "Guatemala": "GT",
+  "Guinea": "GN",
+  "Guinea-Bissau": "GW",
+  "Guyana": "GY",
+  "Haiti": "HT",
+  "Honduras": "HN",
+  "Hong Kong": "HK",
+  "Hungary": "HU",
+  "Iceland": "IS",
+  "India": "IN",
+  "Indonesia": "ID",
+  "Iraq": "IQ",
+  "Ireland": "IE",
+  "Israel": "IL",
+  "Italy": "IT",
+  "Jamaica": "JM",
+  "Japan": "JP",
+  "Jordan": "JO",
+  "Kazakhstan": "KZ",
+  "Kenya": "KE",
+  "Kiribati": "KI",
+  "Kuwait": "KW",
+  "Kyrgyzstan": "KG",
+  "Laos": "LA",
+  "Latvia": "LV",
+  "Lebanon": "LB",
+  "Lesotho": "LS",
+  "Liberia": "LR",
+  "Libya": "LY",
+  "Liechtenstein": "LI",
+  "Lithuania": "LT",
+  "Luxembourg": "LU",
+  "Macao": "MO",
+  "Madagascar": "MG",
+  "Malawi": "MW",
+  "Malaysia": "MY",
+  "Maldives": "MV",
+  "Mali": "ML",
+  "Malta": "MT",
+  "Marshall Islands": "MH",
+  "Martinique": "MQ",
+  "Mauritania": "MR",
+  "Mauritius": "MU",
+  "Mexico": "MX",
+  "Micronesia": "FM",
+  "Moldova": "MD",
+  "Monaco": "MC",
+  "Mongolia": "MN",
+  "Montenegro": "ME",
+  "Montserrat": "MS",
+  "Morocco": "MA",
+  "Mozambique": "MZ",
+  "Myanmar": "MM",
+  "Namibia": "NA",
+  "Nauru": "NR",
+  "Nepal": "NP",
+  "Netherlands": "NL",
+  "New Caledonia": "NC",
+  "New Zealand": "NZ",
+  "Nicaragua": "NI",
+  "Niger": "NE",
+  "Nigeria": "NG",
+  "Niue": "NU",
+  "North Macedonia": "MK",
+  "Norway": "NO",
+  "Oman": "OM",
+  "Pakistan": "PK",
+  "Palau": "PW",
+  "Panama": "PA",
+  "Papua New Guinea": "PG",
+  "Paraguay": "PY",
+  "Peru": "PE",
+  "Philippines": "PH",
+  "Poland": "PL",
+  "Portugal": "PT",
+  "Qatar": "QA",
+  "Romania": "RO",
+  "Russia": "RU",
+  "Rwanda": "RW",
+  "Saint Lucia": "LC",
+  "Samoa": "WS",
+  "San Marino": "SM",
+  "Sao Tome and Principe": "ST",
+  "Saudi Arabia": "SA",
+  "Senegal": "SN",
+  "Serbia": "RS",
+  "Seychelles": "SC",
+  "Sierra Leone": "SL",
+  "Singapore": "SG",
+  "Slovakia": "SK",
+  "Slovenia": "SI",
+  "Solomon Islands": "SB",
+  "South Africa": "ZA",
+  "Spain": "ES",
+  "Sri Lanka": "LK",
+  "Sudan": "SD",
+  "Suriname": "SR",
+  "Sweden": "SE",
+  "Switzerland": "CH",
+  "Syria": "SY",
+  "Taiwan": "TW",
+  "Tajikistan": "TJ",
+  "Tanzania": "TZ",
+  "Thailand": "TH",
+  "Timor-Leste": "TL",
+  "Togo": "TG",
+  "Tonga": "TO",
+  "Trinidad and Tobago": "TT",
+  "Tunisia": "TN",
+  "Turkey": "TR",
+  "Turkmenistan": "TM",
+  "Tuvalu": "TV",
+  "Uganda": "UG",
+  "Ukraine": "UA",
+  "United Arab Emirates": "AE",
   "United Kingdom": "GB",
   // "United States": "US",
-  // "Uruguay": "UY",
-  // "Uzbekistan": "UZ",
-  // "Vanuatu": "VU",
-  // "Venezuela": "VE",
-  // "Vietnam": "VN",
-  // "Yemen": "YE",
-  // "Zambia": "ZM",
-  // "Zimbabwe": "ZW"
+  "Uruguay": "UY",
+  "Uzbekistan": "UZ",
+  "Vanuatu": "VU",
+  "Venezuela": "VE",
+  "Vietnam": "VN",
+  "Yemen": "YE",
+  "Zambia": "ZM",
+  "Zimbabwe": "ZW"
+};
+
+const SUPPORTED_PHONE_NUMBER_TYPES: {[pnType: string]: string} = {
+  "Mobile": "MOBILE_PHONE_NUMBER",
+  "Local": "LOCAL_PHONE_NUMBER",
+  "National": "NATIONAL_PHONE_NUMBER",
+  "Toll Free": "TOLLFREE_PHONE_NUMBER"
+};
+
+const SUPPORTED_END_USER_TYPES: {[euType: string]: string} = {
+  "Business": "BUSINESS",
+  "Individual": "INDIVIDUAL"
 };
 
 const Home: NextPage = () => {
@@ -256,9 +268,13 @@ const Home: NextPage = () => {
   const [rcPhoneNumberType, setRCPhoneNumberType] = useState("");
   const [rcEndUserType, setRCEndUserType] = useState("");
   const [rcCountryCode, setRCCountryCode] = useState("");
-
-  const RC_PHONE_NUMBER_TYPE = ["mobile", "local", "national", "toll-free"];
-  const RC_END_USER_TYPE = ["business", "personal"];
+  const [rcCountryItems, setRCCountryItems] = useState(Object.keys(SUPPORTED_COUNTRY_CODES));
+  const [rcPhoneNumberTypeItems, setRCPhoneNumberTypeItems] = useState(Object.keys(SUPPORTED_PHONE_NUMBER_TYPES));
+  const [rcEndUserTypeItems, setRCEndUserTypeItems] = useState(Object.keys(SUPPORTED_END_USER_TYPES));
+  
+  // const RC_PHONE_NUMBER_TYPE = ["mobile", "local", "national", "toll-free"];
+  const RC_PHONE_NUMBER_TYPE = ["MOBILE_PHONE_NUMBER", "LOCAL_PHONE_NUMBER", "NATIONAL_PHONE_NUMBER", "TOLFREE_PHONE_NUMBER"];
+  const RC_END_USER_TYPE = ["BUSINESS", "INDIVUIDUAL"];
 
   const [inquiryEndPointURL, setInquiryEndPointURL] = useState(
     process.env.NEXT_PUBLIC_DEFAULT_URI
@@ -389,7 +405,7 @@ const Home: NextPage = () => {
                   Toll Free Verification
                 </Radio>
                 <Radio id="regulatory_bundle" value="regulatoryBundle">
-                  Regulatory Bundle (UK)
+                  Regulatory Bundle
                 </Radio>
                 <Radio
                   id="branded_calling"
@@ -425,41 +441,102 @@ const Home: NextPage = () => {
                 <Box display="flex">
                   <Box width="size40" paddingRight="space40">
                     <Combobox
-                      items={Object.keys(SUPPORTED_COUNTRY_CODES)}
-                      initialSelectedItem={
-                        Object.keys(SUPPORTED_COUNTRY_CODES)[0]
-                      }
+                      autocomplete
+                      items={rcCountryItems}
+                      // initialSelectedItem={
+                      //   rcCountryItems[0]
+                      // }
                       labelText="Select Country"
-                      onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        console.log(SUPPORTED_COUNTRY_CODES[e.target.value]);
-                        setRCCountryCode(
-                          SUPPORTED_COUNTRY_CODES[e.target.value]
-                        );
+                      onInputValueChange={({inputValue}) => {
+                        console.log('value changed: ' + inputValue);
+                        if (inputValue !== undefined) {
+                          setRCCountryItems(
+                            Object.keys(SUPPORTED_COUNTRY_CODES).filter((item) =>
+                              item
+                                .toLowerCase()
+                                .startsWith(inputValue.toLowerCase())
+                            )
+                          );
+                          if( SUPPORTED_COUNTRY_CODES[inputValue] ) {
+                            console.log('found country code and setting to ' + SUPPORTED_COUNTRY_CODES[inputValue]);
+                            setRCCountryCode(
+                              SUPPORTED_COUNTRY_CODES[inputValue]
+                            );
+                          }
+                        }
                       }}
+                      // onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      //   console.log(e.target.value);
+                      //   console.log(SUPPORTED_COUNTRY_CODES[e.target.value]);
+                      //   setRCCountryCode(
+                      //     SUPPORTED_COUNTRY_CODES[e.target.value]
+                      //   );
+                      // }}
                       required
                     />
                   </Box>
 
                   <Box width="size40" paddingRight="space40">
                     <Combobox
-                      items={RC_PHONE_NUMBER_TYPE}
-                      initialSelectedItem={RC_PHONE_NUMBER_TYPE[0]}
+                      autocomplete
+                      items={rcPhoneNumberTypeItems}
+                      // initialSelectedItem={RC_PHONE_NUMBER_TYPE[0]}
                       labelText="Select Phone Number Type for Bundle"
-                      onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        setRCPhoneNumberType(e.target.value);
+                      onInputValueChange={({inputValue}) => {
+                        console.log('RC Phone Number value changed: ' + inputValue);
+                        if (inputValue !== undefined) {
+                          setRCPhoneNumberTypeItems(
+                            Object.keys(SUPPORTED_PHONE_NUMBER_TYPES).filter((item) =>
+                              item
+                                .toLowerCase()
+                                .startsWith(inputValue.toLowerCase())
+                            )
+                          );
+                          
+                          if( SUPPORTED_PHONE_NUMBER_TYPES[inputValue] ) {
+                            console.log('found phone number type and setting to ' + SUPPORTED_PHONE_NUMBER_TYPES[inputValue]);
+                            setRCPhoneNumberType(
+                              SUPPORTED_PHONE_NUMBER_TYPES[inputValue]
+                            );
+                          }
+                        }
                       }}
+                      // onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      //   console.log('Setting value: ' + e.target.value);
+                      //   setRCPhoneNumberType(e.target.value);
+                      // }}
                       required
                     />
                   </Box>
 
                   <Box width="size40">
                     <Combobox
-                      items={RC_END_USER_TYPE}
-                      initialSelectedItem={RC_END_USER_TYPE[0]}
+                      autocomplete
+                      items={rcEndUserTypeItems}
+                      // initialSelectedItem={RC_END_USER_TYPE[0]}
                       labelText="Select End User Type for Bundle"
-                      onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        setRCEndUserType(e.target.value);
+                      onInputValueChange={({inputValue}) => {
+                        console.log('RC End User Type value changed: ' + inputValue);
+                        if (inputValue !== undefined) {
+                          setRCEndUserTypeItems(
+                            Object.keys(SUPPORTED_END_USER_TYPES).filter((item) =>
+                              item
+                                .toLowerCase()
+                                .startsWith(inputValue.toLowerCase())
+                            )
+                          );
+                          
+                          if( SUPPORTED_END_USER_TYPES[inputValue] ) {
+                            console.log('found end user type and setting to ' + SUPPORTED_END_USER_TYPES[inputValue]);
+                            setRCEndUserType(
+                              SUPPORTED_END_USER_TYPES[inputValue]
+                            );
+                          }
+                        }
                       }}
+                      // onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      //   setRCEndUserType(e.target.value);
+                      // }}
                       required
                     />
                   </Box>
@@ -487,7 +564,7 @@ const Home: NextPage = () => {
           borderStyle="solid"
           borderWidth="borderWidth10"
           borderColor="colorBorderPrimaryWeak" width="75%" height="60vh">
-            <Box>
+            <Box id="wrapper-box"height="100%">
               <DynamicComplianceEmbeddedWrapper
                   inquiryEndPointURL={inquiryEndPointURL}
                   embeddableProduct={embeddableProduct}
