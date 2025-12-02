@@ -135,16 +135,22 @@ exports.handler = async function(context, event, callback) {
 
   console.log(`params: ${JSON.stringify(params, null, 2)}`);
 
-  const response = await axios.post(complianceInquiriesUrl, params, {
-    auth: {
-      username: context.ACCOUNT_SID,
-      password: context.AUTH_TOKEN
-    },
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+  try {
+    const response = await axios.post(complianceInquiriesUrl, params, {
+      auth: {
+        username: context.ACCOUNT_SID,
+        password: context.AUTH_TOKEN
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return callback(null, cors.response(response.data));
+  } catch (error) {
+    console.error(`Error making request to Compliance Inquiries API: ${error.message}`);
+    return callback(null, cors.response({error: 'Failed to initialize compliance inquiry', details: error.message}));
+  }
 
-  return callback(null, cors.response(response.data));
+  
   // callback(null, cors.response(params));
 };
