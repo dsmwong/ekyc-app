@@ -499,9 +499,14 @@ const Home: NextPage = () => {
                     items={unverifiedTollFreeNumber}
                     // initialSelectedItem={unverifiedTollFreeNumber[0]}
                     labelText="Select an Unverified Toll Free Number"
-                    onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      setTollFreeNumber(e.target.value);
+                    onInputValueChange={({inputValue}) => {
+                        console.log('onInputValue value changed: ' + inputValue);
+                      setTollFreeNumber(inputValue || "");
                     }}
+                    // onSelect={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    //     console.log('onSelect value changed: ' + e.target.value);
+                    //   setTollFreeNumber(e.target.value);
+                    // }}
                     required
                   />
                 </Box>
