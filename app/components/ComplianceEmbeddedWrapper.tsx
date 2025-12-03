@@ -13,6 +13,9 @@ export interface ComplianceEmbeddedWrapperProps {
   rcPhoneNumberType?: string;
   rcEndUserType?: string;
   rcCountryCode?: string;
+  manualRegistrationId?: string;
+  manualInquiryId?: string;
+  manualInquirySessionToken?: string;
   onSetInquiryId: (id: string) => void;
 }
 
@@ -30,6 +33,14 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
   const CustomerId = window.localStorage.getItem(LOCALSTORAGE_CUSTOMER_ID);
 
   React.useEffect(() => {
+
+    if (props.manualInquiryId && props.manualInquirySessionToken) {
+      setInquiryId(props.manualInquiryId);
+      setInquirySessionToken(props.manualInquirySessionToken);
+      props.onSetInquiryId(props.manualInquiryId);
+      setLoading(false);
+      return;
+    }
 
     console.log("Embeddable Product: ", props.embeddableProduct);
 
@@ -76,12 +87,17 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
 
         const initRegulatoryBundle = (isRetry: boolean = false) => {
           let appendRegistrationId = `?ComplianceRegulationCountry=${countryCode}`;
-          const RegistrationId = window.localStorage.getItem(STORAGE_KEY);
+
+          // Use manual registration ID if provided, otherwise use localStorage
+          let RegistrationId = props.manualRegistrationId;
+          if (!RegistrationId) {
+            RegistrationId = window.localStorage.getItem(STORAGE_KEY) || undefined;
+          }
 
           // Only include RegistrationId if it exists and this is not a retry
           if (!isRetry && RegistrationId && RegistrationId !== "undefined") {
             appendRegistrationId += `&RegistrationId=${RegistrationId}`;
-            console.log("Using existing RegistrationId:", RegistrationId);
+            console.log("Using RegistrationId:", RegistrationId, props.manualRegistrationId ? "(manual)" : "(localStorage)");
           } else if (isRetry) {
             console.log("Retrying without RegistrationId (fresh bundle)");
           }
@@ -176,7 +192,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
       }
 
 
-  }, [CustomerId]);
+  }, [CustomerId, props.manualInquiryId, props.manualInquirySessionToken, props.manualRegistrationId]);
 
   if (isLoading) return <Spinner decorative={false} title="Loading" />;
   if (errorMessage) return <Alert variant="warning">{errorMessage}</Alert>;

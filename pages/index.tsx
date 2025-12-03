@@ -39,6 +39,9 @@ import {
   FormControl,
   RadioGroup,
   Radio,
+  Disclosure,
+  DisclosureHeading,
+  DisclosureContent,
 } from "@twilio-paste/core";
 const DynamicComplianceEmbeddedWrapper = dynamic(
   () => import("../app/components/ComplianceEmbeddedWrapper"),
@@ -289,6 +292,10 @@ const Home: NextPage = () => {
 
   const [unverifiedTollFreeNumber, setUnverifiedTollFreeNumber] = useState([]);
 
+  const [manualInquiryId, setManualInquiryId] = useState("");
+  const [manualInquirySessionToken, setManualInquirySessionToken] = useState("");
+  const [manualRegistrationId, setManualRegistrationId] = useState("");
+
   // Helper function to map internal format back to API format
   const mapPhoneNumberTypeToAPI = (internalType: string): string => {
     const mapping: {[key: string]: string} = {
@@ -447,6 +454,81 @@ const Home: NextPage = () => {
                 required
               />
             </FormControl>
+
+            <Disclosure variant="contained">
+              <DisclosureHeading as="h3" variant="heading40">
+                Manual Entry (Optional) - Copy from manual backend call
+              </DisclosureHeading>
+              <DisclosureContent>
+                <FormControl>
+                  <Box display="flex" width="100%">
+                    <Box flexGrow={1} flexBasis="0" paddingRight="space40">
+                      <Label htmlFor="manual_inquiry_id">
+                        Inquiry ID
+                      </Label>
+                      <Input
+                        type="text"
+                        id="manual_inquiry_id"
+                        name="manual_inquiry_id"
+                        placeholder="Enter Inquiry ID"
+                        value={manualInquiryId}
+                        onChange={(e) => {
+                          setManualInquiryId(e.target.value);
+                        }}
+                      />
+                    </Box>
+
+                    <Box flexGrow={1} flexBasis="0">
+                      <Label htmlFor="manual_inquiry_session_token">
+                        Inquiry Session Token
+                      </Label>
+                      <Input
+                        type="text"
+                        id="manual_inquiry_session_token"
+                        name="manual_inquiry_session_token"
+                        placeholder="Enter Inquiry Session Token"
+                        value={manualInquirySessionToken}
+                        onChange={(e) => {
+                          setManualInquirySessionToken(e.target.value);
+                        }}
+                      />
+                    </Box>
+                  </Box>
+                </FormControl>
+
+                <FormControl>
+                  <Box marginTop="space40">
+                  <Label htmlFor="manual_registration_id">
+                    Registration ID
+                  </Label>
+                  <Input
+                    type="text"
+                    id="manual_registration_id"
+                    name="manual_registration_id"
+                    placeholder="Enter Registration ID"
+                    value={manualRegistrationId}
+                    onChange={(e) => {
+                      setManualRegistrationId(e.target.value);
+                    }}
+                  />
+                  </Box>
+                </FormControl>
+
+                <Box marginTop="space60">
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      setManualInquiryId("");
+                      setManualInquirySessionToken("");
+                      setManualRegistrationId("");
+                    }}
+                  >
+                    Clear Manual Entries
+                  </Button>
+                </Box>
+              </DisclosureContent>
+            </Disclosure>
+
             <FormControl>
               <RadioGroup
                 name="embeddable_product"
@@ -488,6 +570,22 @@ const Home: NextPage = () => {
                   disabled
                 >
                   Branded Calling
+                </Radio>
+                <Radio
+                  id="a2p10dlc_brand"
+                  value="a2P10DLCBrand"
+                  name="A2P 10DLC Brand"
+                  disabled
+                >
+                  A2P 10DLC Brand
+                </Radio>
+                <Radio
+                  id="a2p10dlc_campaign"
+                  value="a2P10DLCCampaign"
+                  name="A2P 10DLC Campaign"
+                  disabled
+                >
+                  A2P 10DLC Campaign
                 </Radio>
               </RadioGroup>
             </FormControl>
@@ -674,6 +772,9 @@ const Home: NextPage = () => {
                   rcPhoneNumberType={rcPhoneNumberType}
                   rcEndUserType={rcEndUserType}
                   rcCountryCode={rcCountryCode}
+                  manualInquiryId={manualInquiryId}
+                  manualInquirySessionToken={manualInquirySessionToken}
+                  manualRegistrationId={manualRegistrationId}
                   onSetInquiryId={(id: string) => {
                     setInquiryId(id);
                   }}
