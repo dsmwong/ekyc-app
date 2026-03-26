@@ -16,6 +16,12 @@ export interface ComplianceEmbeddedWrapperProps {
   manualRegistrationId?: string;
   manualInquiryId?: string;
   manualInquirySessionToken?: string;
+  senderIdValue?: string;
+  senderIdFriendlyName?: string;
+  senderIdBusinessIdentity?: string;
+  senderIdIsSubassigned?: string;
+  senderIdHqCountry?: string;
+  senderIdUseCaseCategory?: string;
   onSetInquiryId: (id: string) => void;
 }
 
@@ -189,6 +195,94 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
             setErrorMessage(`Error fetching toll free verification data - ${error.message}`);
           })
           .finally(() => setLoading(false));
+      } else if (props.embeddableProduct == "senderIdRegistration") {
+        console.log("Sender ID Registration: ", props.senderIdValue);
+
+        const SENDER_ID_STORAGE_KEY = `${LOCALSTORAGE_REGISTRATION_ID}.senderId.${props.senderIdValue}`;
+
+        const initSenderIdRegistration = (isRetry: boolean = false) => {
+          // Use manual registration ID if provided, otherwise use localStorage
+          let RegistrationId = props.manualRegistrationId;
+          if (!RegistrationId) {
+            RegistrationId = window.localStorage.getItem(SENDER_ID_STORAGE_KEY) || undefined;
+          }
+
+          // Only include RegistrationId if it exists and this is not a retry
+          const useExisting = !isRetry && RegistrationId && RegistrationId !== "undefined";
+
+          const params: Record<string, string> = {};
+
+          if (useExisting) {
+            params.RegistrationId = RegistrationId!;
+            console.log("Using RegistrationId:", RegistrationId, props.manualRegistrationId ? "(manual)" : "(localStorage)");
+          } else {
+            if (isRetry) {
+              console.log("Retrying without RegistrationId (fresh registration)");
+            }
+            params.sender_id = props.senderIdValue || '';
+            params.friendly_name = props.senderIdFriendlyName || '';
+            params.business_identity = props.senderIdBusinessIdentity || '';
+            params.is_subassigned = props.senderIdIsSubassigned || '';
+            params.headquarters_country = props.senderIdHqCountry || '';
+            params.use_case_category = props.senderIdUseCaseCategory || '';
+          }
+
+          const queryString = new URLSearchParams(params).toString();
+          console.log("Fetching sender ID registration with params:", queryString);
+
+          fetch(`${props.inquiryEndPointURL}initSenderIdRegistration?${queryString}`, {
+            method: "get",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("Sender ID Registration Data");
+              console.log(data);
+
+              // Check if response contains an error
+              if (data.error) {
+                console.error("Error in sender ID registration response:", data.error);
+                if (!isRetry) {
+                  console.log("Clearing localStorage and retrying with fresh registration");
+                  window.localStorage.removeItem(SENDER_ID_STORAGE_KEY);
+                  setLoading(true);
+                  initSenderIdRegistration(true);
+                  return;
+                } else {
+                  setErrorMessage(`Error from backend: ${data.error}`);
+                  setLoading(false);
+                  return;
+                }
+              }
+
+              // Store registration ID for future sessions
+              if (data.id) {
+                window.localStorage.setItem(SENDER_ID_STORAGE_KEY, data.id);
+                console.log(`Registration ID: ${data.id}`);
+              }
+
+              // Handle response - new registration vs embedded session refresh
+              // New registration: embeddedSession.sessionId / embeddedSession.sessionToken
+              // Embedded session refresh: sessionId / sessionToken
+              const sessionId = data.embeddedSession?.sessionId || data.sessionId;
+              const sessionToken = data.embeddedSession?.sessionToken || data.sessionToken;
+
+              if (sessionId && sessionToken) {
+                setInquiryId(sessionId);
+                setInquirySessionToken(sessionToken);
+                props.onSetInquiryId(sessionId);
+              } else {
+                setErrorMessage("Backend response missing sessionId or sessionToken");
+              }
+              setLoading(false);
+            })
+            .catch((error) => {
+              console.error("Error fetching sender ID registration data", error);
+              setErrorMessage(`Error fetching sender ID registration data - ${error.message}`);
+              setLoading(false);
+            });
+        };
+
+        initSenderIdRegistration(false);
       }
 
 
