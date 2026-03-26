@@ -22,6 +22,32 @@ export interface ComplianceEmbeddedWrapperProps {
   senderIdIsSubassigned?: string;
   senderIdHqCountry?: string;
   senderIdUseCaseCategory?: string;
+  // Optional sender ID fields
+  senderIdBusinessName?: string;
+  senderIdBusinessType?: string;
+  senderIdBusinessRegNumber?: string;
+  senderIdBusinessWebsite?: string;
+  senderIdBusinessRegCountry?: string;
+  senderIdRegAuthority?: string;
+  senderIdTelephoneNumber?: string;
+  senderIdTradeName?: string;
+  senderIdUseCaseDescription?: string;
+  senderIdSampleMessage?: string;
+  senderIdAvgMessageVolume?: string;
+  senderIdAuthRepFirstName?: string;
+  senderIdAuthRepLastName?: string;
+  senderIdAuthRepEmail?: string;
+  senderIdAuthRepPhone?: string;
+  senderIdOfficerFirstName?: string;
+  senderIdOfficerLastName?: string;
+  senderIdOfficerEmail?: string;
+  senderIdStreet?: string;
+  senderIdStreetSecondary?: string;
+  senderIdCity?: string;
+  senderIdRegion?: string;
+  senderIdPostalCode?: string;
+  senderIdIsoCountry?: string;
+  senderIdProofOfSenderId?: string;
   onSetInquiryId: (id: string) => void;
 }
 
@@ -225,6 +251,32 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
             params.is_subassigned = props.senderIdIsSubassigned || '';
             params.headquarters_country = props.senderIdHqCountry || '';
             params.use_case_category = props.senderIdUseCaseCategory || '';
+            // Optional fields - only include when non-empty
+            if (props.senderIdBusinessName) params.business_name = props.senderIdBusinessName;
+            if (props.senderIdBusinessType) params.business_type = props.senderIdBusinessType;
+            if (props.senderIdBusinessRegNumber) params.business_registration_number = props.senderIdBusinessRegNumber;
+            if (props.senderIdBusinessWebsite) params.business_website = props.senderIdBusinessWebsite;
+            if (props.senderIdBusinessRegCountry) params.business_registration_country = props.senderIdBusinessRegCountry;
+            if (props.senderIdRegAuthority) params.registration_authority = props.senderIdRegAuthority;
+            if (props.senderIdTelephoneNumber) params.telephone_number = props.senderIdTelephoneNumber;
+            if (props.senderIdTradeName) params.trade_name = props.senderIdTradeName;
+            if (props.senderIdUseCaseDescription) params.use_case_description = props.senderIdUseCaseDescription;
+            if (props.senderIdSampleMessage) params.sample_message = props.senderIdSampleMessage;
+            if (props.senderIdAvgMessageVolume) params.average_message_volume_per_month = props.senderIdAvgMessageVolume;
+            if (props.senderIdAuthRepFirstName) params.auth_rep_first_name = props.senderIdAuthRepFirstName;
+            if (props.senderIdAuthRepLastName) params.auth_rep_last_name = props.senderIdAuthRepLastName;
+            if (props.senderIdAuthRepEmail) params.auth_rep_email = props.senderIdAuthRepEmail;
+            if (props.senderIdAuthRepPhone) params.auth_rep_phone_number = props.senderIdAuthRepPhone;
+            if (props.senderIdOfficerFirstName) params.officer_first_name = props.senderIdOfficerFirstName;
+            if (props.senderIdOfficerLastName) params.officer_last_name = props.senderIdOfficerLastName;
+            if (props.senderIdOfficerEmail) params.officer_email = props.senderIdOfficerEmail;
+            if (props.senderIdStreet) params.street = props.senderIdStreet;
+            if (props.senderIdStreetSecondary) params.street_secondary = props.senderIdStreetSecondary;
+            if (props.senderIdCity) params.city = props.senderIdCity;
+            if (props.senderIdRegion) params.region = props.senderIdRegion;
+            if (props.senderIdPostalCode) params.postal_code = props.senderIdPostalCode;
+            if (props.senderIdIsoCountry) params.iso_country = props.senderIdIsoCountry;
+            if (props.senderIdProofOfSenderId) params.proof_of_sender_id = props.senderIdProofOfSenderId;
           }
 
           const queryString = new URLSearchParams(params).toString();

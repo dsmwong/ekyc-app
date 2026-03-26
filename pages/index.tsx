@@ -42,6 +42,14 @@ import {
   Disclosure,
   DisclosureHeading,
   DisclosureContent,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalFooterActions,
+  ModalHeader,
+  ModalHeading,
+  Separator,
+  TextArea,
 } from "@twilio-paste/core";
 const DynamicComplianceEmbeddedWrapper = dynamic(
   () => import("../app/components/ComplianceEmbeddedWrapper"),
@@ -278,6 +286,43 @@ const Home: NextPage = () => {
   const [senderIdHqCountry, setSenderIdHqCountry] = useState("");
   const [senderIdHqCountryItems, setSenderIdHqCountryItems] = useState(Object.keys(SUPPORTED_COUNTRY_CODES));
   const [senderIdUseCaseCategory, setSenderIdUseCaseCategory] = useState("");
+
+  // Sender ID optional fields modal
+  const senderIdModalHeadingID = useUID();
+  const [senderIdModalOpen, setSenderIdModalOpen] = useState(false);
+  // Business
+  const [senderIdBusinessName, setSenderIdBusinessName] = useState("");
+  const [senderIdBusinessType, setSenderIdBusinessType] = useState("");
+  const [senderIdBusinessRegNumber, setSenderIdBusinessRegNumber] = useState("");
+  const [senderIdBusinessWebsite, setSenderIdBusinessWebsite] = useState("");
+  const [senderIdBusinessRegCountry, setSenderIdBusinessRegCountry] = useState("");
+  const [senderIdRegAuthority, setSenderIdRegAuthority] = useState("");
+  const [senderIdTelephoneNumber, setSenderIdTelephoneNumber] = useState("");
+  const [senderIdTradeName, setSenderIdTradeName] = useState("");
+  // Use Case
+  const [senderIdUseCaseDescription, setSenderIdUseCaseDescription] = useState("");
+  const [senderIdSampleMessage, setSenderIdSampleMessage] = useState("");
+  const [senderIdAvgMessageVolume, setSenderIdAvgMessageVolume] = useState("");
+  // Authorized Representative
+  const [senderIdAuthRepFirstName, setSenderIdAuthRepFirstName] = useState("");
+  const [senderIdAuthRepLastName, setSenderIdAuthRepLastName] = useState("");
+  const [senderIdAuthRepEmail, setSenderIdAuthRepEmail] = useState("");
+  const [senderIdAuthRepPhone, setSenderIdAuthRepPhone] = useState("");
+  // Officer
+  const [senderIdOfficerFirstName, setSenderIdOfficerFirstName] = useState("");
+  const [senderIdOfficerLastName, setSenderIdOfficerLastName] = useState("");
+  const [senderIdOfficerEmail, setSenderIdOfficerEmail] = useState("");
+  // Business Address
+  const [senderIdStreet, setSenderIdStreet] = useState("");
+  const [senderIdStreetSecondary, setSenderIdStreetSecondary] = useState("");
+  const [senderIdCity, setSenderIdCity] = useState("");
+  const [senderIdRegion, setSenderIdRegion] = useState("");
+  const [senderIdPostalCode, setSenderIdPostalCode] = useState("");
+  const [senderIdIsoCountry, setSenderIdIsoCountry] = useState("");
+  const [senderIdIsoCountryItems, setSenderIdIsoCountryItems] = useState(Object.keys(SUPPORTED_COUNTRY_CODES));
+  // Other
+  const [senderIdProofOfSenderId, setSenderIdProofOfSenderId] = useState("");
+
   const [rcPhoneNumberType, setRCPhoneNumberType] = useState("");
   const [rcEndUserType, setRCEndUserType] = useState("");
   const [rcCountryCode, setRCCountryCode] = useState("");
@@ -569,6 +614,32 @@ const Home: NextPage = () => {
                   setSenderIdIsSubassigned("");
                   setSenderIdHqCountry("");
                   setSenderIdUseCaseCategory("");
+                  setSenderIdModalOpen(false);
+                  setSenderIdBusinessName("");
+                  setSenderIdBusinessType("");
+                  setSenderIdBusinessRegNumber("");
+                  setSenderIdBusinessWebsite("");
+                  setSenderIdBusinessRegCountry("");
+                  setSenderIdRegAuthority("");
+                  setSenderIdTelephoneNumber("");
+                  setSenderIdTradeName("");
+                  setSenderIdUseCaseDescription("");
+                  setSenderIdSampleMessage("");
+                  setSenderIdAvgMessageVolume("");
+                  setSenderIdAuthRepFirstName("");
+                  setSenderIdAuthRepLastName("");
+                  setSenderIdAuthRepEmail("");
+                  setSenderIdAuthRepPhone("");
+                  setSenderIdOfficerFirstName("");
+                  setSenderIdOfficerLastName("");
+                  setSenderIdOfficerEmail("");
+                  setSenderIdStreet("");
+                  setSenderIdStreetSecondary("");
+                  setSenderIdCity("");
+                  setSenderIdRegion("");
+                  setSenderIdPostalCode("");
+                  setSenderIdIsoCountry("");
+                  setSenderIdProofOfSenderId("");
                 }}
               >
                 <Radio id="customer_profile" value="customerProfile">
@@ -767,6 +838,7 @@ const Home: NextPage = () => {
             )}
 
             {showSenderIdForm ? (
+              <>
               <FormControl>
                 <Box display="flex" flexDirection="column" rowGap="space40">
                   <Box display="flex" columnGap="space40">
@@ -861,8 +933,207 @@ const Home: NextPage = () => {
                       </RadioGroup>
                     </Box>
                   </Box>
+                  <Box>
+                    <Button variant="secondary" onClick={() => setSenderIdModalOpen(true)}>
+                      Optional Fields...
+                    </Button>
+                  </Box>
                 </Box>
               </FormControl>
+
+              <Modal ariaLabelledby={senderIdModalHeadingID} isOpen={senderIdModalOpen} onDismiss={() => setSenderIdModalOpen(false)} size="wide">
+                <ModalHeader>
+                  <ModalHeading as="h3" id={senderIdModalHeadingID}>
+                    Sender ID Optional Fields
+                  </ModalHeading>
+                </ModalHeader>
+                <ModalBody>
+                  <Heading as="h4" variant="heading40">Business Details</Heading>
+                  <Box display="flex" flexDirection="column" rowGap="space40">
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_business_name">Business Name</Label>
+                        <Input type="text" id="sid_business_name" name="sid_business_name" placeholder="Business Name" value={senderIdBusinessName} onChange={(e) => setSenderIdBusinessName(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_business_type">Business Type</Label>
+                        <Input type="text" id="sid_business_type" name="sid_business_type" placeholder="e.g. LLC, Corporation" value={senderIdBusinessType} onChange={(e) => setSenderIdBusinessType(e.target.value)} />
+                      </Box>
+                    </Box>
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_business_reg_number">Business Registration Number</Label>
+                        <Input type="text" id="sid_business_reg_number" name="sid_business_reg_number" placeholder="Registration Number" value={senderIdBusinessRegNumber} onChange={(e) => setSenderIdBusinessRegNumber(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_business_website">Business Website</Label>
+                        <Input type="text" id="sid_business_website" name="sid_business_website" placeholder="https://example.com" value={senderIdBusinessWebsite} onChange={(e) => setSenderIdBusinessWebsite(e.target.value)} />
+                      </Box>
+                    </Box>
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_business_reg_country">Business Registration Country</Label>
+                        <Input type="text" id="sid_business_reg_country" name="sid_business_reg_country" placeholder="2-char ISO code" value={senderIdBusinessRegCountry} onChange={(e) => setSenderIdBusinessRegCountry(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_reg_authority">Registration Authority</Label>
+                        <Input type="text" id="sid_reg_authority" name="sid_reg_authority" placeholder="Registration Authority" value={senderIdRegAuthority} onChange={(e) => setSenderIdRegAuthority(e.target.value)} />
+                      </Box>
+                    </Box>
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_telephone_number">Telephone Number</Label>
+                        <Input type="text" id="sid_telephone_number" name="sid_telephone_number" placeholder="+1234567890" value={senderIdTelephoneNumber} onChange={(e) => setSenderIdTelephoneNumber(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_trade_name">Trade Name</Label>
+                        <Input type="text" id="sid_trade_name" name="sid_trade_name" placeholder="Trade Name" value={senderIdTradeName} onChange={(e) => setSenderIdTradeName(e.target.value)} />
+                      </Box>
+                    </Box>
+                  </Box>
+
+                  <Separator orientation="horizontal" verticalSpacing="space60" />
+
+                  <Heading as="h4" variant="heading40">Use Case</Heading>
+                  <Box display="flex" flexDirection="column" rowGap="space40">
+                    <Box>
+                      <Label htmlFor="sid_use_case_description">Use Case Description</Label>
+                      <TextArea id="sid_use_case_description" name="sid_use_case_description" placeholder="Describe your use case" value={senderIdUseCaseDescription} onChange={(e) => setSenderIdUseCaseDescription(e.target.value)} />
+                    </Box>
+                    <Box>
+                      <Label htmlFor="sid_sample_message">Sample Message</Label>
+                      <TextArea id="sid_sample_message" name="sid_sample_message" placeholder="Provide a sample message" value={senderIdSampleMessage} onChange={(e) => setSenderIdSampleMessage(e.target.value)} />
+                    </Box>
+                    <Box>
+                      <Combobox
+                        items={["1-1000", "1000-10000", "10000-100000", "100000+"]}
+                        labelText="Average Message Volume per Month"
+                        onInputValueChange={({inputValue}) => {
+                          setSenderIdAvgMessageVolume(inputValue || "");
+                        }}
+                      />
+                    </Box>
+                  </Box>
+
+                  <Separator orientation="horizontal" verticalSpacing="space60" />
+
+                  <Heading as="h4" variant="heading40">Authorized Representative</Heading>
+                  <Box display="flex" flexDirection="column" rowGap="space40">
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_auth_rep_first_name">First Name</Label>
+                        <Input type="text" id="sid_auth_rep_first_name" name="sid_auth_rep_first_name" placeholder="First Name" value={senderIdAuthRepFirstName} onChange={(e) => setSenderIdAuthRepFirstName(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_auth_rep_last_name">Last Name</Label>
+                        <Input type="text" id="sid_auth_rep_last_name" name="sid_auth_rep_last_name" placeholder="Last Name" value={senderIdAuthRepLastName} onChange={(e) => setSenderIdAuthRepLastName(e.target.value)} />
+                      </Box>
+                    </Box>
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_auth_rep_email">Email</Label>
+                        <Input type="text" id="sid_auth_rep_email" name="sid_auth_rep_email" placeholder="email@example.com" value={senderIdAuthRepEmail} onChange={(e) => setSenderIdAuthRepEmail(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_auth_rep_phone">Phone Number</Label>
+                        <Input type="text" id="sid_auth_rep_phone" name="sid_auth_rep_phone" placeholder="+1234567890" value={senderIdAuthRepPhone} onChange={(e) => setSenderIdAuthRepPhone(e.target.value)} />
+                      </Box>
+                    </Box>
+                  </Box>
+
+                  <Separator orientation="horizontal" verticalSpacing="space60" />
+
+                  <Heading as="h4" variant="heading40">Officer</Heading>
+                  <Box display="flex" flexDirection="column" rowGap="space40">
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_officer_first_name">First Name</Label>
+                        <Input type="text" id="sid_officer_first_name" name="sid_officer_first_name" placeholder="First Name" value={senderIdOfficerFirstName} onChange={(e) => setSenderIdOfficerFirstName(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_officer_last_name">Last Name</Label>
+                        <Input type="text" id="sid_officer_last_name" name="sid_officer_last_name" placeholder="Last Name" value={senderIdOfficerLastName} onChange={(e) => setSenderIdOfficerLastName(e.target.value)} />
+                      </Box>
+                    </Box>
+                    <Box>
+                      <Label htmlFor="sid_officer_email">Email</Label>
+                      <Input type="text" id="sid_officer_email" name="sid_officer_email" placeholder="email@example.com" value={senderIdOfficerEmail} onChange={(e) => setSenderIdOfficerEmail(e.target.value)} />
+                    </Box>
+                  </Box>
+
+                  <Separator orientation="horizontal" verticalSpacing="space60" />
+
+                  <Heading as="h4" variant="heading40">Business Address</Heading>
+                  <Box display="flex" flexDirection="column" rowGap="space40">
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_street">Street</Label>
+                        <Input type="text" id="sid_street" name="sid_street" placeholder="Street Address" value={senderIdStreet} onChange={(e) => setSenderIdStreet(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_street_secondary">Street (Secondary)</Label>
+                        <Input type="text" id="sid_street_secondary" name="sid_street_secondary" placeholder="Apt, Suite, etc." value={senderIdStreetSecondary} onChange={(e) => setSenderIdStreetSecondary(e.target.value)} />
+                      </Box>
+                    </Box>
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_city">City</Label>
+                        <Input type="text" id="sid_city" name="sid_city" placeholder="City" value={senderIdCity} onChange={(e) => setSenderIdCity(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Combobox
+                          items={["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"]}
+                          labelText="State"
+                          onInputValueChange={({inputValue}) => {
+                            setSenderIdRegion(inputValue || "");
+                          }}
+                        />
+                      </Box>
+                    </Box>
+                    <Box display="flex" columnGap="space40">
+                      <Box flexGrow={1} flexBasis="0">
+                        <Label htmlFor="sid_postal_code">Postal Code</Label>
+                        <Input type="text" id="sid_postal_code" name="sid_postal_code" placeholder="Postal Code" value={senderIdPostalCode} onChange={(e) => setSenderIdPostalCode(e.target.value)} />
+                      </Box>
+                      <Box flexGrow={1} flexBasis="0">
+                        <Combobox
+                          autocomplete
+                          items={senderIdIsoCountryItems}
+                          labelText="ISO Country"
+                          onInputValueChange={({inputValue}) => {
+                            if (inputValue !== undefined) {
+                              setSenderIdIsoCountryItems(
+                                Object.keys(SUPPORTED_COUNTRY_CODES).filter((item) =>
+                                  item.toLowerCase().startsWith(inputValue.toLowerCase())
+                                )
+                              );
+                              if (SUPPORTED_COUNTRY_CODES[inputValue]) {
+                                setSenderIdIsoCountry(SUPPORTED_COUNTRY_CODES[inputValue]);
+                              }
+                            }
+                          }}
+                        />
+                      </Box>
+                    </Box>
+                  </Box>
+
+                  <Separator orientation="horizontal" verticalSpacing="space60" />
+
+                  <Heading as="h4" variant="heading40">Other</Heading>
+                  <Box>
+                    <Label htmlFor="sid_proof_of_sender_id">Proof of Sender ID</Label>
+                    <Input type="text" id="sid_proof_of_sender_id" name="sid_proof_of_sender_id" placeholder="URL or reference" value={senderIdProofOfSenderId} onChange={(e) => setSenderIdProofOfSenderId(e.target.value)} />
+                  </Box>
+                </ModalBody>
+                <ModalFooter>
+                  <ModalFooterActions>
+                    <Button variant="primary" onClick={() => setSenderIdModalOpen(false)}>
+                      Done
+                    </Button>
+                  </ModalFooterActions>
+                </ModalFooter>
+              </Modal>
+              </>
             ) : (
               <></>
             )}
@@ -902,6 +1173,31 @@ const Home: NextPage = () => {
                   senderIdIsSubassigned={senderIdIsSubassigned}
                   senderIdHqCountry={senderIdHqCountry}
                   senderIdUseCaseCategory={senderIdUseCaseCategory}
+                  senderIdBusinessName={senderIdBusinessName}
+                  senderIdBusinessType={senderIdBusinessType}
+                  senderIdBusinessRegNumber={senderIdBusinessRegNumber}
+                  senderIdBusinessWebsite={senderIdBusinessWebsite}
+                  senderIdBusinessRegCountry={senderIdBusinessRegCountry}
+                  senderIdRegAuthority={senderIdRegAuthority}
+                  senderIdTelephoneNumber={senderIdTelephoneNumber}
+                  senderIdTradeName={senderIdTradeName}
+                  senderIdUseCaseDescription={senderIdUseCaseDescription}
+                  senderIdSampleMessage={senderIdSampleMessage}
+                  senderIdAvgMessageVolume={senderIdAvgMessageVolume}
+                  senderIdAuthRepFirstName={senderIdAuthRepFirstName}
+                  senderIdAuthRepLastName={senderIdAuthRepLastName}
+                  senderIdAuthRepEmail={senderIdAuthRepEmail}
+                  senderIdAuthRepPhone={senderIdAuthRepPhone}
+                  senderIdOfficerFirstName={senderIdOfficerFirstName}
+                  senderIdOfficerLastName={senderIdOfficerLastName}
+                  senderIdOfficerEmail={senderIdOfficerEmail}
+                  senderIdStreet={senderIdStreet}
+                  senderIdStreetSecondary={senderIdStreetSecondary}
+                  senderIdCity={senderIdCity}
+                  senderIdRegion={senderIdRegion}
+                  senderIdPostalCode={senderIdPostalCode}
+                  senderIdIsoCountry={senderIdIsoCountry}
+                  senderIdProofOfSenderId={senderIdProofOfSenderId}
                   onSetInquiryId={(id: string) => {
                     setInquiryId(id);
                   }}
