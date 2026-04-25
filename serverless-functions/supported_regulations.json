@@ -1,127 +1,15 @@
 {
-  "AU": {
+  "AE": {
     "Business": {
-      "Mobile": {
-        "Friendly Name": "Australia: Mobile - Business",
-        "Sid": "RNede12e527be2628b51290c0187de7ee4"
-      }
-    },
-    "Individual": {
-      "Mobile": {
-        "Friendly Name": "Australia: Mobile - Individual",
-        "Sid": "RN6a355ad38b79bb02b8a50d28cb7b9c4b"
-      }
-    }
-  },
-  "BR": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Brazil: Local - Business",
-        "Sid": "RNc7d10bbcb090a927be21e454db550220"
-      },
-      "Mobile": {
-        "Friendly Name": "Brazil: Mobile - Business",
-        "Sid": "RN379b3d70a43dca3f7c3845be7262429b"
-      },
-      "National": {
-        "Friendly Name": "Brazil: National - Business",
-        "Sid": "RN6b2eb528648f6291629777cb10d66fdf"
-      },
       "Toll Free": {
-        "Friendly Name": "Brazil: Toll-Free - Business",
-        "Sid": "RN91ae68df4dfd662d3e46b55391158db9"
-      }
-    },
-    "Individual": {
-      "Mobile": {
-        "Friendly Name": "Brazil: Mobile - Individual",
-        "Sid": "RN4cf26972f901f140c338dea9c05a712d"
-      },
-      "Toll Free": {
-        "Friendly Name": "Brazil: Toll-Free - Individual",
-        "Sid": "RNc311b5cff9d585f24c12f2a1126f171b"
-      }
-    }
-  },
-  "DE": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Germany: Local - Business",
-        "Sid": "RNfd11dde5d4b7252abf96139766f68034"
-      },
-      "Mobile": {
-        "Friendly Name": "Germany: Mobile - Business",
-        "Sid": "RN0ffdc59bf88e48f2efdf8c440255723b"
-      },
-      "Toll Free": {
-        "Friendly Name": "Germany: Toll-Free - Business",
-        "Sid": "RNadc8e3ac43f9e95310c2857cd67c971d"
+        "Friendly Name": "United Arab Emirates: Toll-Free - Business",
+        "Sid": "RN88a66e2e007847d81a1a7706b321f6e9"
       }
     },
     "Individual": {
       "Toll Free": {
-        "Friendly Name": "Germany: Toll-Free - Individual",
-        "Sid": "RN6a1999ed843678dd77e5d572e3b474d2"
-      }
-    }
-  },
-  "MX": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Mexico: Local - Business",
-        "Sid": "RN96ed6c82365210c0577b08b0087ff150"
-      },
-      "Toll Free": {
-        "Friendly Name": "Mexico: Toll-Free - Business",
-        "Sid": "RN34bfc0c37872839a1a104ec5788f440c"
-      }
-    },
-    "Individual": {
-      "Local": {
-        "Friendly Name": "Mexico: Local - Individual",
-        "Sid": "RN67d6b7f40aebf31d912485e6ff00d9e0"
-      },
-      "Toll Free": {
-        "Friendly Name": "Mexico: Toll-Free - Individual",
-        "Sid": "RN46cf9ecbd80dfcfc72b2d7e57eccf1a0"
-      }
-    }
-  },
-  "ES": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Spain: Local - Business",
-        "Sid": "RN4fef079e6810dd3af0df8a94ce9ae98b"
-      },
-      "Mobile": {
-        "Friendly Name": "Spain: Mobile - Business",
-        "Sid": "RNa2397ab2f74eb41599d3e79ddc7e055c"
-      },
-      "National": {
-        "Friendly Name": "Spain: National - Business",
-        "Sid": "RNd83160fc0b26436b067e0bf36826a803"
-      },
-      "Toll Free": {
-        "Friendly Name": "Spain: Toll-Free - Business",
-        "Sid": "RNd7d094b246c8668bffe278d63b758454"
-      }
-    },
-    "Individual": {
-      "Local": {
-        "Friendly Name": "Spain: Local - Individual",
-        "Sid": "RNddaf6d60d1a1e6524869354353f72108"
-      },
-      "Mobile": {
-        "Friendly Name": "Spain: Mobile - Individual",
-        "Sid": "RNf71865587d00bac67d5367f614ca841c"
-      },
-      "National": {
-        "Friendly Name": "Spain: National - Individual",
-        "Sid": "RN4cb3c8baebf8842dbec715101d5ad289"
-      },
-      "Toll Free": {
-        "Friendly Name": "Spain: Toll-Free - Individual",
-        "Sid": "RNbf6796fb83d9b3594386f79b3cf253d4"
+        "Friendly Name": "United Arab Emirates: Toll-Free - Individual",
+        "Sid": "RN57233688310aad0f75fb1f11fa038819"
       }
     }
   },
@@ -185,6 +73,50 @@
       }
     }
   },
+  "AU": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Australia: Local - Business",
+        "Sid": "RNd67116a611bf445340bb13a1cb3a7e3d"
+      },
+      "Mobile": {
+        "Friendly Name": "Australia: Mobile - Business",
+        "Sid": "RNede12e527be2628b51290c0187de7ee4"
+      },
+      "Toll Free": {
+        "Friendly Name": "Australia: Toll-Free - Business",
+        "Sid": "RN24293f6ec8b465b50b6f3a43795ef8d6"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Australia: Local - Individual",
+        "Sid": "RN688ade57698671ba9c4f198cd9320852"
+      },
+      "Mobile": {
+        "Friendly Name": "Australia: Mobile - Individual",
+        "Sid": "RN6a355ad38b79bb02b8a50d28cb7b9c4b"
+      },
+      "Toll Free": {
+        "Friendly Name": "Australia: Toll-Free - Individual",
+        "Sid": "RNc3bf13303e372d42cfe4ec8ae2adb518"
+      }
+    }
+  },
+  "BA": {
+    "Business": {
+      "National": {
+        "Friendly Name": "Bosnia and Herzegovina: National - Business",
+        "Sid": "RN00664e2ae0451a9ccfb6f9af1681185b"
+      }
+    },
+    "Individual": {
+      "National": {
+        "Friendly Name": "Bosnia and Herzegovina: National - Individual",
+        "Sid": "RNfc0aa7037558c2dfd9d1f4a1e999dd91"
+      }
+    }
+  },
   "BB": {
     "Business": {
       "Local": {
@@ -199,6 +131,20 @@
       }
     }
   },
+  "BD": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Bangladesh: Local - Business",
+        "Sid": "RNa516ef9fceff76bd7127827b91e64e9c"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Bangladesh: Local - Individual",
+        "Sid": "RN6c492e983e7515ec5fa584ac8047863d"
+      }
+    }
+  },
   "BE": {
     "Business": {
       "Local": {
@@ -208,6 +154,10 @@
       "Mobile": {
         "Friendly Name": "Belgium: Mobile - Business",
         "Sid": "RNcaba07fabdb8e85d75eb1faab7c37e17"
+      },
+      "National": {
+        "Friendly Name": "Belgium: National - Business",
+        "Sid": "RN1fe4bb84256f37d32c3aa1c1df28bc6c"
       },
       "Toll Free": {
         "Friendly Name": "Belgium: Toll-Free - Business",
@@ -223,37 +173,13 @@
         "Friendly Name": "Belgium: Mobile - Individual",
         "Sid": "RNac91ce3fe89f32ad1f952037af47cc27"
       },
+      "National": {
+        "Friendly Name": "Belgium: National - Individual",
+        "Sid": "RNa4c48a5206315fff2ab8568af0f5699c"
+      },
       "Toll Free": {
         "Friendly Name": "Belgium: Toll-Free - Individual",
         "Sid": "RNa70676372380b6b0c7a89d91a2d0b867"
-      }
-    }
-  },
-  "BJ": {
-    "Business": {
-      "Mobile": {
-        "Friendly Name": "Benin: Mobile - Business",
-        "Sid": "RNaf06db34733370d43cf0fe400db5dfd4"
-      }
-    },
-    "Individual": {
-      "Mobile": {
-        "Friendly Name": "Benin: Mobile - Individual",
-        "Sid": "RN916cbb2f415f783e2c540e071fa31e97"
-      }
-    }
-  },
-  "BA": {
-    "Business": {
-      "National": {
-        "Friendly Name": "Bosnia and Herzegovina: National - Business",
-        "Sid": "RN00664e2ae0451a9ccfb6f9af1681185b"
-      }
-    },
-    "Individual": {
-      "National": {
-        "Friendly Name": "Bosnia and Herzegovina: National - Individual",
-        "Sid": "RNfc0aa7037558c2dfd9d1f4a1e999dd91"
       }
     }
   },
@@ -279,11 +205,117 @@
       }
     }
   },
+  "BH": {
+    "Business": {
+      "National": {
+        "Friendly Name": "Bahrain: National - Business",
+        "Sid": "RN6568132b0d4df925adf558d39d9f05ac"
+      },
+      "Toll Free": {
+        "Friendly Name": "Bahrain: Toll-Free - Business",
+        "Sid": "RN9961a8244897b21773a09430420f20d6"
+      }
+    },
+    "Individual": {
+      "National": {
+        "Friendly Name": "Bahrain: National - Individual",
+        "Sid": "RNb59e957ec2ad3c4f4246de0fafe22e4b"
+      },
+      "Toll Free": {
+        "Friendly Name": "Bahrain: Toll-Free - Individual",
+        "Sid": "RN781455dfc5cbf3ae230a37feaeadc87f"
+      }
+    }
+  },
+  "BJ": {
+    "Business": {
+      "Mobile": {
+        "Friendly Name": "Benin: Mobile - Business",
+        "Sid": "RNaf06db34733370d43cf0fe400db5dfd4"
+      }
+    },
+    "Individual": {
+      "Mobile": {
+        "Friendly Name": "Benin: Mobile - Individual",
+        "Sid": "RN916cbb2f415f783e2c540e071fa31e97"
+      }
+    }
+  },
+  "BO": {
+    "Business": {
+      "Toll Free": {
+        "Friendly Name": "Bolivia: Toll-Free - Business",
+        "Sid": "RN6df7396e9ebb423032c2e2184bbb27f9"
+      }
+    },
+    "Individual": {
+      "Toll Free": {
+        "Friendly Name": "Bolivia: Toll-Free - Individual",
+        "Sid": "RN96c0cb994b65bdbd398883ff218cbf0a"
+      }
+    }
+  },
+  "BR": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Brazil: Local - Business",
+        "Sid": "RNc7d10bbcb090a927be21e454db550220"
+      },
+      "Mobile": {
+        "Friendly Name": "Brazil: Mobile - Business",
+        "Sid": "RN379b3d70a43dca3f7c3845be7262429b"
+      },
+      "National": {
+        "Friendly Name": "Brazil: National - Business",
+        "Sid": "RN6b2eb528648f6291629777cb10d66fdf"
+      },
+      "Toll Free": {
+        "Friendly Name": "Brazil: Toll-Free - Business",
+        "Sid": "RN91ae68df4dfd662d3e46b55391158db9"
+      }
+    },
+    "Individual": {
+      "Mobile": {
+        "Friendly Name": "Brazil: Mobile - Individual",
+        "Sid": "RN4cf26972f901f140c338dea9c05a712d"
+      }
+    }
+  },
+  "CH": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Switzerland: Local - Business",
+        "Sid": "RNd8462e87a7a7878a94140bcd69747129"
+      },
+      "Mobile": {
+        "Friendly Name": "Switzerland: Mobile - Business",
+        "Sid": "RN0128cb790340d590c90f0e2d5e032133"
+      },
+      "Toll Free": {
+        "Friendly Name": "Switzerland: Toll-Free - Business",
+        "Sid": "RN95dc5f42656d678e2f911321b82508fc"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Switzerland: Local - Individual",
+        "Sid": "RN5ea7d02fec06f915089e6a730146fe59"
+      },
+      "Mobile": {
+        "Friendly Name": "Switzerland: Mobile - Individual",
+        "Sid": "RNb2758dce7427fa6248a2ef118674aa05"
+      }
+    }
+  },
   "CL": {
     "Business": {
       "Local": {
         "Friendly Name": "Chile: Local - Business",
         "Sid": "RN78b594f0edfd788a8ae99285dbaa6221"
+      },
+      "Mobile": {
+        "Friendly Name": "Chile: Mobile - Business",
+        "Sid": "RN4012220c273d365bb66e59a7fdfa234e"
       },
       "Toll Free": {
         "Friendly Name": "Chile: Toll-Free - Business",
@@ -294,6 +326,10 @@
       "Local": {
         "Friendly Name": "Chile: Local - Individual",
         "Sid": "RN10933a2626250bc6ce8bdb6cfb79e16f"
+      },
+      "Mobile": {
+        "Friendly Name": "Chile: Mobile - Individual",
+        "Sid": "RNd5b77c8bc633c2e314c08d6405ac12e9"
       },
       "Toll Free": {
         "Friendly Name": "Chile: Toll-Free - Individual",
@@ -341,25 +377,11 @@
       }
     }
   },
-  "HR": {
+  "CY": {
     "Business": {
       "Local": {
-        "Friendly Name": "Croatia: Local - Business",
-        "Sid": "RN35b90f399b4cd2ee4151fce2b9810893"
-      },
-      "Toll Free": {
-        "Friendly Name": "Croatia: Toll-Free - Business",
-        "Sid": "RN66c4bc2a88f1cdbb079d173a1f12f4e0"
-      }
-    },
-    "Individual": {
-      "Local": {
-        "Friendly Name": "Croatia: Local - Individual",
-        "Sid": "RN19eec2316340494136c6ba36b39ef47f"
-      },
-      "Toll Free": {
-        "Friendly Name": "Croatia: Toll-Free - Individual",
-        "Sid": "RN18e140f49fa25d3bcf9bddb3dae4f3d5"
+        "Friendly Name": "Cyprus: Local - Business",
+        "Sid": "RNcfde5bf8cd47adffcd3ba0d9f41f8d65"
       }
     }
   },
@@ -372,6 +394,14 @@
       "Mobile": {
         "Friendly Name": "Czech Republic: Mobile - Business",
         "Sid": "RN8b66e6806f0ee9fefc1c90c88de154e8"
+      },
+      "National": {
+        "Friendly Name": "Czech Republic: National - Business",
+        "Sid": "RN77ce20b2c03ff368a22d39a0cb255db9"
+      },
+      "Toll Free": {
+        "Friendly Name": "Czech Republic: Toll-Free - Business",
+        "Sid": "RN5b0f28b28f632ba0e73f9ea60b98614b"
       }
     },
     "Individual": {
@@ -382,6 +412,36 @@
       "Mobile": {
         "Friendly Name": "Czech Republic: Mobile - Individual",
         "Sid": "RN1ca2f82d84d2cdc1e6618d1d6b2366c6"
+      },
+      "National": {
+        "Friendly Name": "Czech Republic: National - Individual",
+        "Sid": "RN9a461bdf154411fca05134dde5742cc9"
+      },
+      "Toll Free": {
+        "Friendly Name": "Czech Republic: Toll-Free - Individual",
+        "Sid": "RNd74b5737604ac693c0ff6a888c8ec37d"
+      }
+    }
+  },
+  "DE": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Germany: Local - Business",
+        "Sid": "RNfd11dde5d4b7252abf96139766f68034"
+      },
+      "Mobile": {
+        "Friendly Name": "Germany: Mobile - Business",
+        "Sid": "RN0ffdc59bf88e48f2efdf8c440255723b"
+      },
+      "Toll Free": {
+        "Friendly Name": "Germany: Toll-Free - Business",
+        "Sid": "RNadc8e3ac43f9e95310c2857cd67c971d"
+      }
+    },
+    "Individual": {
+      "Toll Free": {
+        "Friendly Name": "Germany: Toll-Free - Individual",
+        "Sid": "RN6a1999ed843678dd77e5d572e3b474d2"
       }
     }
   },
@@ -390,12 +450,28 @@
       "Local": {
         "Friendly Name": "Denmark: Local - Business",
         "Sid": "RNecbd353dafb54bf17f8be6c8044c6d52"
+      },
+      "Mobile": {
+        "Friendly Name": "Denmark: Mobile - Business",
+        "Sid": "RN63f54d12216aada3b97dfafd4d29263f"
+      },
+      "Toll Free": {
+        "Friendly Name": "Denmark: Toll-Free - Business",
+        "Sid": "RN5fe57aefe1024a25a71a47c0c43535be"
       }
     },
     "Individual": {
       "Local": {
         "Friendly Name": "Denmark: Local - Individual",
         "Sid": "RN26a7303c2d9ffbec84e2455c22e5cf08"
+      },
+      "Mobile": {
+        "Friendly Name": "Denmark: Mobile - Individual",
+        "Sid": "RN48ffeab2bb5cd3a6018ac216aa35b3a7"
+      },
+      "Toll Free": {
+        "Friendly Name": "Denmark: Toll-Free - Individual",
+        "Sid": "RN27e15e48fe98887c82e9829d1da279fb"
       }
     }
   },
@@ -421,22 +497,48 @@
       }
     }
   },
+  "DZ": {
+    "Business": {
+      "National": {
+        "Friendly Name": "Algeria: National - Business",
+        "Sid": "RN96c00cd998eb54e73ab53681dadb3dc9"
+      }
+    },
+    "Individual": {
+      "National": {
+        "Friendly Name": "Algeria: National - Individual",
+        "Sid": "RNe21faa6b7e34a1f312797b70ac9ce462"
+      }
+    }
+  },
   "EC": {
     "Business": {
       "Local": {
         "Friendly Name": "Ecuador: Local - Business",
         "Sid": "RN2b38ba7b3a8f3a06f424bcc7e31a66cf"
+      },
+      "Toll Free": {
+        "Friendly Name": "Ecuador: Toll-Free - Business",
+        "Sid": "RN7c3bbe901072a0c61d8b3292414f26e3"
       }
     },
     "Individual": {
       "Local": {
         "Friendly Name": "Ecuador: Local - Individual",
         "Sid": "RNe94b75bc9225114c60e5bac92ffbbc76"
+      },
+      "Toll Free": {
+        "Friendly Name": "Ecuador: Toll-Free - Individual",
+        "Sid": "RNfe423264bde7c14322954efc9697fd92"
       }
     }
   },
   "EE": {
     "Business": {
+      "Local": {
+        "Friendly Name": "Estonia: Local - Business",
+        "Sid": "RNcdf7eb69516ad624ccd8ebcf2b3e04c9"
+      },
       "Mobile": {
         "Friendly Name": "Estonia: Mobile - Business",
         "Sid": "RN26dca8d0e541a6c8fce4abd46e518506"
@@ -451,6 +553,10 @@
       }
     },
     "Individual": {
+      "Local": {
+        "Friendly Name": "Estonia: Local - Individual",
+        "Sid": "RN6adcd07a287f1476d92c22d06947115b"
+      },
       "Mobile": {
         "Friendly Name": "Estonia: Mobile - Individual",
         "Sid": "RN88c2810570ee6cdea58d97e5db9b9c0f"
@@ -462,6 +568,182 @@
       "Toll Free": {
         "Friendly Name": "Estonia: Toll-Free - Individual",
         "Sid": "RN758c220d99609236fb67aa11f2dfde79"
+      }
+    }
+  },
+  "EG": {
+    "Business": {
+      "Toll Free": {
+        "Friendly Name": "Egypt: Toll-Free - Business",
+        "Sid": "RN7b677754ea81aa1125e294a3b6cb5b07"
+      }
+    },
+    "Individual": {
+      "Toll Free": {
+        "Friendly Name": "Egypt: Toll-Free - Individual",
+        "Sid": "RN4317b590fb4cca332b6c5c6b46bdfed0"
+      }
+    }
+  },
+  "ES": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Spain: Local - Business",
+        "Sid": "RN4fef079e6810dd3af0df8a94ce9ae98b"
+      },
+      "Mobile": {
+        "Friendly Name": "Spain: Mobile - Business",
+        "Sid": "RNa2397ab2f74eb41599d3e79ddc7e055c"
+      },
+      "National": {
+        "Friendly Name": "Spain: National - Business",
+        "Sid": "RNd83160fc0b26436b067e0bf36826a803"
+      },
+      "Toll Free": {
+        "Friendly Name": "Spain: Toll-Free - Business",
+        "Sid": "RNd7d094b246c8668bffe278d63b758454"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Spain: Local - Individual",
+        "Sid": "RNddaf6d60d1a1e6524869354353f72108"
+      },
+      "Mobile": {
+        "Friendly Name": "Spain: Mobile - Individual",
+        "Sid": "RNf71865587d00bac67d5367f614ca841c"
+      },
+      "National": {
+        "Friendly Name": "Spain: National - Individual",
+        "Sid": "RN4cb3c8baebf8842dbec715101d5ad289"
+      },
+      "Toll Free": {
+        "Friendly Name": "Spain: Toll-Free - Individual",
+        "Sid": "RNbf6796fb83d9b3594386f79b3cf253d4"
+      }
+    }
+  },
+  "FI": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Finland: Local - Business",
+        "Sid": "RN99d6702c1ac5a17aacf0af22a734774a"
+      },
+      "Mobile": {
+        "Friendly Name": "Finland: Mobile - Business",
+        "Sid": "RN464a5c02be6e9619db017a2751c913b0"
+      },
+      "National": {
+        "Friendly Name": "Finland: National - Business",
+        "Sid": "RNbc54de63ce0cd62bda4286f3f28fdc8b"
+      },
+      "Toll Free": {
+        "Friendly Name": "Finland: Toll-Free - Business",
+        "Sid": "RNc57bb47cabbb7a3769daaad68c30c167"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Finland: Local - Individual",
+        "Sid": "RN4ea64efd432b89f98500d67bf856adaa"
+      },
+      "Mobile": {
+        "Friendly Name": "Finland: Mobile - Individual",
+        "Sid": "RN2be8cb3ea08d9dcc15061e9b7ac491f3"
+      },
+      "National": {
+        "Friendly Name": "Finland: National - Individual",
+        "Sid": "RN993816b91544086d4559b6c24362398e"
+      },
+      "Toll Free": {
+        "Friendly Name": "Finland: Toll-Free - Individual",
+        "Sid": "RN04f76ede28474057d3185d35eee0c92f"
+      }
+    }
+  },
+  "FR": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "France: Local - Business",
+        "Sid": "RN8167296a197662fee28116709abd15e3"
+      },
+      "Mobile": {
+        "Friendly Name": "France: Mobile - Business",
+        "Sid": "RNaca279e510daf03a25aaddf35928d12a"
+      },
+      "National": {
+        "Friendly Name": "France: National - Business",
+        "Sid": "RNf7f1a645078ef1d825b40d85bd3b51fb"
+      },
+      "Toll Free": {
+        "Friendly Name": "France: Toll-Free - Business",
+        "Sid": "RN8bb481f8b8a088cd46d37543bfaf49e6"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "France: Local - Individual",
+        "Sid": "RNd52ba1fbd96450c466ddfce8224e2687"
+      },
+      "Mobile": {
+        "Friendly Name": "France: Mobile - Individual",
+        "Sid": "RN5bbfbe78af18185e7d048e90cba2111f"
+      },
+      "National": {
+        "Friendly Name": "France: National - Individual",
+        "Sid": "RN43bdc5352b54df014cc6a28b184e6f79"
+      }
+    }
+  },
+  "GB": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "United Kingdom: Local - Business",
+        "Sid": "RN61b6f858c1a0b46ae2631346138a283c"
+      },
+      "Mobile": {
+        "Friendly Name": "United Kingdom: Mobile - Business",
+        "Sid": "RNb257214105d3b9526d5f80359b863452"
+      },
+      "National": {
+        "Friendly Name": "United Kingdom: National - Business",
+        "Sid": "RN8874edb3b3e90fd858b9813329117eeb"
+      },
+      "Toll Free": {
+        "Friendly Name": "United Kingdom: Toll-Free - Business",
+        "Sid": "RN86a5860a853f40aa43c3e00f7064b004"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "United Kingdom: Local - Individual",
+        "Sid": "RNcfd9478b5eb087f3a8cb785ffb9cf1a1"
+      },
+      "Mobile": {
+        "Friendly Name": "United Kingdom: Mobile - Individual",
+        "Sid": "RNbda16e54b024fc1d8a0213f5477dc624"
+      },
+      "National": {
+        "Friendly Name": "United Kingdom: National - Individual",
+        "Sid": "RN1bbfcd893e1e41232b048d5873eeac75"
+      },
+      "Toll Free": {
+        "Friendly Name": "United Kingdom: Toll-Free - Individual",
+        "Sid": "RNb7d9559cf3c72eb796f4b979dcd75187"
+      }
+    }
+  },
+  "GD": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Grenada: Local - Business",
+        "Sid": "RN725a0b730e0b89b8531bb0688080f101"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Grenada: Local - Individual",
+        "Sid": "RN967297c907d87a5976e1f8908a61cad0"
       }
     }
   },
@@ -481,34 +763,46 @@
   },
   "GR": {
     "Business": {
+      "Local": {
+        "Friendly Name": "Greece: Local - Business",
+        "Sid": "RNcd45ea6946abf3f264a7bdcde7bbc44c"
+      },
       "Toll Free": {
         "Friendly Name": "Greece: Toll-Free - Business",
         "Sid": "RNebd638514ca744faf53eb67300bce43c"
       }
     },
     "Individual": {
+      "Local": {
+        "Friendly Name": "Greece: Local - Individual",
+        "Sid": "RN362dd2e774cc1f6508eebddccee30b5c"
+      },
       "Toll Free": {
         "Friendly Name": "Greece: Toll-Free - Individual",
         "Sid": "RNcd03aedd59d85bc350b2cd50c5afa51d"
       }
     }
   },
-  "GD": {
+  "GT": {
     "Business": {
-      "Local": {
-        "Friendly Name": "Grenada: Local - Business",
-        "Sid": "RN725a0b730e0b89b8531bb0688080f101"
+      "Mobile": {
+        "Friendly Name": "Guatemala: Mobile - Business",
+        "Sid": "RN4440e45c75edfa9b10f531aad7365f1d"
       }
     },
     "Individual": {
-      "Local": {
-        "Friendly Name": "Grenada: Local - Individual",
-        "Sid": "RN967297c907d87a5976e1f8908a61cad0"
+      "Mobile": {
+        "Friendly Name": "Guatemala: Mobile - Individual",
+        "Sid": "RNba275c9864d2a8047df2c8e9784e7d11"
       }
     }
   },
   "HK": {
     "Business": {
+      "Mobile": {
+        "Friendly Name": "Hong Kong: Mobile - Business",
+        "Sid": "RN66e6a4c30b9bc1c3a3c636cfebeede74"
+      },
       "National": {
         "Friendly Name": "Hong Kong: National - Business",
         "Sid": "RN8b809b61a1a2bc9b47ec9277d84dc841"
@@ -516,24 +810,38 @@
       "Toll Free": {
         "Friendly Name": "Hong Kong: Toll-Free - Business",
         "Sid": "RN4c761af89f416ea0b9909b0bb6b85718"
-      },
-      "Mobile": {
-        "Friendly Name": "Hong Kong: Mobile - Business",
-        "Sid": "RN66e6a4c30b9bc1c3a3c636cfebeede74"
       }
     },
     "Individual": {
-      "National": {
-        "Friendly Name": "Hong Kong: National - Individual",
-        "Sid": "RNe14ecbde28150ab84904440ecb9bc283"
+      "Mobile": {
+        "Friendly Name": "Hong Kong: Mobile - Individual",
+        "Sid": "RN4ff8a1464f14f638da9d9f53a0f53e16"
       },
       "Toll Free": {
         "Friendly Name": "Hong Kong: Toll-Free - Individual",
         "Sid": "RN7de86d0f83239df297195a28018ff86f"
+      }
+    }
+  },
+  "HR": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Croatia: Local - Business",
+        "Sid": "RN35b90f399b4cd2ee4151fce2b9810893"
       },
-      "Mobile": {
-        "Friendly Name": "Hong Kong: Mobile - Individual",
-        "Sid": "RN4ff8a1464f14f638da9d9f53a0f53e16"
+      "Toll Free": {
+        "Friendly Name": "Croatia: Toll-Free - Business",
+        "Sid": "RN66c4bc2a88f1cdbb079d173a1f12f4e0"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Croatia: Local - Individual",
+        "Sid": "RN19eec2316340494136c6ba36b39ef47f"
+      },
+      "Toll Free": {
+        "Friendly Name": "Croatia: Toll-Free - Individual",
+        "Sid": "RN18e140f49fa25d3bcf9bddb3dae4f3d5"
       }
     }
   },
@@ -564,28 +872,6 @@
       "Toll Free": {
         "Friendly Name": "Hungary: Toll-Free - Individual",
         "Sid": "RN4c7c195de0ab9c7034ff72a183e65e00"
-      }
-    }
-  },
-  "IS": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Iceland: Local - Business",
-        "Sid": "RN71253c26e83e2267e5ae55151838421b"
-      },
-      "Mobile": {
-        "Friendly Name": "Iceland: Mobile - Business",
-        "Sid": "RNd36f6fb41d2c536be74a42c2ac6b41d3"
-      }
-    },
-    "Individual": {
-      "Local": {
-        "Friendly Name": "Iceland: Local - Individual",
-        "Sid": "RN822865ed87208b70c50860665afcaa6b"
-      },
-      "Mobile": {
-        "Friendly Name": "Iceland: Mobile - Individual",
-        "Sid": "RNd36dcf14cd68f5cd6582377480f13a52"
       }
     }
   },
@@ -621,10 +907,6 @@
   },
   "IE": {
     "Business": {
-      "Toll Free": {
-        "Friendly Name": "Ireland: Toll-Free - Business",
-        "Sid": "RN7447f39f0e45b78649c56b1e7d16d190"
-      },
       "Local": {
         "Friendly Name": "Ireland: Local - Business",
         "Sid": "RN5b82d0c001b4ef265770d022986f794f"
@@ -632,16 +914,28 @@
       "Mobile": {
         "Friendly Name": "Ireland: Mobile - Business",
         "Sid": "RN833211a3ea4a28ad066c44fd2fa95bf9"
+      },
+      "National": {
+        "Friendly Name": "Ireland: National - Business",
+        "Sid": "RN84e1665af37132a1399089d373893b95"
+      },
+      "Toll Free": {
+        "Friendly Name": "Ireland: Toll-Free - Business",
+        "Sid": "RN7447f39f0e45b78649c56b1e7d16d190"
       }
     },
     "Individual": {
       "Local": {
-        "Friendly Name": "Ireland: Local - Business",
+        "Friendly Name": "Ireland: Local - Individual",
         "Sid": "RNc2b0d6e647462e65bcc1479e7130315d"
       },
       "Mobile": {
-        "Friendly Name": "Ireland: Mobile - Business",
+        "Friendly Name": "Ireland: Mobile - Individual",
         "Sid": "RN8fc29cda0b787c009c112fb29cdc2236"
+      },
+      "National": {
+        "Friendly Name": "Ireland: National - Individual",
+        "Sid": "RNb937fbbb35216c766b8d466cc5a880e5"
       }
     }
   },
@@ -659,6 +953,36 @@
       }
     }
   },
+  "IS": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Iceland: Local - Business",
+        "Sid": "RN71253c26e83e2267e5ae55151838421b"
+      },
+      "Mobile": {
+        "Friendly Name": "Iceland: Mobile - Business",
+        "Sid": "RNd36f6fb41d2c536be74a42c2ac6b41d3"
+      },
+      "National": {
+        "Friendly Name": "Iceland: National - Business",
+        "Sid": "RN4a632e88adcf46f483832c9a57f98c00"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Iceland: Local - Individual",
+        "Sid": "RN822865ed87208b70c50860665afcaa6b"
+      },
+      "Mobile": {
+        "Friendly Name": "Iceland: Mobile - Individual",
+        "Sid": "RNd36dcf14cd68f5cd6582377480f13a52"
+      },
+      "National": {
+        "Friendly Name": "Iceland: National - Individual",
+        "Sid": "RN2af6241dca0eb1972f934f071e20efbc"
+      }
+    }
+  },
   "IT": {
     "Business": {
       "Local": {
@@ -668,6 +992,10 @@
       "Mobile": {
         "Friendly Name": "Italy: Mobile - Business",
         "Sid": "RN1ed06ff26924986ca82dacb87ceae152"
+      },
+      "Toll Free": {
+        "Friendly Name": "Italy: Toll-Free - Business",
+        "Sid": "RNa5e401018d087354df94169ac30c2159"
       }
     },
     "Individual": {
@@ -706,6 +1034,100 @@
       "Toll Free": {
         "Friendly Name": "Jordan: Toll-Free - Individual",
         "Sid": "RN00fdba9ac80094b199b3031390905505"
+      }
+    }
+  },
+  "JP": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Japan: Local - Business",
+        "Sid": "RN1f9c9cf88b82d09c573510a74d3cedde"
+      },
+      "National": {
+        "Friendly Name": "Japan: National - Business",
+        "Sid": "RN3dc454c8ad532d27b18fa976e3507352"
+      },
+      "Toll Free": {
+        "Friendly Name": "Japan: Toll-Free - Business",
+        "Sid": "RNce9afa7a6ffd665c5d42646ac41b5f4c"
+      }
+    }
+  },
+  "KE": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Kenya: Local - Business",
+        "Sid": "RN8cc2ec46b4264ecd7899a110a7fbb947"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Kenya: Local - Individual",
+        "Sid": "RNf43905e9964bd0aed907a5e5ec305bde"
+      }
+    }
+  },
+  "KH": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Cambodia: Local - Business",
+        "Sid": "RN5aa239404b3be8c38a44f25cf86d5d87"
+      }
+    }
+  },
+  "KR": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "South Korea: Local - Business",
+        "Sid": "RN72b33c4b955e528f29f76cbd940c616b"
+      },
+      "Mobile": {
+        "Friendly Name": "South Korea: Mobile - Business",
+        "Sid": "RN96913b541c793d468e7320d9d8f35f65"
+      },
+      "National": {
+        "Friendly Name": "South Korea: National - Business",
+        "Sid": "RN3b36c3ea494af585ec29aa3b24074555"
+      },
+      "Toll Free": {
+        "Friendly Name": "South Korea: Toll-Free - Business",
+        "Sid": "RNf135b99c951f272c622a9aac2d5a05db"
+      }
+    },
+    "Individual": {
+      "Mobile": {
+        "Friendly Name": "South Korea: Mobile - Individual",
+        "Sid": "RN1b7c668f6db98a4e71a95cc2754c725d"
+      },
+      "National": {
+        "Friendly Name": "South Korea: National - Individual",
+        "Sid": "RNaefbddc42d9febf342923eee2c60598f"
+      },
+      "Toll Free": {
+        "Friendly Name": "South Korea: Toll-Free - Individual",
+        "Sid": "RN79ec9f19dc9eb80c9f547d581fb36fad"
+      }
+    }
+  },
+  "LK": {
+    "Business": {
+      "Mobile": {
+        "Friendly Name": "Sri Lanka: Mobile - Business",
+        "Sid": "RN2427d38f016a07bde69a92b38dc4137d"
+      },
+      "Toll Free": {
+        "Friendly Name": "Sri Lanka: Toll-Free - Business",
+        "Sid": "RN8ec7b67ed6d7c6f6ee08b76e4b609cde"
+      }
+    },
+    "Individual": {
+      "Mobile": {
+        "Friendly Name": "Sri Lanka: Mobile - Individual",
+        "Sid": "RN54c0795e786c5b16befe2a850121c707"
+      },
+      "Toll Free": {
+        "Friendly Name": "Sri Lanka: Toll-Free - Individual",
+        "Sid": "RNe70576bfea13b1c2773744f758b653de"
       }
     }
   },
@@ -753,6 +1175,62 @@
       }
     }
   },
+  "LV": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Latvia: Local - Business",
+        "Sid": "RN0649201a3b1b39ff4f3408ad24c0795e"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Latvia: Local - Individual",
+        "Sid": "RN7941a55e5febdd53d503fc0da082d8f2"
+      }
+    }
+  },
+  "MD": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Moldova: Local - Business",
+        "Sid": "RN1e146ab8ba9a5d2a8036bed651c26985"
+      }
+    },
+    "Individual": {
+      "Toll Free": {
+        "Friendly Name": "Moldova: Toll-Free - Individual",
+        "Sid": "RN516ed6be3c080c74276be5480b62e22b"
+      }
+    }
+  },
+  "MG": {
+    "Business": {
+      "Mobile": {
+        "Friendly Name": "Madagascar: Mobile - Business",
+        "Sid": "RNed4522dfa9ff69ca331ebb80dc890317"
+      }
+    },
+    "Individual": {
+      "Mobile": {
+        "Friendly Name": "Madagascar: Mobile - Individual",
+        "Sid": "RNf657f185b55027ce14797b543179a88c"
+      }
+    }
+  },
+  "ML": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Mali: Local - Business",
+        "Sid": "RN7fb202cf468f58363ca79744994d9a32"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Mali: Local - Individual",
+        "Sid": "RNd492b7a21a8c68ed8d1f351c03ac4f9c"
+      }
+    }
+  },
   "MO": {
     "Business": {
       "Mobile": {
@@ -764,6 +1242,50 @@
       "Mobile": {
         "Friendly Name": "Macao: Mobile - Individual",
         "Sid": "RN9b9c25edfb6a11f94601eedee049dc11"
+      }
+    }
+  },
+  "MU": {
+    "Business": {
+      "Mobile": {
+        "Friendly Name": "Mauritius: Mobile - Business",
+        "Sid": "RNefd9065856cd09b3d30b7facffb14341"
+      }
+    },
+    "Individual": {
+      "Mobile": {
+        "Friendly Name": "Mauritius: Mobile - Individual",
+        "Sid": "RNe69755701d30b1ad614ee2f217d37245"
+      }
+    }
+  },
+  "MX": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Mexico: Local - Business",
+        "Sid": "RN96ed6c82365210c0577b08b0087ff150"
+      },
+      "Mobile": {
+        "Friendly Name": "Mexico: Mobile - Business",
+        "Sid": "RN3c88020191d5690db76b283842ce6c4d"
+      },
+      "Toll Free": {
+        "Friendly Name": "Mexico: Toll-Free - Business",
+        "Sid": "RN34bfc0c37872839a1a104ec5788f440c"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Mexico: Local - Individual",
+        "Sid": "RN67d6b7f40aebf31d912485e6ff00d9e0"
+      },
+      "Mobile": {
+        "Friendly Name": "Mexico: Mobile - Individual",
+        "Sid": "RN9252e58a5af8a151644ca930ceec175a"
+      },
+      "Toll Free": {
+        "Friendly Name": "Mexico: Toll-Free - Individual",
+        "Sid": "RN46cf9ecbd80dfcfc72b2d7e57eccf1a0"
       }
     }
   },
@@ -790,38 +1312,52 @@
       "Mobile": {
         "Friendly Name": "Malaysia: Mobile - Individual",
         "Sid": "RN0e2c9f3bf8c529d1ba2e165093ff9ae6"
+      }
+    }
+  },
+  "NA": {
+    "Business": {
+      "National": {
+        "Friendly Name": "Namibia: National - Business",
+        "Sid": "RNb05edb4bcbf4bcbb456372ff90d7bda3"
+      }
+    },
+    "Individual": {
+      "National": {
+        "Friendly Name": "Namibia: National - Individual",
+        "Sid": "RNaef3d60b562b455d34db8dfc050d36db"
+      }
+    }
+  },
+  "NG": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Nigeria: Local - Business",
+        "Sid": "RN03be623a697db30ffbdde46fc04a5d23"
       },
-      "Toll Free": {
-        "Friendly Name": "Malaysia: Toll-Free - Individual",
-        "Sid": "RNd190196107d421320703e62e3b37b986"
-      }
-    }
-  },
-  "ML": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Mali: Local - Business",
-        "Sid": "RN7fb202cf468f58363ca79744994d9a32"
+      "Mobile": {
+        "Friendly Name": "Nigeria: Mobile - Business",
+        "Sid": "RN8c5014ed3392980346a262560be143e0"
       }
     },
     "Individual": {
       "Local": {
-        "Friendly Name": "Mali: Local - Individual",
-        "Sid": "RNd492b7a21a8c68ed8d1f351c03ac4f9c"
+        "Friendly Name": "Nigeria: Local - Individual",
+        "Sid": "RNe4b3102e48cc40390371baaeac5b2741"
       }
     }
   },
-  "MU": {
+  "NI": {
     "Business": {
-      "Mobile": {
-        "Friendly Name": "Mauritius: Mobile - Business",
-        "Sid": "RNefd9065856cd09b3d30b7facffb14341"
+      "Local": {
+        "Friendly Name": "Nicaragua: Local - Business",
+        "Sid": "RNe2c15215197c89ab6572f719448f9ea1"
       }
     },
     "Individual": {
-      "Mobile": {
-        "Friendly Name": "Mauritius: Mobile - Individual",
-        "Sid": "RNe69755701d30b1ad614ee2f217d37245"
+      "Local": {
+        "Friendly Name": "Nicaragua: Local - Individual",
+        "Sid": "RN6348a87cd07b2c585ce7c47e22364c71"
       }
     }
   },
@@ -831,9 +1367,17 @@
         "Friendly Name": "Netherlands: Local - Business",
         "Sid": "RN2c09a39861ae095ab34c4c71cad288ba"
       },
+      "Mobile": {
+        "Friendly Name": "Netherlands: Mobile - Business",
+        "Sid": "RNbf2b7b8712ef8ae9887199e7258f4021"
+      },
       "National": {
         "Friendly Name": "Netherlands: National - Business",
         "Sid": "RNc17173abec19b31cdfa05a6a3c78dc79"
+      },
+      "Toll Free": {
+        "Friendly Name": "Netherlands: Toll-Free - Business",
+        "Sid": "RNe52031d8d64bc57593c937627c209041"
       }
     },
     "Individual": {
@@ -841,23 +1385,17 @@
         "Friendly Name": "Netherlands: Local - Individual",
         "Sid": "RN6c3a73cc36f26c2b2e40dbaac3eccb8f"
       },
+      "Mobile": {
+        "Friendly Name": "Netherlands: Mobile - Individual",
+        "Sid": "RN094a796ec7631e296e7900a5a8b02031"
+      },
       "National": {
         "Friendly Name": "Netherlands: National - Individual",
         "Sid": "RNc16a8930a9b173acf232fcd168bd35ad"
-      }
-    }
-  },
-  "NZ": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "New Zealand: Local - Business",
-        "Sid": "RN7c291e269e59f60296c57738931069f1"
-      }
-    },
-    "Individual": {
-      "Local": {
-        "Friendly Name": "New Zealand: Local - Individual",
-        "Sid": "RNe2f0ecbb762d18238fed0634e5af27d9"
+      },
+      "Toll Free": {
+        "Friendly Name": "Netherlands: Toll-Free - Individual",
+        "Sid": "RN83d4ef3d458897cc23634961f19275a4"
       }
     }
   },
@@ -888,6 +1426,28 @@
       "Toll Free": {
         "Friendly Name": "Norway: Toll-Free - Individual",
         "Sid": "RNc971a4621d4c816854175962c207e323"
+      }
+    }
+  },
+  "NZ": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "New Zealand: Local - Business",
+        "Sid": "RN7c291e269e59f60296c57738931069f1"
+      },
+      "Toll Free": {
+        "Friendly Name": "New Zealand: Toll-Free - Business",
+        "Sid": "RN90a334609aa6556a9e56abf5b4f11b2e"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "New Zealand: Local - Individual",
+        "Sid": "RNe2f0ecbb762d18238fed0634e5af27d9"
+      },
+      "Toll Free": {
+        "Friendly Name": "New Zealand: Toll-Free - Individual",
+        "Sid": "RNd4b91f9592561a1b06aa85b9a754ddd9"
       }
     }
   },
@@ -995,6 +1555,20 @@
       }
     }
   },
+  "PY": {
+    "Business": {
+      "Toll Free": {
+        "Friendly Name": "Paraguay: Toll-Free - Business",
+        "Sid": "RNa3d0fe5d685d505ac40465058e7e4aca"
+      }
+    },
+    "Individual": {
+      "Toll Free": {
+        "Friendly Name": "Paraguay: Toll-Free - Individual",
+        "Sid": "RN2749776be11ea094b5605171191829df"
+      }
+    }
+  },
   "QA": {
     "Business": {
       "Toll Free": {
@@ -1006,6 +1580,44 @@
       "Toll Free": {
         "Friendly Name": "Qatar: Toll-Free - Individual",
         "Sid": "RN17b5f2b9da20101dbce4e44a0f05f91e"
+      }
+    }
+  },
+  "RO": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Romania: Local - Business",
+        "Sid": "RNf6e64e96028cdeb8830a4c756da6bbae"
+      },
+      "Mobile": {
+        "Friendly Name": "Romania: Mobile - Business",
+        "Sid": "RN847d00be206bb7199f25470d1b9cdfbf"
+      },
+      "National": {
+        "Friendly Name": "Romania: National - Business",
+        "Sid": "RN2210c4e06ee87662c4e91b80da04e227"
+      },
+      "Toll Free": {
+        "Friendly Name": "Romania: Toll-Free - Business",
+        "Sid": "RN996015323f99ce9eae798c24aef51531"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Romania: Local - Individual",
+        "Sid": "RN3d1e4fac14121aeb5032c9e48c4f73c4"
+      },
+      "Mobile": {
+        "Friendly Name": "Romania: Mobile - Individual",
+        "Sid": "RN4d0972b1cc577026b9a964d5f2eccd90"
+      },
+      "National": {
+        "Friendly Name": "Romania: National - Individual",
+        "Sid": "RN9d563c09c6fd46c853f2f6568fcce01f"
+      },
+      "Toll Free": {
+        "Friendly Name": "Romania: Toll-Free - Individual",
+        "Sid": "RNbfec5f7be513e325cbe048d141ec51be"
       }
     }
   },
@@ -1023,6 +1635,36 @@
       }
     }
   },
+  "SE": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Sweden: Local - Business",
+        "Sid": "RN4ba992fd9b192a51237cdd38b0a6c309"
+      },
+      "National": {
+        "Friendly Name": "Sweden: National - Business",
+        "Sid": "RN990349467c1ddcf6e705638417a17053"
+      },
+      "Toll Free": {
+        "Friendly Name": "Sweden: Toll-Free - Business",
+        "Sid": "RNdc9bfd37620cc339bb7fe40ca9423e68"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Sweden: Local - Individual",
+        "Sid": "RN1313ecc5f62b71995dd771252a0a64ab"
+      },
+      "National": {
+        "Friendly Name": "Sweden: National - Individual",
+        "Sid": "RN530c10bed1617f6dc1bb6534998d0cc8"
+      },
+      "Toll Free": {
+        "Friendly Name": "Sweden: Toll-Free - Individual",
+        "Sid": "RN73a4aed41485dab48c4373b4fe826a0c"
+      }
+    }
+  },
   "SG": {
     "Business": {
       "Mobile": {
@@ -1032,34 +1674,16 @@
       "National": {
         "Friendly Name": "Singapore: National - Business",
         "Sid": "RN5abae846be0d542e594f7ee0773e6366"
+      },
+      "Toll Free": {
+        "Friendly Name": "Singapore: Toll-Free - Business",
+        "Sid": "RN8ea141958b00128fa628567351780f28"
       }
     },
     "Individual": {
       "Mobile": {
         "Friendly Name": "Singapore: Mobile - Individual",
         "Sid": "RNfd47da82f85fda410d204df53f5a46b7"
-      }
-    }
-  },
-  "SK": {
-    "Business": {
-      "Mobile": {
-        "Friendly Name": "Slovakia: Mobile - Business",
-        "Sid": "RN4245f471ce01c11d71a0bc1e27c06faa"
-      },
-      "Toll Free": {
-        "Friendly Name": "Slovakia: Toll-Free - Business",
-        "Sid": "RN291d8977a1e9cbd188371e85d18fa761"
-      }
-    },
-    "Individual": {
-      "Mobile": {
-        "Friendly Name": "Slovakia: Mobile - Individual",
-        "Sid": "RN62030de04e570c4b68e2dc5814505c0c"
-      },
-      "Toll Free": {
-        "Friendly Name": "Slovakia: Toll-Free - Individual",
-        "Sid": "RNa24e162f5c8c46eaf772692af12026d1"
       }
     }
   },
@@ -1077,127 +1701,47 @@
       }
     }
   },
-  "ZA": {
+  "SK": {
     "Business": {
       "Local": {
-        "Friendly Name": "South Africa: Local - Business",
-        "Sid": "RN843498f3975ccf56fa876c8a46ccc2fa"
+        "Friendly Name": "Slovakia: Local - Business",
+        "Sid": "RN0ad6a4031f619045b9fd4b7cd36a9283"
       },
       "Mobile": {
-        "Friendly Name": "South Africa: Mobile - Business",
-        "Sid": "RN36b2ea1d01df2a2690d5b0540ccc6e56"
-      },
-      "National": {
-        "Friendly Name": "South Africa: National - Business",
-        "Sid": "RN785b2200cc14c02dec23cc63f8aaa672"
+        "Friendly Name": "Slovakia: Mobile - Business",
+        "Sid": "RN4245f471ce01c11d71a0bc1e27c06faa"
       },
       "Toll Free": {
-        "Friendly Name": "South Africa: Toll-Free - Business",
-        "Sid": "RNb1f6dcb08239e61ac8f7f716ab15387c"
+        "Friendly Name": "Slovakia: Toll-Free - Business",
+        "Sid": "RN291d8977a1e9cbd188371e85d18fa761"
       }
     },
     "Individual": {
       "Local": {
-        "Friendly Name": "South Africa: Local - Individual",
-        "Sid": "RNfdbc42b99946ad45548d7f7e036036e9"
+        "Friendly Name": "Slovakia: Local - Individual",
+        "Sid": "RNef6c4a3336e7222b2a75fa13a407801b"
       },
       "Mobile": {
-        "Friendly Name": "South Africa: Mobile - Individual",
-        "Sid": "RNbd5de2292c3ffd1fb18ca4c376d477b0"
-      },
-      "National": {
-        "Friendly Name": "South Africa: National - Individual",
-        "Sid": "RNef00e175e56051a7787a618d7e44e427"
+        "Friendly Name": "Slovakia: Mobile - Individual",
+        "Sid": "RN62030de04e570c4b68e2dc5814505c0c"
       },
       "Toll Free": {
-        "Friendly Name": "South Africa: Toll-Free - Individual",
-        "Sid": "RN4ba980e7e3a9cbda31672a594784a8f9"
+        "Friendly Name": "Slovakia: Toll-Free - Individual",
+        "Sid": "RNa24e162f5c8c46eaf772692af12026d1"
       }
     }
   },
-  "KR": {
-    "Business": {
-      "Toll Free": {
-        "Friendly Name": "South Korea: Toll-Free - Business",
-        "Sid": "RNf135b99c951f272c622a9aac2d5a05db"
-      }
-    },
-    "Individual": {
-      "Toll Free": {
-        "Friendly Name": "South Korea: Toll-Free - Individual",
-        "Sid": "RN79ec9f19dc9eb80c9f547d581fb36fad"
-      }
-    }
-  },
-  "LK": {
-    "Business": {
-      "Toll Free": {
-        "Friendly Name": "Sri Lanka: Toll-Free - Business",
-        "Sid": "RN8ec7b67ed6d7c6f6ee08b76e4b609cde"
-      }
-    },
-    "Individual": {
-      "Toll Free": {
-        "Friendly Name": "Sri Lanka: Toll-Free - Individual",
-        "Sid": "RNe70576bfea13b1c2773744f758b653de"
-      }
-    }
-  },
-  "SE": {
+  "SV": {
     "Business": {
       "Local": {
-        "Friendly Name": "Sweden: Local - Business",
-        "Sid": "RN4ba992fd9b192a51237cdd38b0a6c309"
-      },
-      "National": {
-        "Friendly Name": "Sweden: National - Business",
-        "Sid": "RN990349467c1ddcf6e705638417a17053"
+        "Friendly Name": "El Salvador: Local - Business",
+        "Sid": "RNc4b864cb851f996e4138420bd094611d"
       }
     },
     "Individual": {
       "Local": {
-        "Friendly Name": "Sweden: Local - Individual",
-        "Sid": "RN1313ecc5f62b71995dd771252a0a64ab"
-      },
-      "National": {
-        "Friendly Name": "Sweden: National - Individual",
-        "Sid": "RN530c10bed1617f6dc1bb6534998d0cc8"
-      }
-    }
-  },
-  "CH": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Switzerland: Local - Business",
-        "Sid": "RNd8462e87a7a7878a94140bcd69747129"
-      },
-      "Mobile": {
-        "Friendly Name": "Switzerland: Mobile - Business",
-        "Sid": "RN0128cb790340d590c90f0e2d5e032133"
-      }
-    },
-    "Individual": {
-      "Local": {
-        "Friendly Name": "Switzerland: Local - Individual",
-        "Sid": "RN5ea7d02fec06f915089e6a730146fe59"
-      },
-      "Mobile": {
-        "Friendly Name": "Switzerland: Mobile - Individual",
-        "Sid": "RNb2758dce7427fa6248a2ef118674aa05"
-      }
-    }
-  },
-  "TW": {
-    "Business": {
-      "Toll Free": {
-        "Friendly Name": "Taiwan: Toll-Free - Business",
-        "Sid": "RNdf5c844369e0126fd6f6896c4c000268"
-      }
-    },
-    "Individual": {
-      "Toll Free": {
-        "Friendly Name": "Taiwan: Toll-Free - Individual",
-        "Sid": "RNecf15fe0d46e3c47fe98fa790ba5f0fe"
+        "Friendly Name": "El Salvador: Local - Individual",
+        "Sid": "RNbf696e5cdb0fd0b5a969a1de059e6e36"
       }
     }
   },
@@ -1245,66 +1789,118 @@
       }
     }
   },
-  "AE": {
+  "TR": {
     "Business": {
+      "National": {
+        "Friendly Name": "Turkey: National - Business",
+        "Sid": "RN8f0e135d8dd8a3a2dfd4e0c991556425"
+      },
       "Toll Free": {
-        "Friendly Name": "United Arab Emirates: Toll-Free - Business",
-        "Sid": "RN88a66e2e007847d81a1a7706b321f6e9"
+        "Friendly Name": "Turkey: Toll-Free - Business",
+        "Sid": "RNafd99c2561abc5525c0a82a883e1a546"
       }
     },
     "Individual": {
+      "National": {
+        "Friendly Name": "Turkey: National - Individual",
+        "Sid": "RN89bdbd5e78e1c2343f946feced3f00a6"
+      },
       "Toll Free": {
-        "Friendly Name": "United Arab Emirates: Toll-Free - Individual",
-        "Sid": "RN57233688310aad0f75fb1f11fa038819"
+        "Friendly Name": "Turkey: Toll-Free - Individual",
+        "Sid": "RNd16f7a0b178c5b052478c71076b6a1cc"
       }
     }
   },
-  "GB": {
+  "TW": {
     "Business": {
       "Local": {
-        "Friendly Name": "United Kingdom: Local - Business",
-        "Sid": "RN61b6f858c1a0b46ae2631346138a283c"
+        "Friendly Name": "Taiwan: Local - Business",
+        "Sid": "RN1f5a3bc8decf975d1717bfe2a6837021"
       },
       "Mobile": {
-        "Friendly Name": "United Kingdom: Mobile - Business",
-        "Sid": "RNb257214105d3b9526d5f80359b863452"
-      },
-      "National": {
-        "Friendly Name": "United Kingdom: National - Business",
-        "Sid": "RN8874edb3b3e90fd858b9813329117eeb"
+        "Friendly Name": "Taiwan: Mobile - Business",
+        "Sid": "RN1783a65b7d4bad48d09c40c045f1bb42"
       },
       "Toll Free": {
-        "Friendly Name": "United Kingdom: Toll-Free - Business",
-        "Sid": "RN86a5860a853f40aa43c3e00f7064b004"
+        "Friendly Name": "Taiwan: Toll-Free - Business",
+        "Sid": "RNdf5c844369e0126fd6f6896c4c000268"
       }
     },
     "Individual": {
       "Local": {
-        "Friendly Name": "United Kingdom: Local - Individual",
-        "Sid": "RNcfd9478b5eb087f3a8cb785ffb9cf1a1"
+        "Friendly Name": "Taiwan: Local - Individual",
+        "Sid": "RNcc9b87806deea0b9f95dcde59b64feb2"
       },
       "Mobile": {
-        "Friendly Name": "United Kingdom: Mobile - Individual",
-        "Sid": "RNbda16e54b024fc1d8a0213f5477dc624"
+        "Friendly Name": "Taiwan: Mobile - Individual",
+        "Sid": "RN73708e42bcc14a378e36cb1838295f0f"
+      }
+    }
+  },
+  "UG": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Uganda: Local - Business",
+        "Sid": "RN230128f60d668d5ccf1bea1b30931296"
       },
       "National": {
-        "Friendly Name": "United Kingdom: National - Individual",
-        "Sid": "RN1bbfcd893e1e41232b048d5873eeac75"
+        "Friendly Name": "Uganda: National - Business",
+        "Sid": "RN399e63ee93efe682198bdd7624fd1436"
       },
       "Toll Free": {
-        "Friendly Name": "United Kingdom: Toll-Free - Individual",
-        "Sid": "RNb7d9559cf3c72eb796f4b979dcd75187"
+        "Friendly Name": "Uganda: Toll-Free - Business",
+        "Sid": "RN901574c14121972d258a12a77cce9142"
+      }
+    },
+    "Individual": {
+      "National": {
+        "Friendly Name": "Uganda: National - Individual",
+        "Sid": "RN75684d8106c8eae2643849bad2c47569"
+      },
+      "Toll Free": {
+        "Friendly Name": "Uganda: Toll-Free - Individual",
+        "Sid": "RN2fe3aca3215d7b3ccdf5acbec6bb57f2"
+      }
+    }
+  },
+  "UY": {
+    "Business": {
+      "Local": {
+        "Friendly Name": "Uruguay: Local - Business",
+        "Sid": "RNf55fe41e064ce7af43a3a5897aa52d33"
+      },
+      "Toll Free": {
+        "Friendly Name": "Uruguay: Toll-Free - Business",
+        "Sid": "RN81128d134f2ae94bb229f621dcb74185"
+      }
+    },
+    "Individual": {
+      "Local": {
+        "Friendly Name": "Uruguay: Local - Individual",
+        "Sid": "RN389d911ca474b5115485eafea1f35924"
+      },
+      "Toll Free": {
+        "Friendly Name": "Uruguay: Toll-Free - Individual",
+        "Sid": "RNa720e2678515ea6eb4cf97baa0892071"
       }
     }
   },
   "VE": {
     "Business": {
+      "Local": {
+        "Friendly Name": "Venezuela: Local - Business",
+        "Sid": "RNc1dcc7f0548ecad988d3a6a3442cf51c"
+      },
       "Toll Free": {
         "Friendly Name": "Venezuela: Toll-Free - Business",
         "Sid": "RNc12df86cd96740e16c95f2d3b1a523d4"
       }
     },
     "Individual": {
+      "Local": {
+        "Friendly Name": "Venezuela: Local - Individual",
+        "Sid": "RN154bba21a0671f250173f900defb0123"
+      },
       "Toll Free": {
         "Friendly Name": "Venezuela: Toll-Free - Individual",
         "Sid": "RN58a38b8f3454c863228a3906e1fe28de"
@@ -1313,115 +1909,69 @@
   },
   "VN": {
     "Business": {
+      "Local": {
+        "Friendly Name": "Vietnam: Local - Business",
+        "Sid": "RNbed3d8b91047c1c176be53088ee1d9c3"
+      },
+      "Mobile": {
+        "Friendly Name": "Vietnam: Mobile - Business",
+        "Sid": "RN71306d4d36a856b6f36c66a2e3aa2bee"
+      },
       "Toll Free": {
         "Friendly Name": "Vietnam: Toll-Free - Business",
         "Sid": "RNf25e0d94a6b1f1a28aac67a0ce765257"
       }
     },
     "Individual": {
+      "Local": {
+        "Friendly Name": "Vietnam: Local - Individual",
+        "Sid": "RN64c5ffdbeb8d1ebe1048a6d913f597c6"
+      },
+      "Mobile": {
+        "Friendly Name": "Vietnam: Mobile - Individual",
+        "Sid": "RNea006dab771f4ff284cdeeb723e0a648"
+      },
       "Toll Free": {
         "Friendly Name": "Vietnam: Toll-Free - Individual",
         "Sid": "RN48af94152f03720c04b01d2ac9783ccb"
       }
     }
   },
-  "SV": {
+  "ZA": {
     "Business": {
       "Local": {
-        "Friendly Name": "El Salvador: Local - Business",
-        "Sid": "RNc4b864cb851f996e4138420bd094611d"
-      }
-    },
-    "Individual": {
-      "Local": {
-        "Friendly Name": "El Salvador: Local - Individual",
-        "Sid": "RNbf696e5cdb0fd0b5a969a1de059e6e36"
-      }
-    }
-  },
-  "FR": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "France: Local - Business",
-        "Sid": "RN8167296a197662fee28116709abd15e3"
+        "Friendly Name": "South Africa: Local - Business",
+        "Sid": "RN843498f3975ccf56fa876c8a46ccc2fa"
       },
       "Mobile": {
-        "Friendly Name": "France: Mobile - Business",
-        "Sid": "RNaca279e510daf03a25aaddf35928d12a"
+        "Friendly Name": "South Africa: Mobile - Business",
+        "Sid": "RN36b2ea1d01df2a2690d5b0540ccc6e56"
       },
       "National": {
-        "Friendly Name": "France: National - Business",
-        "Sid": "RNf7f1a645078ef1d825b40d85bd3b51fb"
+        "Friendly Name": "South Africa: National - Business",
+        "Sid": "RN785b2200cc14c02dec23cc63f8aaa672"
       },
       "Toll Free": {
-        "Friendly Name": "France: Toll-Free - Business",
-        "Sid": "RN8bb481f8b8a088cd46d37543bfaf49e6"
+        "Friendly Name": "South Africa: Toll-Free - Business",
+        "Sid": "RNb1f6dcb08239e61ac8f7f716ab15387c"
       }
     },
     "Individual": {
       "Local": {
-        "Friendly Name": "France: Local - Individual",
-        "Sid": "RNd52ba1fbd96450c466ddfce8224e2687"
+        "Friendly Name": "South Africa: Local - Individual",
+        "Sid": "RNfdbc42b99946ad45548d7f7e036036e9"
       },
       "Mobile": {
-        "Friendly Name": "France: Mobile - Individual",
-        "Sid": "RN5bbfbe78af18185e7d048e90cba2111f"
+        "Friendly Name": "South Africa: Mobile - Individual",
+        "Sid": "RNbd5de2292c3ffd1fb18ca4c376d477b0"
       },
       "National": {
-        "Friendly Name": "France: National - Individual",
-        "Sid": "RN43bdc5352b54df014cc6a28b184e6f79"
-      }
-    }
-  },
-  "JP": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Japan: Local - Business",
-        "Sid": "RN1f9c9cf88b82d09c573510a74d3cedde"
-      },
-      "National": {
-        "Friendly Name": "Japan: National - Business",
-        "Sid": "RN3dc454c8ad532d27b18fa976e3507352"
+        "Friendly Name": "South Africa: National - Individual",
+        "Sid": "RNef00e175e56051a7787a618d7e44e427"
       },
       "Toll Free": {
-        "Friendly Name": "Japan: Toll-Free - Business",
-        "Sid": "RNce9afa7a6ffd665c5d42646ac41b5f4c"
-      }
-    }
-  },
-  "KE": {
-    "Business": {
-      "Local": {
-        "Friendly Name": "Kenya: Local - Business",
-        "Sid": "RN8cc2ec46b4264ecd7899a110a7fbb947"
-      }
-    },
-    "Individual": {
-      "Local": {
-        "Friendly Name": "Kenya: Local - Individual",
-        "Sid": "RNf43905e9964bd0aed907a5e5ec305bde"
-      }
-    }
-  },
-  "RO": {
-    "Business": {
-      "National": {
-        "Friendly Name": "Romania: National - Business",
-        "Sid": "RN2210c4e06ee87662c4e91b80da04e227"
-      },
-      "Toll Free": {
-        "Friendly Name": "Romania: Toll-Free - Business",
-        "Sid": "RN996015323f99ce9eae798c24aef51531"
-      }
-    },
-    "Individual": {
-      "National": {
-        "Friendly Name": "Romania: National - Individual",
-        "Sid": "RN9d563c09c6fd46c853f2f6568fcce01f"
-      },
-      "Toll Free": {
-        "Friendly Name": "Romania: Toll-Free - Individual",
-        "Sid": "RNbfec5f7be513e325cbe048d141ec51be"
+        "Friendly Name": "South Africa: Toll-Free - Individual",
+        "Sid": "RN4ba980e7e3a9cbda31672a594784a8f9"
       }
     }
   }
