@@ -31,6 +31,11 @@ ekyc-app/
 
 ## Commands
 
+> **IMPORTANT — working directory matters:**
+> - **Frontend tasks** (build, dev, lint, tsc) must be run from the **top-level `ekyc-app/`** directory. The frontend `package.json` only lives at the top level.
+> - **Serverless function tasks** (local dev, deploy, utility scripts) must be run from **`ekyc-app/serverless-functions/`**. That folder has its own `package.json` and `.env`.
+> - **Typical deploy flow**: `cd ekyc-app/` → `npm run build` → `cd serverless-functions/` → `npm run deploy`. The frontend build outputs to `serverless-functions/assets/`, and the deploy command publishes both functions and those assets.
+
 ### Frontend (run from `ekyc-app/`)
 ```bash
 npm install           # Install frontend dependencies
@@ -44,7 +49,7 @@ npm run tsc           # TypeScript check (no emit)
 ```bash
 npm install           # Install serverless dependencies
 npm start             # Local dev via twilio-run
-npm run deploy        # Deploy to Twilio
+npm run deploy        # Deploy to Twilio (includes built frontend assets)
 ```
 
 ## Key Architectural Decisions
@@ -113,6 +118,37 @@ node scripts/manage-trust-bundle.js delete BUxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --
 ```
 
 Note: AU Sender ID bundles created via the SenderIdRegistrations API may not appear in standard list queries but can be fetched directly by SID.
+
+### Subaccount Auth Token (private helper)
+
+`fetchSubaccountAuthToken.private.js` is a **private** helper (uses the `.private.js` Twilio Serverless convention) — it is NOT exposed as an HTTP endpoint and can only be invoked from another Function via `Runtime.getFunctions()`. The key omits the `.private` suffix:
+
+```js
+const { fetchSubaccountAuthToken } = require(
+  Runtime.getFunctions()['fetchSubaccountAuthToken'].path
+);
+const result = await fetchSubaccountAuthToken(context, subaccountSid);
+// result = { ok: true, data: { sid, friendlyName, status, authToken, ... } }
+// or     = { ok: false, error: '...' }
+```
+
+The helper validates the SID format, confirms the target is a subaccount of the configured parent (`context.ACCOUNT_SID`), and returns the auth token.
+
+A public test wrapper at `functions/test/fetchSubaccountAuthToken.js` (deployed as `/test/fetchSubaccountAuthToken`) proves the private helper is reachable; it returns `hasAuthToken: true/false` but **never exposes the raw auth token** in the HTTP response.
+
+**Automated test** — `scripts/test-subaccount-auth-token.js` runs against either a local `twilio serverless:start` server or a deployed URL:
+```bash
+# Against local twilio-run (default http://localhost:3000)
+node scripts/test-subaccount-auth-token.js
+
+# Against a deployed environment
+node scripts/test-subaccount-auth-token.js --base https://serverless-functions-xxxx-dev.twil.io
+```
+
+**Note on `.private.js` behaviour locally vs in production:**
+- Locally (`twilio serverless:start`), twilio-run lists `.private.js` files as HTTP routes but invocation fails (500) because there's no `handler` export.
+- In production, the Twilio runtime blocks HTTP access with 403.
+The test script accepts any 4xx/5xx response as "not directly callable" and also verifies no auth token leaks in the response body.
 
 ## Conventions
 

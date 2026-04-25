@@ -89,6 +89,9 @@ ekyc-app/
 │   │   ├── checkRegulation.js
 │   │   ├── fetchUnverifiedTFNumbers.js
 │   │   ├── fetchSubaccountList.js
+│   │   ├── fetchSubaccountAuthToken.private.js  # Private helper (not HTTP-exposed)
+│   │   ├── test/
+│   │   │   └── fetchSubaccountAuthToken.js      # Test wrapper for private helper
 │   │   └── utilities/cors-response.js
 │   ├── assets/                     # Built frontend (git-ignored)
 │   ├── .env                        # Twilio credentials (git-ignored)
@@ -111,3 +114,24 @@ ekyc-app/
 | `checkRegulation` | Look up regulation SID by country/type | Sync Map |
 | `fetchUnverifiedTFNumbers` | List unverified toll-free numbers | Incoming Phone Numbers |
 | `fetchSubaccountList` | List subaccounts | Accounts API |
+| `fetchSubaccountAuthToken.private` | Fetch a subaccount's auth token (private — callable only from another Function via `Runtime.getFunctions()`) | Accounts API |
+| `test/fetchSubaccountAuthToken` | Public test wrapper that verifies the private helper is reachable. Returns `hasAuthToken: true/false` only — never leaks the token | Accounts API |
+
+### Testing the private subaccount auth token helper
+
+The private helper is not directly HTTP-callable. To verify it's working after deploy, hit the public test wrapper (it confirms a token was retrieved without returning it):
+
+```bash
+# Test wrapper (returns { ok, sid, friendlyName, status, hasAuthToken })
+curl "https://<your-service>.twil.io/test/fetchSubaccountAuthToken?subaccountSid=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# Direct call to the private helper — should return 403 in production
+curl -i "https://<your-service>.twil.io/fetchSubaccountAuthToken?subaccountSid=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+You can also run the end-to-end test script against a deployed environment:
+
+```bash
+cd serverless-functions
+node scripts/test-subaccount-auth-token.js --base https://<your-service>.twil.io
+```
