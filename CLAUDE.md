@@ -59,7 +59,8 @@ npm run deploy        # Deploy to Twilio (includes built frontend assets)
 - **Single page**: `pages/index.tsx` contains the main UI with sidebar navigation and conditional rendering for each compliance product type.
 - **Serverless functions are plain JS** (not TypeScript). Each function handles one compliance API flow.
 - **CORS**: All serverless functions use `utilities/cors-response.js` for CORS headers.
-- **localStorage**: Used to persist `CustomerId` and `RegistrationId` keyed by country/type combination (regulatory bundles) or sender ID value (sender ID registrations).
+- **localStorage**: Used to persist `CustomerId` and `RegistrationId` keyed by country/type combination (regulatory bundles) or sender ID value (sender ID registrations). When a subaccount is selected, keys are namespaced with `.<subaccountSid>` so cached IDs don't leak across accounts.
+- **Subaccount selection**: A `Target Account` Combobox at the top of the form (populated from `/fetchSubaccountList`) lets users optionally route compliance calls to a specific subaccount. When a subaccount is chosen, the frontend appends `&subaccountSid=AC...` to every `init*` / `fetchUnverifiedTFNumbers` call; the backend resolves the subaccount's auth token via the private `getTwilioCredentials` helper and uses those credentials for the outbound Twilio API call. The browser never receives the auth token.
 - **Two API families**: Older products (Customer Profile, Toll-Free, Regulatory Bundle) use `trusthub.twilio.com` APIs. Alphanumeric Sender ID uses `numbers.twilio.com/v1/SenderIdRegistrations` with JSON body and a different response format (`embeddedSession.sessionId`/`sessionToken`).
 
 ## Environment Variables
@@ -149,6 +150,35 @@ node scripts/test-subaccount-auth-token.js --base https://serverless-functions-x
 - Locally (`twilio serverless:start`), twilio-run lists `.private.js` files as HTTP routes but invocation fails (500) because there's no `handler` export.
 - In production, the Twilio runtime blocks HTTP access with 403.
 The test script accepts any 4xx/5xx response as "not directly callable" and also verifies no auth token leaks in the response body.
+
+### Credential Resolution (`getTwilioCredentials.private.js`)
+
+Every `init*` function and `fetchUnverifiedTFNumbers` reads an optional `event.subaccountSid` query param and calls the private `getTwilioCredentials` helper to resolve which credentials to use for downstream Twilio API calls:
+
+```js
+const { getTwilioCredentials } = require(Runtime.getFunctions()['getTwilioCredentials'].path);
+const credsResult = await getTwilioCredentials(context, event.subaccountSid);
+if (!credsResult.ok) {
+  return callback(null, cors.response({ error: credsResult.error }));
+}
+const { accountSid, authToken, usingParent } = credsResult.data;
+const client = require('twilio')(accountSid, authToken);
+// or for axios: auth: { username: accountSid, password: authToken }
+```
+
+- If `subaccountSid` is empty/absent, parent creds (`context.ACCOUNT_SID` / `context.AUTH_TOKEN`) are returned.
+- If `subaccountSid` is provided, the helper delegates to `fetchSubaccountAuthToken.private.js` which validates ownership (must be a subaccount of the configured parent) and returns that subaccount's auth token.
+
+A public test wrapper at `functions/test/getTwilioCredentials.js` confirms the helper is working without leaking the auth token — it only returns `{ ok, accountSid, usingParent, hasAuthToken }`.
+
+**Automated test** — `scripts/test-subaccount-credentials.js`:
+```bash
+node scripts/test-subaccount-credentials.js
+node scripts/test-subaccount-credentials.js --base https://serverless-functions-xxxx-dev.twil.io
+```
+Verifies: parent call returns `.env ACCOUNT_SID`, subaccount call returns the requested SID, invalid SID is rejected, and no response ever contains a raw `authToken` field.
+
+**IMPORTANT when adding new Twilio API calls:** do NOT use `context.getTwilioClient()` or reference `context.ACCOUNT_SID` / `context.AUTH_TOKEN` directly — always resolve credentials via `getTwilioCredentials` and construct a fresh Twilio client or axios auth block from the returned `{ accountSid, authToken }`. Otherwise the call will ignore the user's subaccount selection.
 
 ## Conventions
 

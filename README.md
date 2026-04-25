@@ -11,6 +11,8 @@ A Next.js frontend + Twilio Serverless Functions backend that demonstrates Twili
 - **A2P 10DLC Brand** — Brand registration (coming soon)
 - **Branded Calling** — (coming soon)
 
+All flows support an optional **Target Account** selector that routes the compliance request to a Twilio subaccount (auth tokens are resolved server-side; the browser never sees them).
+
 ## Tech Stack
 
 - **Frontend**: Next.js 14, React 18, TypeScript, Twilio Paste
@@ -90,8 +92,10 @@ ekyc-app/
 │   │   ├── fetchUnverifiedTFNumbers.js
 │   │   ├── fetchSubaccountList.js
 │   │   ├── fetchSubaccountAuthToken.private.js  # Private helper (not HTTP-exposed)
+│   │   ├── getTwilioCredentials.private.js      # Private helper — resolves parent/subaccount creds
 │   │   ├── test/
-│   │   │   └── fetchSubaccountAuthToken.js      # Test wrapper for private helper
+│   │   │   ├── fetchSubaccountAuthToken.js      # Test wrapper for fetchSubaccountAuthToken
+│   │   │   └── getTwilioCredentials.js          # Test wrapper for getTwilioCredentials
 │   │   └── utilities/cors-response.js
 │   ├── assets/                     # Built frontend (git-ignored)
 │   ├── .env                        # Twilio credentials (git-ignored)
@@ -115,7 +119,26 @@ ekyc-app/
 | `fetchUnverifiedTFNumbers` | List unverified toll-free numbers | Incoming Phone Numbers |
 | `fetchSubaccountList` | List subaccounts | Accounts API |
 | `fetchSubaccountAuthToken.private` | Fetch a subaccount's auth token (private — callable only from another Function via `Runtime.getFunctions()`) | Accounts API |
+| `getTwilioCredentials.private` | Resolve parent or subaccount `{accountSid, authToken}` for use by other Functions (private) | Accounts API |
 | `test/fetchSubaccountAuthToken` | Public test wrapper that verifies the private helper is reachable. Returns `hasAuthToken: true/false` only — never leaks the token | Accounts API |
+| `test/getTwilioCredentials` | Public test wrapper for `getTwilioCredentials`. Returns `{ ok, accountSid, usingParent, hasAuthToken }` — never leaks the token | Accounts API |
+
+### Subaccount Selection
+
+Each `init*` function and `fetchUnverifiedTFNumbers` accepts an optional `subaccountSid` query parameter. When provided, the backend:
+
+1. Validates that the SID belongs to a subaccount of the configured parent account.
+2. Fetches the subaccount's auth token server-side.
+3. Uses those credentials for the outbound Twilio API call — the resulting compliance resource is created under the selected subaccount.
+
+If `subaccountSid` is omitted, the parent account credentials are used (existing behaviour).
+
+The frontend exposes this as a **Target Account** Combobox at the top of the form, populated from `/fetchSubaccountList`. Selecting a subaccount also namespaces cached `CustomerId` / `RegistrationId` localStorage keys with `.<subaccountSid>` so values don't leak across accounts.
+
+```bash
+# Example: create a Secondary Customer Profile under a specific subaccount
+curl "https://<your-service>.twil.io/initCustomerProfile?subaccountSid=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
 
 ### Testing the private subaccount auth token helper
 
@@ -129,9 +152,10 @@ curl "https://<your-service>.twil.io/test/fetchSubaccountAuthToken?subaccountSid
 curl -i "https://<your-service>.twil.io/fetchSubaccountAuthToken?subaccountSid=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
-You can also run the end-to-end test script against a deployed environment:
+You can also run the end-to-end test scripts against a deployed environment:
 
 ```bash
 cd serverless-functions
 node scripts/test-subaccount-auth-token.js --base https://<your-service>.twil.io
+node scripts/test-subaccount-credentials.js --base https://<your-service>.twil.io
 ```

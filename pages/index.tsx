@@ -273,6 +273,13 @@ const Home: NextPage = () => {
   const [inquiryId, setInquiryId] = useState("");
   const [embeddableProduct, setEmbeddableProduct] = useState("");
 
+  // Subaccount picker: empty string = use parent account
+  type Subaccount = { sid: string; friendlyName: string };
+  const PARENT_ACCOUNT_LABEL = "(Parent account)";
+  const [subaccounts, setSubaccounts] = useState<Subaccount[]>([]);
+  const [selectedSubaccountSid, setSelectedSubaccountSid] = useState("");
+  const subaccountItems = [PARENT_ACCOUNT_LABEL, ...subaccounts.map(s => `${s.friendlyName} (${s.sid.slice(0, 10)}…)`)];
+
   const [showTollFreeForm, setShowTollFreeForm] = useState(false);
   const [tollFreeNumber, setTollFreeNumber] = useState("");
 
@@ -344,7 +351,7 @@ const Home: NextPage = () => {
     "https://serverless-functions-xxxx-dev.twil.io/"
   );
 
-  const [unverifiedTollFreeNumber, setUnverifiedTollFreeNumber] = useState([]);
+  const [unverifiedTollFreeNumber, setUnverifiedTollFreeNumber] = useState<string[]>([]);
 
   const [manualInquiryId, setManualInquiryId] = useState("");
   const [manualInquirySessionToken, setManualInquirySessionToken] = useState("");
@@ -370,22 +377,38 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    console.log(
-      `Unverified TFN ${JSON.stringify(unverifiedTollFreeNumber, null, 2)}`
-    );
-    fetch(`${inquiryEndPointURL}fetchUnverifiedTFNumbers`, {
+    const query = selectedSubaccountSid ? `?subaccountSid=${selectedSubaccountSid}` : "";
+    fetch(`${inquiryEndPointURL}fetchUnverifiedTFNumbers${query}`, {
       method: "get",
     })
       .then((res) => res.json())
       .then((data) => {
         console.log("Unverified Toll Free Numbers");
         console.log(data);
-        setUnverifiedTollFreeNumber(data.map((item: any) => item.phoneNumber));
+        if (Array.isArray(data)) {
+          setUnverifiedTollFreeNumber(data.map((item: any) => item.phoneNumber));
+        } else {
+          setUnverifiedTollFreeNumber([]);
+        }
       })
       .catch((error) => {
         console.error("Error fetching unverified toll free numbers", error);
       });
-  }, []);
+  }, [inquiryEndPointURL, selectedSubaccountSid]);
+
+  // Load the subaccount list once (for the picker)
+  useEffect(() => {
+    fetch(`${inquiryEndPointURL}fetchSubaccountList`, { method: "get" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setSubaccounts(data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching subaccount list", error);
+      });
+  }, [inquiryEndPointURL]);
 
   // Check regulation whenever country, phone number type, or end user type changes
   useEffect(() => {
@@ -582,6 +605,26 @@ const Home: NextPage = () => {
                 </Box>
               </DisclosureContent>
             </Disclosure>
+
+            <FormControl>
+              <Combobox
+                autocomplete
+                items={subaccountItems}
+                labelText="Target Account"
+                helpText={`Leave as "${PARENT_ACCOUNT_LABEL}" to use the configured parent account. Compliance resources created will be associated with the selected account.`}
+                selectedItem={selectedSubaccountSid
+                  ? (subaccountItems.find(i => i.includes(selectedSubaccountSid.slice(0, 10))) || PARENT_ACCOUNT_LABEL)
+                  : PARENT_ACCOUNT_LABEL}
+                onSelectedItemChange={({ selectedItem }) => {
+                  if (!selectedItem || selectedItem === PARENT_ACCOUNT_LABEL) {
+                    setSelectedSubaccountSid("");
+                    return;
+                  }
+                  const match = subaccounts.find(s => selectedItem.includes(s.sid.slice(0, 10)));
+                  setSelectedSubaccountSid(match ? match.sid : "");
+                }}
+              />
+            </FormControl>
 
             <FormControl>
               <RadioGroup
@@ -1131,6 +1174,7 @@ const Home: NextPage = () => {
             <Box id="wrapper-box"height="100%">
               <DynamicComplianceEmbeddedWrapper
                   inquiryEndPointURL={inquiryEndPointURL}
+                  subaccountSid={selectedSubaccountSid}
                   embeddableProduct={embeddableProduct}
                   tollFreeNumber={tollFreeNumber}
                   rcPhoneNumberType={rcPhoneNumberType}

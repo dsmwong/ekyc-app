@@ -8,6 +8,7 @@ import { TwilioComplianceEmbed } from "@twilio/twilio-compliance-embed";
 
 export interface ComplianceEmbeddedWrapperProps {
   inquiryEndPointURL: string;
+  subaccountSid?: string;
   embeddableProduct: string;
   tollFreeNumber?: string;
   rcPhoneNumberType?: string;
@@ -54,6 +55,20 @@ export interface ComplianceEmbeddedWrapperProps {
 const LOCALSTORAGE_CUSTOMER_ID = "CustomerId";
 const LOCALSTORAGE_REGISTRATION_ID = "RegistrationId";
 
+// Namespace a localStorage key by the selected subaccount SID so
+// cached CustomerId / RegistrationId values don't leak across accounts.
+// Parent-account keys keep their original names (backward compat).
+function nsKey(base: string, subaccountSid?: string): string {
+  return subaccountSid ? `${base}.${subaccountSid}` : base;
+}
+
+// Append `subaccountSid` to a backend URL when one is selected.
+function withSubaccount(url: string, subaccountSid?: string): string {
+  if (!subaccountSid) return url;
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}subaccountSid=${encodeURIComponent(subaccountSid)}`;
+}
+
 const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
   // const [data, setData] = React.useState<IComplianceInquiryData>();
   const [isLoading, setLoading] = React.useState(true);
@@ -62,7 +77,8 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
   const [inquirySessionToken, setInquirySessionToken] =
     React.useState<string>("");
 
-  const CustomerId = window.localStorage.getItem(LOCALSTORAGE_CUSTOMER_ID);
+  const customerIdKey = nsKey(LOCALSTORAGE_CUSTOMER_ID, props.subaccountSid);
+  const CustomerId = window.localStorage.getItem(customerIdKey);
 
   React.useEffect(() => {
 
@@ -86,14 +102,14 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
       }
       
       // Call the backend to get the inquiry_id and inquiry_session_token
-      fetch(`${props.inquiryEndPointURL}initCustomerProfile${appendCustomerId}`, {
+      fetch(withSubaccount(`${props.inquiryEndPointURL}initCustomerProfile${appendCustomerId}`, props.subaccountSid), {
         method: "get",
       })
         .then((res) => res.json())
         .then((data) => {
           console.log("Customer Data");
           console.log(data);
-          window.localStorage.setItem(LOCALSTORAGE_CUSTOMER_ID, data.customer_id);
+          window.localStorage.setItem(customerIdKey, data.customer_id);
 
           if (
             (data && data.hasOwnProperty("inquery_id")) ||
@@ -115,7 +131,10 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
 
 
         const countryCode = props.rcCountryCode ? props.rcCountryCode : "GB";
-        const STORAGE_KEY = `${LOCALSTORAGE_REGISTRATION_ID}.${countryCode}.${props.rcPhoneNumberType}.${props.rcEndUserType}`;
+        const STORAGE_KEY = nsKey(
+          `${LOCALSTORAGE_REGISTRATION_ID}.${countryCode}.${props.rcPhoneNumberType}.${props.rcEndUserType}`,
+          props.subaccountSid
+        );
 
         const initRegulatoryBundle = (isRetry: boolean = false) => {
           let appendRegistrationId = `?ComplianceRegulationCountry=${countryCode}`;
@@ -140,7 +159,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
 
           console.log("Fetching regulatory bundle with params:", appendRegistrationId);
 
-          fetch(`${props.inquiryEndPointURL}initRegulatoryBundle${appendRegistrationId}`, {
+          fetch(withSubaccount(`${props.inquiryEndPointURL}initRegulatoryBundle${appendRegistrationId}`, props.subaccountSid), {
             method: "get",
           })
             .then((res) => res.json())
@@ -197,7 +216,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
         } else if( props.embeddableProduct == "tollFreeVerification") {
         console.log("Toll Free Number: ", props.tollFreeNumber);
         // Call the backend to get the inquiry_id and inquiry_session_token
-        fetch(`${props.inquiryEndPointURL}initTollFreeVerification?TollfreePhoneNumber=${encodeURIComponent(props.tollFreeNumber || '')}`, {
+        fetch(withSubaccount(`${props.inquiryEndPointURL}initTollFreeVerification?TollfreePhoneNumber=${encodeURIComponent(props.tollFreeNumber || '')}`, props.subaccountSid), {
           method: "get",
         })
           .then((res) => res.json())
@@ -224,7 +243,10 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
       } else if (props.embeddableProduct == "senderIdRegistration") {
         console.log("Sender ID Registration: ", props.senderIdValue);
 
-        const SENDER_ID_STORAGE_KEY = `${LOCALSTORAGE_REGISTRATION_ID}.senderId.${props.senderIdValue}`;
+        const SENDER_ID_STORAGE_KEY = nsKey(
+          `${LOCALSTORAGE_REGISTRATION_ID}.senderId.${props.senderIdValue}`,
+          props.subaccountSid
+        );
 
         const initSenderIdRegistration = (isRetry: boolean = false) => {
           // Use manual registration ID if provided, otherwise use localStorage
@@ -282,7 +304,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
           const queryString = new URLSearchParams(params).toString();
           console.log("Fetching sender ID registration with params:", queryString);
 
-          fetch(`${props.inquiryEndPointURL}initSenderIdRegistration?${queryString}`, {
+          fetch(withSubaccount(`${props.inquiryEndPointURL}initSenderIdRegistration?${queryString}`, props.subaccountSid), {
             method: "get",
           })
             .then((res) => res.json())
@@ -338,7 +360,7 @@ const ComplianceEmbeddedWrapper = (props: ComplianceEmbeddedWrapperProps ) => {
       }
 
 
-  }, [CustomerId, props.manualInquiryId, props.manualInquirySessionToken, props.manualRegistrationId]);
+  }, [CustomerId, props.manualInquiryId, props.manualInquirySessionToken, props.manualRegistrationId, props.subaccountSid]);
 
   if (isLoading) return <Spinner decorative={false} title="Loading" />;
   if (errorMessage) return <Alert variant="warning">{errorMessage}</Alert>;

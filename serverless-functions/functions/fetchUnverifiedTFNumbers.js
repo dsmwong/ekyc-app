@@ -5,8 +5,18 @@ exports.handler = async function(context, event, callback) {
 
   console.log(`Entered ${context.PATH} node version ${process.version} twilio version ${twilio_version}`);
 
-  let cors = require(Runtime.getFunctions()['utilities/cors-response'].path);  
-  const client = context.getTwilioClient();
+  let cors = require(Runtime.getFunctions()['utilities/cors-response'].path);
+
+  const { getTwilioCredentials } = require(Runtime.getFunctions()['getTwilioCredentials'].path);
+  const credsResult = await getTwilioCredentials(context, event.subaccountSid);
+  if (!credsResult.ok) {
+    return callback(null, cors.response({ error: credsResult.error }));
+  }
+  const { accountSid, authToken, usingParent } = credsResult.data;
+  console.log(`Using ${usingParent ? 'parent' : 'subaccount'} account: ${accountSid}`);
+
+  const twilio = require('twilio');
+  const client = twilio(accountSid, authToken);
 
   // Define the pattern for toll-free numbers
   const pattern = /^\+18(00|88|77|66|55|44|33)\d{7}$/;

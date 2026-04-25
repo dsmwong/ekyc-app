@@ -7,7 +7,13 @@ exports.handler = async function(context, event, callback) {
 
   console.log(`Entered ${context.PATH} node version ${process.version} twilio version ${twilio_version}`);
 
-  const client = context.getTwilioClient();
+  const { getTwilioCredentials } = require(Runtime.getFunctions()['getTwilioCredentials'].path);
+  const credsResult = await getTwilioCredentials(context, event.subaccountSid);
+  if (!credsResult.ok) {
+    return callback(null, cors.response({ error: credsResult.error }));
+  }
+  const { accountSid, authToken, usingParent } = credsResult.data;
+  console.log(`Using ${usingParent ? 'parent' : 'subaccount'} account: ${accountSid}`);
 
   const {
     friendly_name,
@@ -60,8 +66,8 @@ exports.handler = async function(context, event, callback) {
   try {
     const response = await axios.post(complianceInquiriesUrl, params, {
       auth: {
-        username: context.ACCOUNT_SID,
-        password: context.AUTH_TOKEN
+        username: accountSid,
+        password: authToken
       },
       headers: {
         'Content-Type': 'application/json'

@@ -8,7 +8,16 @@ exports.handler = async function(context, event, callback) {
 
   console.log(`Entered ${context.PATH} node version ${process.version} twilio version ${twilio_version}`);
 
-  const client = context.getTwilioClient();
+  const { getTwilioCredentials } = require(Runtime.getFunctions()['getTwilioCredentials'].path);
+  const credsResult = await getTwilioCredentials(context, event.subaccountSid);
+  if (!credsResult.ok) {
+    return callback(null, cors.response({ error: credsResult.error }));
+  }
+  const { accountSid, authToken, usingParent } = credsResult.data;
+  console.log(`Using ${usingParent ? 'parent' : 'subaccount'} account: ${accountSid}`);
+
+  const twilio = require('twilio');
+  const client = twilio(accountSid, authToken);
 
   const {
     TollfreePhoneNumber,
@@ -74,8 +83,8 @@ exports.handler = async function(context, event, callback) {
     method: 'POST',
     uri: complianceInquiriesUrl,
     data: params,
-    username: context.ACCOUNT_SID,
-    password: context.AUTH_TOKEN,
+    username: accountSid,
+    password: authToken,
     headers: {"Content-Type":"application/x-www-form-urlencoded"},
   })
 
