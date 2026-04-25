@@ -90,7 +90,7 @@ const SUPPORTED_COUNTRY_CODES: { [countryName: string]: string } = {
   "Burundi": "BI",
   "Cambodia": "KH",
   "Cameroon": "CM",
-  // "Canada": "CA",
+  "Canada": "CA",
   "Cape Verde": "CV",
   "Cayman Islands": "KY",
   "Central African Republic": "CF",
@@ -241,7 +241,7 @@ const SUPPORTED_COUNTRY_CODES: { [countryName: string]: string } = {
   "Ukraine": "UA",
   "United Arab Emirates": "AE",
   "United Kingdom": "GB",
-  // "United States": "US",
+  "United States": "US",
   "Uruguay": "UY",
   "Uzbekistan": "UZ",
   "Vanuatu": "VU",
@@ -281,8 +281,8 @@ const Home: NextPage = () => {
   const [showSenderIdForm, setShowSenderIdForm] = useState(false);
   const [senderIdValue, setSenderIdValue] = useState("");
   const [senderIdFriendlyName, setSenderIdFriendlyName] = useState("");
-  const [senderIdBusinessIdentity, setSenderIdBusinessIdentity] = useState("");
-  const [senderIdIsSubassigned, setSenderIdIsSubassigned] = useState("");
+  const [senderIdBusinessIdentity] = useState("ISV");
+  const [senderIdIsSubassigned] = useState("YES");
   const [senderIdHqCountry, setSenderIdHqCountry] = useState("");
   const [senderIdHqCountryItems, setSenderIdHqCountryItems] = useState(Object.keys(SUPPORTED_COUNTRY_CODES));
   const [senderIdUseCaseCategory, setSenderIdUseCaseCategory] = useState("");
@@ -326,7 +326,7 @@ const Home: NextPage = () => {
   const [rcPhoneNumberType, setRCPhoneNumberType] = useState("");
   const [rcEndUserType, setRCEndUserType] = useState("");
   const [rcCountryCode, setRCCountryCode] = useState("");
-  const [rcCountryItems, setRCCountryItems] = useState(Object.keys(SUPPORTED_COUNTRY_CODES));
+  const [rcCountryItems, setRCCountryItems] = useState(Object.keys(SUPPORTED_COUNTRY_CODES).filter((c) => !["United States", "Canada"].includes(c)));
   const [rcPhoneNumberTypeItems, setRCPhoneNumberTypeItems] = useState(Object.keys(SUPPORTED_PHONE_NUMBER_TYPES));
   const [rcEndUserTypeItems, setRCEndUserTypeItems] = useState(Object.keys(SUPPORTED_END_USER_TYPES));
   const [regulationSid, setRegulationSid] = useState("");
@@ -610,8 +610,6 @@ const Home: NextPage = () => {
                   // Reset sender ID states
                   setSenderIdValue("");
                   setSenderIdFriendlyName("");
-                  setSenderIdBusinessIdentity("");
-                  setSenderIdIsSubassigned("");
                   setSenderIdHqCountry("");
                   setSenderIdUseCaseCategory("");
                   setSenderIdModalOpen(false);
@@ -720,6 +718,7 @@ const Home: NextPage = () => {
                         if (inputValue !== undefined) {
                           setRCCountryItems(
                             Object.keys(SUPPORTED_COUNTRY_CODES).filter((item) =>
+                              !["United States", "Canada"].includes(item) &&
                               item
                                 .toLowerCase()
                                 .startsWith(inputValue.toLowerCase())
@@ -892,33 +891,6 @@ const Home: NextPage = () => {
                           }
                         }}
                       />
-                    </Box>
-                    <Box flexGrow={1} flexBasis="0">
-                      <RadioGroup
-                        name="sender_id_business_identity"
-                        value={senderIdBusinessIdentity}
-                        legend="Business Identity"
-                        orientation="horizontal"
-                        onChange={(value) => setSenderIdBusinessIdentity(value)}
-                      >
-                        <Radio id="sid_bi_direct" value="DIRECT">Direct</Radio>
-                        <Radio id="sid_bi_isv" value="ISV">ISV</Radio>
-                      </RadioGroup>
-                    </Box>
-                  </Box>
-
-                  <Box display="flex" columnGap="space40">
-                    <Box flexGrow={1} flexBasis="0">
-                      <RadioGroup
-                        name="sender_id_is_subassigned"
-                        value={senderIdIsSubassigned}
-                        legend="Is Subassigned?"
-                        orientation="horizontal"
-                        onChange={(value) => setSenderIdIsSubassigned(value)}
-                      >
-                        <Radio id="sid_sub_yes" value="YES">Yes</Radio>
-                        <Radio id="sid_sub_no" value="NO">No</Radio>
-                      </RadioGroup>
                     </Box>
                     <Box flexGrow={1} flexBasis="0">
                       <RadioGroup

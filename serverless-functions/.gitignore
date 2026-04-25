@@ -1,6 +1,9 @@
 # Twilio Serverless
 .twiliodeployinfo
 
+# Project Related
+bundles.list
+
 # Logs
 logs
 *.log
